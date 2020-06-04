@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelPuzzle.Android", "PixelPuzzle\PixelPuzzle.Android\PixelPuzzle.Android.csproj", "{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelPuzzle", "PixelPuzzle\PixelPuzzle\PixelPuzzle.csproj", "{8963074D-2271-4754-B5E2-757E0CC079E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE319B5E-08EF-40FC-AFE7-6D2D545C54AF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8963074D-2271-4754-B5E2-757E0CC079E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8963074D-2271-4754-B5E2-757E0CC079E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8963074D-2271-4754-B5E2-757E0CC079E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8963074D-2271-4754-B5E2-757E0CC079E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4857D08D-30E0-49B9-933E-BE164A13405F}
+	EndGlobalSection
+EndGlobal
