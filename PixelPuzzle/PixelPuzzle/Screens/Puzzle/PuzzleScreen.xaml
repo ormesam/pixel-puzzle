@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Row="1"
+                Text="Game On!"
+                HorizontalOptions="Center" />
+            <Grid
+                Grid.Row="2"
+                RowSpacing="1"
+                ColumnSpacing="1"
+                VerticalOptions="Start"
+                x:Name="GameGrid">
+                <!--<Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGesture_Tapped" />
+                    <PanGestureRecognizer
+                        PanUpdated="PanGesture_PanUpdated" />
+                </Grid.GestureRecognizers>-->
+            </Grid>
+            <Label
+                Grid.Row="3"
+                IsVisible="{Binding IsComplete}"
+                Text="Complete!" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

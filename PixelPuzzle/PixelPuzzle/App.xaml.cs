@@ -1,5 +1,5 @@
 ﻿using PixelPuzzle.Contexts;
-using PixelPuzzle.Screens.Game;
+using PixelPuzzle.Screens.Puzzle;
 using Xamarin.Forms;
 
 namespace PixelPuzzle {

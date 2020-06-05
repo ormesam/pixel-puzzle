@@ -16,11 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Analyzers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Screens\Game\PuzzleScreen.xaml">
+    <EmbeddedResource Update="Screens\Puzzle\PuzzleScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

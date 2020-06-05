@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PixelPuzzle.Logic {
+    public class Game {
+        public int GridLength { get; }
+        public IList<Cell> Cells { get; set; }
+        public Line[] Rows { get; set; }
+        public Line[] Columns { get; set; }
+
+        public Game(int[,] map) {
+            GridLength = (int)Math.Sqrt(map.Length);
+            GenerateMap(map);
+        }
+
+        private void GenerateMap(int[,] map) {
+            Rows = new Line[GridLength];
+            Columns = new Line[GridLength];
+            Cells = new List<Cell>();
+
+            for (int row = 0; row < GridLength; row++) {
+                Rows[row] = new Line(GridLength);
+
+                for (int col = 0; col < GridLength; col++) {
+                    if (row == 0) {
+                        Columns[col] = new Line(GridLength);
+                    }
+
+                    var cell = new Cell(row + 1, col + 1, map[row, col] == 1);
+
+                    Cells.Add(cell);
+                    Rows[row].Cells[col] = cell;
+                    Columns[col].Cells[row] = cell;
+                }
+            }
+
+            foreach (var row in Rows) {
+                row.GenerateSegments();
+            }
+
+            foreach (var col in Columns) {
+                col.GenerateSegments();
+            }
+        }
+
+        public bool IsComplete() {
+            return Cells.All(i => i.CorrectValue == (i.UserValue ?? false));
+        }
+    }
+}

@@ -2,9 +2,12 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PixelPuzzle.Screens.Game {
+namespace PixelPuzzle.Screens.Puzzle {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PuzzleScreen : ContentPage {
+        private double startX = 0;
+        private double startY = 0;
+
         public PuzzleScreen(MainContext context) {
             InitializeComponent();
             BindingContext = new PuzzleScreenViewModel(context);
