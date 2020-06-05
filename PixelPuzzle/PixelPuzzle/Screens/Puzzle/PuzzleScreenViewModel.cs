@@ -16,8 +16,8 @@ namespace PixelPuzzle.Screens.Puzzle {
         public void RenderPuzzle(Grid gameGrid) {
             int gridLength = Game.GridLength;
 
-            SetupGrid(gameGrid, gridLength);
-            AddHeaders(gameGrid, gridLength);
+            SetupGrid(gameGrid);
+            AddHeaders(gameGrid);
 
             for (int row = 0; row < gridLength; row++) {
                 for (int col = 0; col < gridLength; col++) {
@@ -44,14 +44,42 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        private void AddHeaders(Grid gameGrid, int gridLength) {
+        private void AddHeaders(Grid gameGrid) {
+            AddHeader(gameGrid, Game.Rows, StackOrientation.Horizontal);
+            AddHeader(gameGrid, Game.Columns, StackOrientation.Vertical);
         }
 
-        private void SetupGrid(Grid gameGrid, int count) {
+        private void AddHeader(Grid gameGrid, Line[] lines, StackOrientation orientation) {
+            for (int i = 0; i < Game.GridLength; i++) {
+                StackLayout layout = new StackLayout {
+                    Orientation = orientation,
+                };
+
+                foreach (var segment in lines[i].Segments) {
+                    layout.Children.Add(new Label {
+                        Text = segment.ToString(),
+                    });
+                }
+
+                if (orientation == StackOrientation.Horizontal) {
+                    Grid.SetRow(layout, i + 1);
+                    layout.HorizontalOptions = LayoutOptions.End;
+                    layout.VerticalOptions = LayoutOptions.Center;
+                } else {
+                    Grid.SetColumn(layout, i + 1);
+                    layout.HorizontalOptions = LayoutOptions.Center;
+                    layout.VerticalOptions = LayoutOptions.End;
+                }
+
+                gameGrid.Children.Add(layout);
+            }
+        }
+
+        private void SetupGrid(Grid gameGrid) {
             gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < Game.GridLength; i++) {
                 gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
                 gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
             }
