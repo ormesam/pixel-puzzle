@@ -28,10 +28,19 @@ namespace PixelPuzzle.Logic {
                     }
 
                     var cell = new Cell(row + 1, col + 1, map[row, col] == 1 ? CellValue.Filled : CellValue.Blocked);
+                    var currentRow = Rows[row];
+                    var currentColumn = Columns[col];
+
+                    cell.PropertyChanged += (s, e) => {
+                        if (e.PropertyName == nameof(Cell.UserValue)) {
+                            currentRow.UpdateIsValid();
+                            currentColumn.UpdateIsValid();
+                        }
+                    };
 
                     Cells.Add(cell);
-                    Rows[row].Cells[col] = cell;
-                    Columns[col].Cells[row] = cell;
+                    currentRow.Cells[col] = cell;
+                    currentColumn.Cells[row] = cell;
                 }
             }
 

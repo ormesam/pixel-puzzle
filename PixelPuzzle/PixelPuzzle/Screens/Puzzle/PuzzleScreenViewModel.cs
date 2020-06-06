@@ -26,7 +26,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         public PuzzleScreenViewModel(MainContext context) : base(context) {
-            var map = MapGenerator.Generate(8);
+            var map = MapGenerator.Generate(15);
             Game = new Game(map);
             selectedValue = CellValue.Filled;
         }
@@ -55,6 +55,11 @@ namespace PixelPuzzle.Screens.Puzzle {
                     cellView.Children.Add(boxView);
                     cellView.Children.Add(text);
 
+                    Binding heightBinding = new Binding();
+                    heightBinding.Source = cellView;// new RelativeBindingSource(RelativeBindingSourceMode.Self);
+                    heightBinding.Path = nameof(Grid.Width);
+                    cellView.SetBinding(Grid.HeightRequestProperty, heightBinding);
+
                     Grid.SetRow(cellView, row + 1);
                     Grid.SetColumn(cellView, col + 1);
 
@@ -72,22 +77,26 @@ namespace PixelPuzzle.Screens.Puzzle {
             for (int i = 0; i < Game.GridLength; i++) {
                 StackLayout layout = new StackLayout {
                     Orientation = orientation,
+                    BindingContext = lines[i],
                 };
+
+                layout.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
 
                 foreach (var segment in lines[i].Segments) {
                     layout.Children.Add(new Label {
                         Text = segment.ToString(),
+                        FontSize = 10,
+                        VerticalTextAlignment = orientation == StackOrientation.Horizontal ? TextAlignment.Center : TextAlignment.End,
+                        HorizontalTextAlignment = orientation == StackOrientation.Vertical ? TextAlignment.Center : TextAlignment.End,
                     });
                 }
 
                 if (orientation == StackOrientation.Horizontal) {
                     Grid.SetRow(layout, i + 1);
-                    layout.HorizontalOptions = LayoutOptions.End;
-                    layout.VerticalOptions = LayoutOptions.Center;
+                    layout.HorizontalOptions = LayoutOptions.EndAndExpand;
                 } else {
                     Grid.SetColumn(layout, i + 1);
-                    layout.HorizontalOptions = LayoutOptions.Center;
-                    layout.VerticalOptions = LayoutOptions.End;
+                    layout.VerticalOptions = LayoutOptions.EndAndExpand;
                 }
 
                 gameGrid.Children.Add(layout);
@@ -127,6 +136,8 @@ namespace PixelPuzzle.Screens.Puzzle {
             touchValue = null;
             touchXRow = null;
             touchYRow = null;
+
+            OnPropertyChanged(nameof(IsComplete));
         }
 
         private CellValue? GetTouchValue(Logic.Cell cell) {

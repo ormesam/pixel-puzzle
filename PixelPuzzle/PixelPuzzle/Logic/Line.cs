@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PixelPuzzle.Utility;
 
 namespace PixelPuzzle.Logic {
-    public class Line {
+    public class Line : NotifyPropertyChangedBase {
         public Cell[] Cells { get; }
         public IList<int> Segments { get; private set; }
         public bool IsValid => GetIsValid();
@@ -34,7 +35,7 @@ namespace PixelPuzzle.Logic {
             IList<int> segments = new List<int>();
 
             foreach (var cell in Cells) {
-                if (cell.CorrectValue == CellValue.Filled) {
+                if (cell.UserValue == CellValue.Filled) {
                     currentCount++;
                 } else if (currentCount > 0) {
                     segments.Add(currentCount);
@@ -42,7 +43,15 @@ namespace PixelPuzzle.Logic {
                 }
             }
 
+            if (currentCount > 0) {
+                segments.Add(currentCount);
+            }
+
             return Segments.SequenceEqual(segments);
+        }
+
+        public void UpdateIsValid() {
+            OnPropertyChanged(nameof(IsValid));
         }
     }
 }

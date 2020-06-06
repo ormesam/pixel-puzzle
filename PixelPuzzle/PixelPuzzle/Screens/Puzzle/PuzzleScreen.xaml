@@ -23,6 +23,7 @@
                 RowSpacing="1"
                 ColumnSpacing="1"
                 VerticalOptions="Start"
+                BackgroundColor="Gray"
                 x:Name="GameGrid">
                 <Grid.Effects>
                     <touch:TouchEffect
