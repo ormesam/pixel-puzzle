@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Globalization;
+using PixelPuzzle.Logic;
 using Xamarin.Forms;
 
 namespace PixelPuzzle.Converters {
     public class CellColourConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (value == null) {
-                return Color.White;
+                return Color.Default;
             }
 
-            if (value is bool boolValue) {
-                return boolValue ? Color.Black : Color.White;
+            if (value is CellValue cellValue) {
+                return cellValue == CellValue.Filled ? Color.Black : Color.White;
             }
 
             return Color.Default;

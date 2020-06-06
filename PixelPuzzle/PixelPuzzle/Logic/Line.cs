@@ -16,7 +16,7 @@ namespace PixelPuzzle.Logic {
             int currentCount = 0;
 
             foreach (var cell in Cells) {
-                if (cell.CorrectValue) {
+                if (cell.CorrectValue == CellValue.Filled) {
                     currentCount++;
                 } else if (currentCount > 0) {
                     Segments.Add(currentCount);
@@ -34,7 +34,7 @@ namespace PixelPuzzle.Logic {
             IList<int> segments = new List<int>();
 
             foreach (var cell in Cells) {
-                if (cell.CorrectValue) {
+                if (cell.CorrectValue == CellValue.Filled) {
                     currentCount++;
                 } else if (currentCount > 0) {
                     segments.Add(currentCount);

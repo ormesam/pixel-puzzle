@@ -1,16 +1,32 @@
-﻿using PixelPuzzle.Contexts;
+﻿using System;
+using PixelPuzzle.Contexts;
 using PixelPuzzle.Converters;
 using PixelPuzzle.Logic;
 using Xamarin.Forms;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
+        private CellValue selectedValue;
+        private Guid? touchId;
+        private CellValue? touchValue;
+
         public Game Game { get; }
         public bool IsComplete => Game.IsComplete();
+
+        public CellValue SelectedValue {
+            get { return selectedValue; }
+            set {
+                if (selectedValue != value) {
+                    selectedValue = value;
+                    OnPropertyChanged(nameof(SelectedValue));
+                }
+            }
+        }
 
         public PuzzleScreenViewModel(MainContext context) : base(context) {
             var map = MapGenerator.Generate();
             Game = new Game(map);
+            selectedValue = CellValue.Filled;
         }
 
         public void RenderPuzzle(Grid gameGrid) {
@@ -26,13 +42,6 @@ namespace PixelPuzzle.Screens.Puzzle {
                     BoxView boxView = new BoxView {
                         BindingContext = cell,
                     };
-
-                    boxView.GestureRecognizers.Add(new TapGestureRecognizer {
-                        Command = new Command(() => {
-                            (boxView.BindingContext as Logic.Cell).Toggle();
-                            OnPropertyChanged(nameof(IsComplete));
-                        }),
-                    });
 
                     boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
 
@@ -83,6 +92,45 @@ namespace PixelPuzzle.Screens.Puzzle {
                 gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
                 gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
             }
+        }
+
+        public void SetCell(Logic.Cell cell) {
+            if (touchValue == null) {
+                touchValue = GetTouchValue(cell);
+            }
+
+            if (touchValue == null) {
+                return;
+            }
+
+            cell.SetValue(touchId.Value, SelectedValue, touchValue.Value);
+        }
+
+        public void BeginTouch() {
+            touchId = Guid.NewGuid();
+        }
+
+        public void EndTouch() {
+            touchId = null;
+            touchValue = null;
+        }
+
+        private CellValue? GetTouchValue(Logic.Cell cell) {
+            if (SelectedValue == CellValue.Filled) {
+                if (cell.UserValue == CellValue.Filled) {
+                    return CellValue.Blank;
+                } else if (cell.UserValue == CellValue.Blank) {
+                    return CellValue.Filled;
+                }
+            } else {
+                if (cell.UserValue == CellValue.Blocked) {
+                    return CellValue.Blank;
+                } else if (cell.UserValue == CellValue.Blank) {
+                    return CellValue.Blocked;
+                }
+            };
+
+            return null;
         }
     }
 }

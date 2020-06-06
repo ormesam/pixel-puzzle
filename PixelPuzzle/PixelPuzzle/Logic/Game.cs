@@ -27,7 +27,7 @@ namespace PixelPuzzle.Logic {
                         Columns[col] = new Line(GridLength);
                     }
 
-                    var cell = new Cell(row + 1, col + 1, map[row, col] == 1);
+                    var cell = new Cell(row + 1, col + 1, map[row, col] == 1 ? CellValue.Filled : CellValue.Blocked);
 
                     Cells.Add(cell);
                     Rows[row].Cells[col] = cell;
@@ -45,7 +45,7 @@ namespace PixelPuzzle.Logic {
         }
 
         public bool IsComplete() {
-            return Cells.All(i => i.CorrectValue == (i.UserValue ?? false));
+            return Cells.All(i => i.IsCorrect());
         }
     }
 }
