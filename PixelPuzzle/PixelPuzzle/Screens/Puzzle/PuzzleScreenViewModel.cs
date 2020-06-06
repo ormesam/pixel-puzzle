@@ -9,6 +9,8 @@ namespace PixelPuzzle.Screens.Puzzle {
         private CellValue selectedValue;
         private Guid? touchId;
         private CellValue? touchValue;
+        private int? touchXRow;
+        private int? touchYRow;
 
         public Game Game { get; }
         public bool IsComplete => Game.IsComplete();
@@ -105,13 +107,15 @@ namespace PixelPuzzle.Screens.Puzzle {
         public void SetCell(Logic.Cell cell) {
             if (touchValue == null) {
                 touchValue = GetTouchValue(cell);
+                touchXRow = cell.X;
+                touchYRow = cell.Y;
             }
 
             if (touchValue == null) {
                 return;
             }
 
-            cell.SetValue(touchId.Value, SelectedValue, touchValue.Value);
+            cell.SetValue(touchId.Value, touchXRow.Value, touchYRow.Value, SelectedValue, touchValue.Value);
         }
 
         public void BeginTouch() {
@@ -121,6 +125,8 @@ namespace PixelPuzzle.Screens.Puzzle {
         public void EndTouch() {
             touchId = null;
             touchValue = null;
+            touchXRow = null;
+            touchYRow = null;
         }
 
         private CellValue? GetTouchValue(Logic.Cell cell) {

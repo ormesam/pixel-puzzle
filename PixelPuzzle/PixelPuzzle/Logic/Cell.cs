@@ -29,8 +29,8 @@ namespace PixelPuzzle.Logic {
             UserValue = CellValue.Blank;
         }
 
-        public void SetValue(Guid touchId, CellValue selectedValue, CellValue? valueToSet) {
-            if (valueToSet == null || lastSetByTouchId == touchId) {
+        public void SetValue(Guid touchId, int xRow, int yRow, CellValue selectedValue, CellValue? valueToSet) {
+            if (valueToSet == null || lastSetByTouchId == touchId || (xRow != X && yRow != Y)) {
                 return;
             }
 
