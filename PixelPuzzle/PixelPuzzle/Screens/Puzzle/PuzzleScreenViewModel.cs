@@ -26,7 +26,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         public PuzzleScreenViewModel(MainContext context) : base(context) {
-            var map = MapGenerator.Generate();
+            var map = MapGenerator.Generate(8);
             Game = new Game(map);
             selectedValue = CellValue.Filled;
         }
