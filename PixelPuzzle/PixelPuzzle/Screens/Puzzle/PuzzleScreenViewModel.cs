@@ -39,16 +39,24 @@ namespace PixelPuzzle.Screens.Puzzle {
                 for (int col = 0; col < gridLength; col++) {
                     var cell = Game.Rows[row].Cells[col];
 
-                    BoxView boxView = new BoxView {
-                        BindingContext = cell,
-                    };
+                    Label text = new Label();
+                    text.Text = "✘";
+                    text.VerticalTextAlignment = TextAlignment.Center;
+                    text.HorizontalTextAlignment = TextAlignment.Center;
+                    text.SetBinding(Image.IsVisibleProperty, nameof(Logic.Cell.IsBlocked));
 
+                    BoxView boxView = new BoxView();
                     boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
 
-                    Grid.SetRow(boxView, row + 1);
-                    Grid.SetColumn(boxView, col + 1);
+                    Grid cellView = new Grid();
+                    cellView.BindingContext = cell;
+                    cellView.Children.Add(boxView);
+                    cellView.Children.Add(text);
 
-                    gameGrid.Children.Add(boxView);
+                    Grid.SetRow(cellView, row + 1);
+                    Grid.SetColumn(cellView, col + 1);
+
+                    gameGrid.Children.Add(cellView);
                 }
             }
         }

@@ -7,7 +7,7 @@ namespace PixelPuzzle.Converters {
     public class CellColourConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (value == null) {
-                return Color.Default;
+                return Color.White;
             }
 
             if (value is CellValue cellValue) {

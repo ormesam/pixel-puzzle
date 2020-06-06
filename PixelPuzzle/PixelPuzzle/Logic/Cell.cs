@@ -15,9 +15,12 @@ namespace PixelPuzzle.Logic {
                 if (userValue != value) {
                     userValue = value;
                     OnPropertyChanged(nameof(UserValue));
+                    OnPropertyChanged(nameof(IsBlocked));
                 }
             }
         }
+
+        public bool IsBlocked => UserValue == CellValue.Blocked;
 
         public Cell(int x, int y, CellValue correctValue) {
             X = x;
@@ -38,7 +41,7 @@ namespace PixelPuzzle.Logic {
                 return;
             }
 
-            if (selectedValue == UserValue) {
+            if (selectedValue == UserValue && valueToSet == CellValue.Blank) {
                 UserValue = CellValue.Blank;
             }
         }

@@ -3,12 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:touch="clr-namespace:PixelPuzzle.Touch"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
     x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen">
     <ContentPage.Content>
-        <Grid>
+        <Grid
+            Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -43,27 +41,37 @@
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <BoxView
-                    Grid.Column="1"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    BackgroundColor="Black">
-                    <BoxView.GestureRecognizers>
+                <Grid
+                    Grid.Column="1">
+                    <Grid.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="ValueTrue_Tapped" />
-                    </BoxView.GestureRecognizers>
-                </BoxView>
+                    </Grid.GestureRecognizers>
 
-                <BoxView
-                    Grid.Column="3"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    BackgroundColor="White">
-                    <BoxView.GestureRecognizers>
+                    <BoxView
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        BackgroundColor="Black" />
+                </Grid>
+
+                <Grid
+                    Grid.Column="3">
+                    <Grid.GestureRecognizers>
                         <TapGestureRecognizer
                             Tapped="ValueFalse_Tapped" />
-                    </BoxView.GestureRecognizers>
-                </BoxView>
+                    </Grid.GestureRecognizers>
+
+                    <BoxView
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        BackgroundColor="White" />
+
+                    <Label
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        Text="✘" />
+                </Grid>
             </Grid>
         </Grid>
     </ContentPage.Content>

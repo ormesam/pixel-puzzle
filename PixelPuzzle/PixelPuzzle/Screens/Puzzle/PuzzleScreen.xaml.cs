@@ -22,6 +22,10 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         private void TouchEffect_TouchAction(object sender, TouchActionEventArgs args) {
+            if (args.TouchId != 0) {
+                return;
+            }
+
             if (args.Type == TouchActionType.Pressed) {
                 ViewModel.BeginTouch();
             }
