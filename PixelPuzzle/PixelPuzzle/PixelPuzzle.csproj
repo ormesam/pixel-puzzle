@@ -16,7 +16,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Screens\Puzzle\UserControls\GamePlaying.xaml.cs">
+      <DependentUpon>GamePlaying.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Screens\Puzzle\UserControls\GameNotPlaying.xaml.cs">
+      <DependentUpon>GameNotPlaying.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Screens\Puzzle\PuzzleScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Screens\Puzzle\UserControls\GamePlaying.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Screens\Puzzle\UserControls\GameComplete.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Screens\Puzzle\UserControls\GameNotPlaying.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

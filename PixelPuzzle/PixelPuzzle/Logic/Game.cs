@@ -4,10 +4,17 @@ using System.Linq;
 
 namespace PixelPuzzle.Logic {
     public class Game {
+        public static int Large => 15;
+        public static int Medium => 12;
+        public static int Small => 8;
+        public static int Tutorial => 4;
+
         public int GridLength { get; }
         public IList<Cell> Cells { get; set; }
         public Line[] Rows { get; set; }
         public Line[] Columns { get; set; }
+
+        public event EventHandler<EventArgs> GameCompleted;
 
         public Game(int[,] map) {
             GridLength = (int)Math.Sqrt(map.Length);
@@ -53,8 +60,14 @@ namespace PixelPuzzle.Logic {
             }
         }
 
-        public bool IsComplete() {
+        private bool IsComplete() {
             return Cells.All(i => i.IsCorrect());
+        }
+
+        internal void CheckIsComplete() {
+            if (IsComplete()) {
+                GameCompleted?.Invoke(this, new EventArgs());
+            }
         }
     }
 }

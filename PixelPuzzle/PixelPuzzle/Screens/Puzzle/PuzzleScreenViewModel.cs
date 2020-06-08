@@ -6,14 +6,15 @@ using Xamarin.Forms;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
+        private Grid gameGrid;
         private CellValue selectedValue;
+        private GameStatus gameStatus;
         private Guid? touchId;
         private CellValue? touchValue;
         private int? touchXRow;
         private int? touchYRow;
 
-        public Game Game { get; }
-        public bool IsComplete => Game.IsComplete();
+        public Game Game { get; set; }
 
         public CellValue SelectedValue {
             get { return selectedValue; }
@@ -25,17 +26,52 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        public PuzzleScreenViewModel(MainContext context) : base(context) {
-            var map = MapGenerator.Generate(15);
-            Game = new Game(map);
-            selectedValue = CellValue.Filled;
+        public GameStatus GameStatus {
+            get { return gameStatus; }
+            set {
+                if (gameStatus != value) {
+                    gameStatus = value;
+                    OnPropertyChanged(nameof(GameStatus));
+                    OnPropertyChanged(nameof(IsPlaying));
+                    OnPropertyChanged(nameof(IsNotPlaying));
+                    OnPropertyChanged(nameof(IsComplete));
+                }
+            }
         }
 
-        public void RenderPuzzle(Grid gameGrid) {
+        public bool IsNotPlaying => GameStatus == GameStatus.NotPlaying;
+        public bool IsPlaying => GameStatus == GameStatus.Playing;
+        public bool IsComplete => GameStatus == GameStatus.Completed;
+
+        public PuzzleScreenViewModel(MainContext context, Grid gameGrid) : base(context) {
+            selectedValue = CellValue.Filled;
+            gameStatus = GameStatus.NotPlaying;
+            this.gameGrid = gameGrid;
+        }
+
+        #region Game Setup
+
+        public void CreateGame(int size) {
+            var map = MapGenerator.Generate(size);
+            Game = new Game(map);
+            Game.GameCompleted += Game_GameCompleted;
+            RenderGame();
+
+            SelectedValue = CellValue.Filled;
+            GameStatus = GameStatus.Playing;
+
+            OnPropertyChanged();
+        }
+
+        private void RenderGame() {
+            gameGrid.Children.Clear();
+            gameGrid.RowDefinitions.Clear();
+            gameGrid.ColumnDefinitions.Clear();
+
             int gridLength = Game.GridLength;
 
-            SetupGrid(gameGrid);
-            AddHeaders(gameGrid);
+            SetupGrid();
+            AddHeaders();
 
             for (int row = 0; row < gridLength; row++) {
                 for (int col = 0; col < gridLength; col++) {
@@ -56,7 +92,7 @@ namespace PixelPuzzle.Screens.Puzzle {
                     cellView.Children.Add(text);
 
                     Binding heightBinding = new Binding();
-                    heightBinding.Source = cellView;// new RelativeBindingSource(RelativeBindingSourceMode.Self);
+                    heightBinding.Source = cellView;
                     heightBinding.Path = nameof(Grid.Width);
                     cellView.SetBinding(Grid.HeightRequestProperty, heightBinding);
 
@@ -68,12 +104,12 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        private void AddHeaders(Grid gameGrid) {
-            AddHeader(gameGrid, Game.Rows, StackOrientation.Horizontal);
-            AddHeader(gameGrid, Game.Columns, StackOrientation.Vertical);
+        private void AddHeaders() {
+            AddHeader(Game.Rows, StackOrientation.Horizontal);
+            AddHeader(Game.Columns, StackOrientation.Vertical);
         }
 
-        private void AddHeader(Grid gameGrid, Line[] lines, StackOrientation orientation) {
+        private void AddHeader(Line[] lines, StackOrientation orientation) {
             for (int i = 0; i < Game.GridLength; i++) {
                 StackLayout layout = new StackLayout {
                     Orientation = orientation,
@@ -103,7 +139,7 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        private void SetupGrid(Grid gameGrid) {
+        private void SetupGrid() {
             gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
@@ -112,6 +148,22 @@ namespace PixelPuzzle.Screens.Puzzle {
                 gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
             }
         }
+
+        #endregion
+
+        #region Game Complete
+
+        private void Game_GameCompleted(object sender, EventArgs e) {
+            GameStatus = GameStatus.Completed;
+        }
+
+        public void Restart() {
+            GameStatus = GameStatus.NotPlaying;
+        }
+
+        #endregion
+
+        #region Interaction
 
         public void SetCell(Logic.Cell cell) {
             if (touchValue == null) {
@@ -137,7 +189,7 @@ namespace PixelPuzzle.Screens.Puzzle {
             touchXRow = null;
             touchYRow = null;
 
-            OnPropertyChanged(nameof(IsComplete));
+            Game.CheckIsComplete();
         }
 
         private CellValue? GetTouchValue(Logic.Cell cell) {
@@ -157,5 +209,7 @@ namespace PixelPuzzle.Screens.Puzzle {
 
             return null;
         }
+
+        #endregion
     }
 }

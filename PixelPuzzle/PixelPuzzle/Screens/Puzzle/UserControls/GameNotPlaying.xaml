@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Screens.Puzzle.UserControls.GameNotPlaying">
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="*"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="Welcome to Pixel Puzzle!" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalTextAlignment="Center"
+                Text="Select difficulty level" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="Tutorial (4x4)"
+                BackgroundColor="Green"
+                TextColor="White"
+                Clicked="Tutorial_Clicked"
+                CornerRadius="50" />
+            <Button
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="Easy (8x8)"
+                BackgroundColor="Green"
+                TextColor="White"
+                Clicked="Easy_Clicked"
+                CornerRadius="50" />
+            <Button
+                Grid.Row="5"
+                Grid.Column="1"
+                Text="Medium (12x12)"
+                BackgroundColor="Orange"
+                TextColor="White"
+                Clicked="Medium_Clicked"
+                CornerRadius="50" />
+            <Button
+                Grid.Row="6"
+                Grid.Column="1"
+                Text="Hard (15x15)"
+                BackgroundColor="Red"
+                TextColor="White"
+                Clicked="Hard_Clicked"
+                CornerRadius="50" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

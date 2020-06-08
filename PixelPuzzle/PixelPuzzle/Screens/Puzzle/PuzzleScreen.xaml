@@ -1,79 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:touch="clr-namespace:PixelPuzzle.Touch"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:userControls="clr-namespace:PixelPuzzle.Screens.Puzzle.UserControls"
     x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen">
     <ContentPage.Content>
-        <Grid
-            Padding="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid>
+            <userControls:GamePlaying
+                x:Name="GamePlaying"
+                IsVisible="{Binding IsPlaying}"/>
 
-            <Label
-                Grid.Row="0"
-                Text="Game On!"
-                HorizontalOptions="Center" />
-            <Grid
-                Grid.Row="1"
-                RowSpacing="1"
-                ColumnSpacing="1"
-                VerticalOptions="Start"
-                BackgroundColor="Gray"
-                x:Name="GameGrid">
-                <Grid.Effects>
-                    <touch:TouchEffect
-                        TouchAction="TouchEffect_TouchAction"/>
-                </Grid.Effects>
-            </Grid>
+            <userControls:GameNotPlaying
+                IsVisible="{Binding IsNotPlaying}" />
 
-            <Grid
-                Grid.Row="2"
-                Margin="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid
-                    Grid.Column="1">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="ValueTrue_Tapped" />
-                    </Grid.GestureRecognizers>
-
-                    <BoxView
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        BackgroundColor="Black" />
-                </Grid>
-
-                <Grid
-                    Grid.Column="3">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="ValueFalse_Tapped" />
-                    </Grid.GestureRecognizers>
-
-                    <BoxView
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        BackgroundColor="White" />
-
-                    <Label
-                        FontSize="Large"
-                        HorizontalTextAlignment="Center"
-                        VerticalTextAlignment="Center"
-                        Text="✘" />
-                </Grid>
-            </Grid>
+            <userControls:GameComplete
+                IsVisible="{Binding IsComplete}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
