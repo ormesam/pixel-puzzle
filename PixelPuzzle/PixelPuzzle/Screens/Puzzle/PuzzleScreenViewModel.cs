@@ -6,13 +6,14 @@ using Xamarin.Forms;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
-        private Grid gameGrid;
+        private readonly Grid gameGrid;
+        private readonly int size;
         private CellValue selectedValue;
-        private GameStatus gameStatus;
         private Guid? touchId;
         private CellValue? touchValue;
         private int? touchXRow;
         private int? touchYRow;
+        private bool isComplete;
 
         public Game Game { get; set; }
 
@@ -26,41 +27,37 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        public GameStatus GameStatus {
-            get { return gameStatus; }
+        public bool IsComplete {
+            get { return isComplete; }
             set {
-                if (gameStatus != value) {
-                    gameStatus = value;
-                    OnPropertyChanged(nameof(GameStatus));
-                    OnPropertyChanged(nameof(IsPlaying));
-                    OnPropertyChanged(nameof(IsNotPlaying));
+                if (isComplete != value) {
+                    isComplete = value;
                     OnPropertyChanged(nameof(IsComplete));
                 }
             }
         }
 
-        public bool IsNotPlaying => GameStatus == GameStatus.NotPlaying;
-        public bool IsPlaying => GameStatus == GameStatus.Playing;
-        public bool IsComplete => GameStatus == GameStatus.Completed;
-
-        public PuzzleScreenViewModel(MainContext context, Grid gameGrid) : base(context) {
+        public PuzzleScreenViewModel(MainContext context, Grid gameGrid, int size) : base(context) {
             selectedValue = CellValue.Filled;
-            gameStatus = GameStatus.NotPlaying;
             this.gameGrid = gameGrid;
+            this.size = size;
         }
 
         #region Game Setup
 
-        public void CreateGame(int size) {
+        public void CreateGame() {
             var map = MapGenerator.Generate(size);
             Game = new Game(map);
             Game.GameCompleted += Game_GameCompleted;
             RenderGame();
 
             SelectedValue = CellValue.Filled;
-            GameStatus = GameStatus.Playing;
 
             OnPropertyChanged();
+        }
+
+        private void Game_GameCompleted(object sender, EventArgs e) {
+            IsComplete = true;
         }
 
         private void RenderGame() {
@@ -147,18 +144,6 @@ namespace PixelPuzzle.Screens.Puzzle {
                 gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
                 gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
             }
-        }
-
-        #endregion
-
-        #region Game Complete
-
-        private void Game_GameCompleted(object sender, EventArgs e) {
-            GameStatus = GameStatus.Completed;
-        }
-
-        public void Restart() {
-            GameStatus = GameStatus.NotPlaying;
         }
 
         #endregion

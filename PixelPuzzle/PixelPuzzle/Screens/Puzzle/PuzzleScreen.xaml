@@ -2,19 +2,132 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:userControls="clr-namespace:PixelPuzzle.Screens.Puzzle.UserControls"
-    x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen">
+    xmlns:touch="clr-namespace:PixelPuzzle.Touch"
+    x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
-            <userControls:GamePlaying
-                x:Name="GamePlaying"
-                IsVisible="{Binding IsPlaying}"/>
+            <Grid
+                Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <userControls:GameNotPlaying
-                IsVisible="{Binding IsNotPlaying}" />
+                <Label
+                    Grid.Row="0"
+                    Text="Game On!"
+                    HorizontalOptions="Center" />
+                <Grid
+                    Grid.Row="1"
+                    RowSpacing="1"
+                    ColumnSpacing="1"
+                    VerticalOptions="Start"
+                    BackgroundColor="Gray"
+                    x:Name="GameGrid">
+                    <Grid.Effects>
+                        <touch:TouchEffect
+                            TouchAction="TouchEffect_TouchAction"/>
+                    </Grid.Effects>
+                </Grid>
 
-            <userControls:GameComplete
-                IsVisible="{Binding IsComplete}" />
+                <Grid
+                    Grid.Row="2"
+                    Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid
+                        Grid.Column="1">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="ValueTrue_Tapped" />
+                        </Grid.GestureRecognizers>
+
+                        <BoxView
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            BackgroundColor="Black" />
+                    </Grid>
+
+                    <Grid
+                        Grid.Column="3">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="ValueFalse_Tapped" />
+                        </Grid.GestureRecognizers>
+
+                        <BoxView
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            BackgroundColor="White" />
+
+                        <Label
+                            FontSize="Large"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            Text="✘" />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid
+                IsVisible="{Binding IsComplete}">
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="*"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView
+                    Grid.RowSpan="4"
+                    Grid.ColumnSpan="3"
+                    BackgroundColor="White"
+                    Opacity=".75"/>
+
+                <BoxView
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    CornerRadius="25"
+                    BackgroundColor="White" />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="25,25,25,0"
+                    FontSize="Large"
+                    Text="Puzzle Complete!" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="25"
+                    Text="Give Me More!"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Clicked="Complete_Clicked"
+                    CornerRadius="50"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

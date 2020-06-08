@@ -4,10 +4,12 @@ using Xamarin.Forms;
 
 namespace PixelPuzzle {
     public partial class App : Application {
+        public static NavigationPage RootPage => Current.MainPage as NavigationPage;
+
         public App() {
             InitializeComponent();
 
-            MainPage = new PuzzleScreen(new MainContext());
+            MainPage = new NavigationPage(new MenuScreen(new MainContext()));
         }
 
         protected override void OnStart() {
