@@ -84,6 +84,8 @@ namespace PixelPuzzle.Screens.Puzzle {
                     boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
 
                     Grid cellView = new Grid();
+                    cellView.BackgroundColor = Color.Gray;
+                    cellView.Padding = .5;
                     cellView.BindingContext = cell;
                     cellView.Children.Add(boxView);
                     cellView.Children.Add(text);
@@ -93,46 +95,65 @@ namespace PixelPuzzle.Screens.Puzzle {
                     heightBinding.Path = nameof(Grid.Width);
                     cellView.SetBinding(Grid.HeightRequestProperty, heightBinding);
 
-                    Grid.SetRow(cellView, row + 1);
-                    Grid.SetColumn(cellView, col + 1);
-
-                    gameGrid.Children.Add(cellView);
+                    gameGrid.Children.Add(cellView, col + 1, row + 1);
                 }
             }
         }
 
         private void AddHeaders() {
-            AddHeader(Game.Rows, StackOrientation.Horizontal);
-            AddHeader(Game.Columns, StackOrientation.Vertical);
+            AddRowHeaders();
+            AddColumnHeaders();
         }
 
-        private void AddHeader(Line[] lines, StackOrientation orientation) {
+        private void AddRowHeaders() {
             for (int i = 0; i < Game.GridLength; i++) {
-                StackLayout layout = new StackLayout {
-                    Orientation = orientation,
-                    BindingContext = lines[i],
+                Grid container = new Grid() {
+                    BindingContext = Game.Rows[i],
+                    Padding = new Thickness(2, 2, 10, 2),
                 };
 
-                layout.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
+                container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
+                container.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
 
-                foreach (var segment in lines[i].Segments) {
-                    layout.Children.Add(new Label {
+                for (int j = 0; j < Game.Rows[i].Segments.Count; j++) {
+                    var segment = Game.Rows[i].Segments[j];
+
+                    container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+
+                    container.Children.Add(new Label {
                         Text = segment.ToString(),
                         FontSize = 10,
-                        VerticalTextAlignment = orientation == StackOrientation.Horizontal ? TextAlignment.Center : TextAlignment.End,
-                        HorizontalTextAlignment = orientation == StackOrientation.Vertical ? TextAlignment.Center : TextAlignment.End,
-                    });
+                        VerticalTextAlignment = TextAlignment.Center,
+                    }, j + 1, 0);
                 }
 
-                if (orientation == StackOrientation.Horizontal) {
-                    Grid.SetRow(layout, i + 1);
-                    layout.HorizontalOptions = LayoutOptions.EndAndExpand;
-                } else {
-                    Grid.SetColumn(layout, i + 1);
-                    layout.VerticalOptions = LayoutOptions.EndAndExpand;
+                gameGrid.Children.Add(container, 0, i + 1);
+            }
+        }
+
+        private void AddColumnHeaders() {
+            for (int i = 0; i < Game.GridLength; i++) {
+                Grid container = new Grid() {
+                    BindingContext = Game.Columns[i],
+                    Padding = new Thickness(2, 2, 2, 10),
+                };
+
+                container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
+                container.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
+
+                for (int j = 0; j < Game.Columns[i].Segments.Count; j++) {
+                    var segment = Game.Columns[i].Segments[j];
+
+                    container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+
+                    container.Children.Add(new Label {
+                        Text = segment.ToString(),
+                        FontSize = 10,
+                        HorizontalTextAlignment = TextAlignment.Center,
+                    }, 0, j + 1);
                 }
 
-                gameGrid.Children.Add(layout);
+                gameGrid.Children.Add(container, i + 1, 0);
             }
         }
 

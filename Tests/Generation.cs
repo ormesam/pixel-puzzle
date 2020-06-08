@@ -6,9 +6,9 @@ namespace Tests {
     public class Generation {
         [TestMethod]
         public void GameSetup() {
-            var map = MapGenerator.Generate();
+            //var map = MapGenerator.Generate();
 
-            Game game = new Game(map);
+            //Game game = new Game(map);
         }
     }
 }

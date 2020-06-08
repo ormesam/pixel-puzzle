@@ -22,10 +22,9 @@
                     HorizontalOptions="Center" />
                 <Grid
                     Grid.Row="1"
-                    RowSpacing="1"
-                    ColumnSpacing="1"
+                    RowSpacing="0"
+                    ColumnSpacing="0"
                     VerticalOptions="Start"
-                    BackgroundColor="Gray"
                     x:Name="GameGrid">
                     <Grid.Effects>
                         <touch:TouchEffect
