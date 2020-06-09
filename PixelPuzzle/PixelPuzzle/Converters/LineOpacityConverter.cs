@@ -3,17 +3,17 @@ using System.Globalization;
 using Xamarin.Forms;
 
 namespace PixelPuzzle.Converters {
-    public class LineColourConverter : IValueConverter {
+    public class LineOpacityConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (value == null) {
-                return Color.White;
+                return 0;
             }
 
             if (value is bool boolValue) {
-                return boolValue ? Color.Gray : Color.White;
+                return boolValue ? .5 : 1;
             }
 
-            return Color.Default;
+            return 1;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

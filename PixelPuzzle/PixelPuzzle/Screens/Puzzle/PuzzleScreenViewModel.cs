@@ -107,13 +107,19 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         private void AddRowHeaders() {
             for (int i = 0; i < Game.GridLength; i++) {
+                Grid border = new Grid() {
+                    Padding = new Thickness(0, .5, .5, .5),
+                    BackgroundColor = Color.Gray,
+                };
+
                 Grid container = new Grid() {
                     BindingContext = Game.Rows[i],
                     Padding = new Thickness(2, 2, 10, 2),
+                    BackgroundColor = Color.White,
                 };
 
                 container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
-                container.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
+                container.SetBinding(StackLayout.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
 
                 for (int j = 0; j < Game.Rows[i].Segments.Count; j++) {
                     var segment = Game.Rows[i].Segments[j];
@@ -127,19 +133,26 @@ namespace PixelPuzzle.Screens.Puzzle {
                     }, j + 1, 0);
                 }
 
-                gameGrid.Children.Add(container, 0, i + 1);
+                border.Children.Add(container);
+                gameGrid.Children.Add(border, 0, i + 1);
             }
         }
 
         private void AddColumnHeaders() {
             for (int i = 0; i < Game.GridLength; i++) {
+                Grid border = new Grid() {
+                    Padding = new Thickness(.5, 0, .5, .5),
+                    BackgroundColor = Color.Gray,
+                };
+
                 Grid container = new Grid() {
                     BindingContext = Game.Columns[i],
                     Padding = new Thickness(2, 2, 2, 10),
+                    BackgroundColor = Color.White,
                 };
 
                 container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
-                container.SetBinding(StackLayout.BackgroundColorProperty, nameof(Line.IsValid), converter: new LineColourConverter());
+                container.SetBinding(StackLayout.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
 
                 for (int j = 0; j < Game.Columns[i].Segments.Count; j++) {
                     var segment = Game.Columns[i].Segments[j];
@@ -153,7 +166,8 @@ namespace PixelPuzzle.Screens.Puzzle {
                     }, 0, j + 1);
                 }
 
-                gameGrid.Children.Add(container, i + 1, 0);
+                border.Children.Add(container);
+                gameGrid.Children.Add(border, i + 1, 0);
             }
         }
 
