@@ -15,7 +15,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         public MenuScreenViewModel ViewModel => BindingContext as MenuScreenViewModel;
 
         private async void Tutorial_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Game.Tutorial);
+            await ViewModel.GoToTutorial();
         }
 
         private async void Easy_Clicked(object sender, EventArgs e) {

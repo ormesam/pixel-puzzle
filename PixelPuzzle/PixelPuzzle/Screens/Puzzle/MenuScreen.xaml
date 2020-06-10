@@ -50,7 +50,7 @@
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
-                Text="Tutorial (4x4)"
+                Text="Tutorial"
                 BackgroundColor="Green"
                 TextColor="White"
                 Clicked="Tutorial_Clicked"

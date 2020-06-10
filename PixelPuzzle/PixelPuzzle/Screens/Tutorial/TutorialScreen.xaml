@@ -2,7 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen"
+    x:Class="PixelPuzzle.Screens.Tutorial.TutorialScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>

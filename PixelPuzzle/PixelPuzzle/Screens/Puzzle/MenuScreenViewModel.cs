@@ -9,5 +9,9 @@ namespace PixelPuzzle.Screens.Puzzle {
         public async Task GoToGame(int size) {
             await Context.UI.GoToGame(size);
         }
+
+        public async Task GoToTutorial() {
+            await Context.UI.GoToTutorial();
+        }
     }
 }

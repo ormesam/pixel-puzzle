@@ -7,7 +7,6 @@ namespace PixelPuzzle.Logic {
         public static int Large => 15;
         public static int Medium => 12;
         public static int Small => 8;
-        public static int Tutorial => 4;
 
         public int GridLength { get; }
         public IList<Cell> Cells { get; set; }

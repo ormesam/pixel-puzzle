@@ -12,12 +12,15 @@ namespace PixelPuzzle.Controls {
         private int? touchYRow;
         private bool isComplete;
 
-        public PuzzleControlViewModel(MainContext context, int size) : base(context) {
+        public PuzzleControlViewModel(MainContext context, int[,] map) : base(context) {
             selectedValue = CellValue.Filled;
 
-            var map = MapGenerator.Generate(size);
             Game = new Game(map);
             Game.GameCompleted += Game_GameCompleted;
+        }
+
+        public PuzzleControlViewModel(MainContext context, int size)
+            : this(context, MapGenerator.Generate(size)) {
         }
 
         public Game Game { get; private set; }
