@@ -1,4 +1,6 @@
-﻿using PixelPuzzle.Contexts;
+﻿using System;
+using Akavache;
+using PixelPuzzle.Contexts;
 using PixelPuzzle.Screens.Puzzle;
 using Xamarin.Forms;
 
@@ -13,6 +15,13 @@ namespace PixelPuzzle {
         }
 
         protected override void OnStart() {
+#if DEBUG
+            BlobCache.ApplicationName = "PixelPuzzleDev";
+#else
+            BlobCache.ApplicationName = "PixelPuzzle";
+#endif
+            BlobCache.EnsureInitialized();
+            BlobCache.ForcedDateTimeKind = DateTimeKind.Utc;
         }
 
         protected override void OnSleep() {

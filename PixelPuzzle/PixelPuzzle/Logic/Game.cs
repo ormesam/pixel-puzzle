@@ -68,5 +68,21 @@ namespace PixelPuzzle.Logic {
                 GameCompleted?.Invoke(this, new EventArgs());
             }
         }
+
+        public CellValue[,] GetUserMap() {
+            var map = new CellValue[GridLength, GridLength];
+
+            foreach (var cell in Cells) {
+                map[cell.X - 1, cell.Y - 1] = cell.UserValue;
+            }
+
+            return map;
+        }
+
+        public void ApplyUserValues(CellValue[,] map) {
+            foreach (var cell in Cells) {
+                cell.UserValue = map[cell.X - 1, cell.Y - 1];
+            }
+        }
     }
 }

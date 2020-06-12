@@ -20,8 +20,14 @@ namespace PixelPuzzle.Screens.Puzzle {
             PuzzleControl.RenderGame();
         }
 
+        protected async override void OnDisappearing() {
+            await ViewModel.SaveGameState();
+
+            base.OnDisappearing();
+        }
+
         private async void Complete_Clicked(object sender, EventArgs e) {
-            await Navigation.PopToRootAsync();
+            await Navigation.PopAsync();
         }
     }
 }

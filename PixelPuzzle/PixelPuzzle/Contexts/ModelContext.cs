@@ -1,8 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Contexts {
     public class ModelContext {
+        private StorageContext storageContext;
+        public IDictionary<string, SavedGame> SavedLevels { get; }
+
+        public ModelContext() {
+            storageContext = new StorageContext();
+            SavedLevels = storageContext.GetSavedGames();
+        }
+
+        public async Task SaveLevel(int levelNumber, Difficulty difficulty, CellValue[,] userMap, bool isComplete) {
+            var save = new SavedGame {
+                Difficulty = difficulty,
+                IsComplete = isComplete,
+                LevelNumber = levelNumber,
+                Map = userMap,
+            };
+
+            await storageContext.SaveGame(save);
+
+            SavedLevels[save.Key] = save;
+        }
+
+        public SavedGame LoadLevel(int levelNumber, Difficulty difficulty) {
+            var key = CreateKey(levelNumber, difficulty);
+
+            if (SavedLevels.ContainsKey(key)) {
+                return SavedLevels[key];
+            }
+
+            return null;
+        }
+
+        public string CreateKey(int levelNumber, Difficulty difficulty) {
+            return $"{difficulty}.{levelNumber}";
+        }
+
         public IList<Level> GetLevels(Difficulty difficulty) {
             switch (difficulty) {
                 case Difficulty.Easy:
