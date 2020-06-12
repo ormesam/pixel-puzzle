@@ -19,11 +19,7 @@ namespace PixelPuzzle.Controls {
             Game.GameCompleted += Game_GameCompleted;
         }
 
-        public PuzzleControlViewModel(MainContext context, int size)
-            : this(context, MapGenerator.GenerateRandom(size)) {
-        }
-
-        public Game Game { get; private set; }
+        public Game Game { get; }
 
         public CellValue SelectedValue {
             get { return selectedValue; }
