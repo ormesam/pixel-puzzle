@@ -71,7 +71,7 @@ namespace PixelPuzzle.Screens.Tutorial {
             RegisterStep("This row is now logically complete.", async () => { await BlockRow(5); }, null);
             RegisterStep("And we know this row has 6 filled pixels.", async () => { await FillRow(6); }, null);
             RegisterStep("As we blocked off the other pixels we know the group of 4 can only go here.", async () => { await FillRow(7); }, null);
-            RegisterStep("There is only ever one way to complete the puzzle and it is always possible.", null, null);
+            RegisterStep("There is always a way to complete the puzzle.", null, null);
             RegisterStep("Can you complete this puzzle?", async () => { IsTutorialComplete = true; }, null);
         }
 

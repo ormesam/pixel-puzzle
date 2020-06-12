@@ -60,7 +60,7 @@ namespace PixelPuzzle.Logic {
         }
 
         private bool IsComplete() {
-            return Cells.All(i => i.IsCorrect());
+            return Rows.All(i => i.IsValid) && Columns.All(i => i.IsValid);
         }
 
         internal void CheckIsComplete() {

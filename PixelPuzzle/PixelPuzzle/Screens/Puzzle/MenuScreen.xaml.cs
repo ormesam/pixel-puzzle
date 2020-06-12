@@ -19,15 +19,15 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         private async void Easy_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Game.Small);
+            await ViewModel.GoToGame(Difficulty.Easy);
         }
 
         private async void Medium_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Game.Medium);
+            await ViewModel.GoToGame(Difficulty.Medium);
         }
 
         private async void Hard_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Game.Large);
+            await ViewModel.GoToGame(Difficulty.Hard);
         }
     }
 }

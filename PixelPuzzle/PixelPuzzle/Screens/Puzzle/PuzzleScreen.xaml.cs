@@ -1,14 +1,15 @@
 ﻿using System;
 using PixelPuzzle.Contexts;
+using PixelPuzzle.Logic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PixelPuzzle.Screens.Puzzle {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PuzzleScreen : ContentPage {
-        public PuzzleScreen(MainContext context, int size) {
+        public PuzzleScreen(MainContext context, Level level) {
             InitializeComponent();
-            BindingContext = new PuzzleScreenViewModel(context, size);
+            BindingContext = new PuzzleScreenViewModel(context, level);
         }
 
         public PuzzleScreenViewModel ViewModel => BindingContext as PuzzleScreenViewModel;

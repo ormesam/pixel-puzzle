@@ -67,12 +67,12 @@
                     Grid.Column="1"
                     Margin="25,25,25,0"
                     FontSize="Large"
-                    Text="Puzzle Complete!" />
+                    Text="Tutorial Complete!" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="25"
-                    Text="Give Me More!"
+                    Text="Let me at them!"
                     BackgroundColor="Green"
                     TextColor="White"
                     Clicked="Complete_Clicked"

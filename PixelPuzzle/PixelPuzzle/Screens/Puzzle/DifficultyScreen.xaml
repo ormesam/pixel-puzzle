@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Screens.Puzzle.DifficultyScreen"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label
+                    Text="{Binding Difficulty}"
+                    HorizontalTextAlignment="Center"
+                    Padding="15"
+                    FontSize="Large"/>
+                <FlexLayout
+                    BindableLayout.ItemsSource="{Binding Levels}"
+                    Direction="Row"
+                    JustifyContent="Center"
+                    AlignContent="Center"
+                    Wrap="Wrap"
+                    Padding="10"
+                    VerticalOptions="Start">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                Padding=".5"
+                                BackgroundColor="Gray">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="Level_Tapped"/>
+                                </Grid.GestureRecognizers>
+                                <BoxView
+                                    BackgroundColor="White" />
+
+                                <Label
+                                    VerticalTextAlignment="Center"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding LevelNumber}" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

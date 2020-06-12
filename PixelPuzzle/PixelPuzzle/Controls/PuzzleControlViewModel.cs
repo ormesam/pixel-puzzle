@@ -20,7 +20,7 @@ namespace PixelPuzzle.Controls {
         }
 
         public PuzzleControlViewModel(MainContext context, int size)
-            : this(context, MapGenerator.Generate(size)) {
+            : this(context, MapGenerator.GenerateRandom(size)) {
         }
 
         public Game Game { get; private set; }
