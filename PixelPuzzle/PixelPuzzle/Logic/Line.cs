@@ -28,6 +28,10 @@ namespace PixelPuzzle.Logic {
             if (currentCount > 0) {
                 Segments.Add(currentCount);
             }
+
+            if (!Segments.Any()) {
+                Segments.Add(0);
+            }
         }
 
         public bool GetIsValid() {
@@ -45,6 +49,10 @@ namespace PixelPuzzle.Logic {
 
             if (currentCount > 0) {
                 segments.Add(currentCount);
+            }
+
+            if (!segments.Any()) {
+                segments.Add(0);
             }
 
             return Segments.SequenceEqual(segments);

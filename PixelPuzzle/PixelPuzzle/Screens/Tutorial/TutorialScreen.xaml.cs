@@ -13,14 +13,19 @@ namespace PixelPuzzle.Screens.Tutorial {
 
         public TutorialScreenViewModel ViewModel => BindingContext as TutorialScreenViewModel;
 
-        protected override void OnAppearing() {
+        protected override async void OnAppearing() {
             base.OnAppearing();
 
             PuzzleControl.RenderGame();
+            await ViewModel.MoveNext();
         }
 
         private async void Complete_Clicked(object sender, EventArgs e) {
             await Navigation.PopToRootAsync();
+        }
+
+        private async void MoveNext_Clicked(object sender, EventArgs e) {
+            await ViewModel.MoveNext();
         }
     }
 }
