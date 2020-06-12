@@ -31,9 +31,14 @@ namespace PixelPuzzle.Controls {
                 if (selectedValue != value) {
                     selectedValue = value;
                     OnPropertyChanged(nameof(SelectedValue));
+                    OnPropertyChanged(nameof(SelectedValueIsFilled));
+                    OnPropertyChanged(nameof(SelectedValueIsBlocked));
                 }
             }
         }
+
+        public bool SelectedValueIsFilled => SelectedValue == CellValue.Filled;
+        public bool SelectedValueIsBlocked => SelectedValue == CellValue.Blocked;
 
         public bool IsComplete {
             get { return isComplete; }

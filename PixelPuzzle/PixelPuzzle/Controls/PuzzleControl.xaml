@@ -28,11 +28,15 @@
                 Margin="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
 
                 <Grid
                     Grid.Column="1">
@@ -42,9 +46,28 @@
                     </Grid.GestureRecognizers>
 
                     <BoxView
+                        WidthRequest="70"
+                        HeightRequest="70"
+                        BackgroundColor="Black"
+                        CornerRadius="15"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding SelectedValueIsFilled}" />
+
+                    <BoxView
+                        WidthRequest="60"
+                        HeightRequest="60"
+                        BackgroundColor="White"
+                        CornerRadius="10"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" />
+
+                    <BoxView
                         WidthRequest="50"
                         HeightRequest="50"
-                        BackgroundColor="Black" />
+                        BackgroundColor="Black" 
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" />
                 </Grid>
 
                 <Grid
@@ -55,9 +78,21 @@
                     </Grid.GestureRecognizers>
 
                     <BoxView
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        BackgroundColor="White" />
+                        WidthRequest="70"
+                        HeightRequest="70"
+                        BackgroundColor="Black"
+                        CornerRadius="15"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding SelectedValueIsBlocked}" />
+
+                    <BoxView
+                        WidthRequest="60"
+                        HeightRequest="60"
+                        BackgroundColor="White"
+                        CornerRadius="10"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center" />
 
                     <Label
                         FontSize="Large"
