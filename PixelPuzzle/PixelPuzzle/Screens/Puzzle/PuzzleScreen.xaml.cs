@@ -37,5 +37,9 @@ namespace PixelPuzzle.Screens.Puzzle {
         private async void Info_Clicked(object sender, EventArgs e) {
             await ViewModel.Context.UI.GoToAboutScreen();
         }
+
+        private async void Back_Clicked(object sender, EventArgs e) {
+            await Navigation.PopAsync();
+        }
     }
 }

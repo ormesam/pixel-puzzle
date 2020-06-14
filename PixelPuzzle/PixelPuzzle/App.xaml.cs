@@ -2,6 +2,7 @@
 using Akavache;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Screens.Puzzle;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PixelPuzzle {
@@ -15,6 +16,8 @@ namespace PixelPuzzle {
         }
 
         protected override void OnStart() {
+            VersionTracking.Track();
+
 #if DEBUG
             BlobCache.ApplicationName = "PixelPuzzleDev";
 #else

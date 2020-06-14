@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    NavigationPage.HasNavigationBar="False"
-    BackgroundColor="Red">
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -26,10 +25,12 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <BoxView
-                    Grid.ColumnSpan="7"
+                    Grid.ColumnSpan="9"
                     BackgroundColor="White"
                     Opacity=".75"/>
 
@@ -38,8 +39,8 @@
                     Padding="10"
                     WidthRequest="50"
                     HeightRequest="50"
-                    Source="reset.png"
-                    Clicked="Reset_Clicked"
+                    Source="back.png"
+                    Clicked="Back_Clicked"
                     CornerRadius="5" />
 
                 <Label
@@ -49,6 +50,15 @@
 
                 <ImageButton
                     Grid.Column="5"
+                    Padding="10"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Source="reset.png"
+                    Clicked="Reset_Clicked"
+                    CornerRadius="5" />
+
+                <ImageButton
+                    Grid.Column="7"
                     Padding="10"
                     WidthRequest="50"
                     HeightRequest="50"
