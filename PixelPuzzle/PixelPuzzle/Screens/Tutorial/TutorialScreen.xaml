@@ -54,8 +54,7 @@
             </Grid>
 
             <Grid
-                Grid.Row="1"
-                Grid.RowSpan="4"
+                Grid.RowSpan="5"
                 IsVisible="{Binding ShowCompleteDialog}">
                 <Grid.RowDefinitions>
                     <RowDefinition
