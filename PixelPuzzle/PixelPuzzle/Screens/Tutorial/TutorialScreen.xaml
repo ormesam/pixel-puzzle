@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.Tutorial.TutorialScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    BackgroundImageSource="background.png">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -79,7 +80,7 @@
                     Grid.RowSpan="4"
                     Grid.ColumnSpan="3"
                     BackgroundColor="White"
-                    Opacity=".75"/>
+                    Opacity=".9"/>
 
                 <BoxView
                     Grid.Row="1"

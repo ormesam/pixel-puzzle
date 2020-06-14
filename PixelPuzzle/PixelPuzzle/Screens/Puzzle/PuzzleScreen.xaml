@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    NavigationPage.HasNavigationBar="False"
-    BackgroundColor="Red">
+    BackgroundImageSource="background.png"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                 <BoxView
                     Grid.ColumnSpan="9"
                     BackgroundColor="White"
-                    Opacity=".75"/>
+                    Opacity=".9"/>
 
                 <ImageButton
                     Grid.Column="1"
