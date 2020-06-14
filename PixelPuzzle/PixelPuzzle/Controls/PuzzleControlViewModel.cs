@@ -10,13 +10,11 @@ namespace PixelPuzzle.Controls {
         private CellValue? touchValue;
         private int? touchXRow;
         private int? touchYRow;
-        private bool isComplete;
 
         public PuzzleControlViewModel(MainContext context, int[,] map) : base(context) {
             selectedValue = CellValue.Filled;
 
             Game = new Game(map);
-            Game.GameCompleted += Game_GameCompleted;
         }
 
         public Game Game { get; }
@@ -35,20 +33,6 @@ namespace PixelPuzzle.Controls {
 
         public bool SelectedValueIsFilled => SelectedValue == CellValue.Filled;
         public bool SelectedValueIsBlocked => SelectedValue == CellValue.Blocked;
-
-        public bool IsComplete {
-            get { return isComplete; }
-            set {
-                if (isComplete != value) {
-                    isComplete = value;
-                    OnPropertyChanged(nameof(IsComplete));
-                }
-            }
-        }
-
-        private void Game_GameCompleted(object sender, EventArgs e) {
-            IsComplete = true;
-        }
 
         public void SetCell(Cell cell) {
             if (touchValue == null) {
@@ -93,12 +77,6 @@ namespace PixelPuzzle.Controls {
             };
 
             return null;
-        }
-
-        public void Reset() {
-            foreach (var cell in Game.Cells) {
-                cell.UserValue = CellValue.Blank;
-            }
         }
     }
 }

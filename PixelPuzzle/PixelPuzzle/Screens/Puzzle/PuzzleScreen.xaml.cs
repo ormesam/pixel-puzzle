@@ -30,8 +30,12 @@ namespace PixelPuzzle.Screens.Puzzle {
             await Navigation.PopAsync();
         }
 
-        private void Reset_Clicked(object sender, EventArgs e) {
-            ViewModel.PuzzleControlViewModel.Reset();
+        private async void Reset_Clicked(object sender, EventArgs e) {
+            bool reset = await DisplayAlert("Reset", "Reset progress?", "Yes", "No");
+
+            if (reset) {
+                ViewModel.Reset();
+            }
         }
 
         private async void Info_Clicked(object sender, EventArgs e) {

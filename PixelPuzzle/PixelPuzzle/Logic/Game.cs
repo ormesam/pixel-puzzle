@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PixelPuzzle.Utility;
 
 namespace PixelPuzzle.Logic {
-    public class Game {
+    public class Game : NotifyPropertyChangedBase {
         public static int Large => 15;
         public static int Medium => 12;
         public static int Small => 8;
@@ -12,6 +13,7 @@ namespace PixelPuzzle.Logic {
         public IList<Cell> Cells { get; set; }
         public Line[] Rows { get; set; }
         public Line[] Columns { get; set; }
+        public bool IsComplete => GetIsComplete();
 
         public event EventHandler<EventArgs> GameCompleted;
 
@@ -59,14 +61,16 @@ namespace PixelPuzzle.Logic {
             }
         }
 
-        private bool IsComplete() {
+        public bool GetIsComplete() {
             return Rows.All(i => i.IsValid) && Columns.All(i => i.IsValid);
         }
 
         internal void CheckIsComplete() {
-            if (IsComplete()) {
+            if (IsComplete) {
                 GameCompleted?.Invoke(this, new EventArgs());
             }
+
+            OnPropertyChanged(nameof(IsComplete));
         }
 
         public CellValue[,] GetUserMap() {

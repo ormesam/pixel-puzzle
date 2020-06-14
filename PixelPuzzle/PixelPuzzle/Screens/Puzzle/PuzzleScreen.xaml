@@ -71,15 +71,18 @@
                     CornerRadius="5" />
             </Grid>
 
-            <controls:PuzzleControl
-                x:Name="PuzzleControl"
+            <Grid
                 Grid.Row="4"
-                BindingContext="{Binding PuzzleControlViewModel}"/>
+                InputTransparent="{Binding IsComplete}">
+                <controls:PuzzleControl
+                    x:Name="PuzzleControl"
+                    BindingContext="{Binding PuzzleControlViewModel}"/>
+             </Grid>
 
             <Grid
                 Grid.Row="1"
                 Grid.RowSpan="5"
-                IsVisible="{Binding PuzzleControlViewModel.IsComplete}">
+                IsVisible="{Binding ShowCompleteDialog}">
                 <Grid.RowDefinitions>
                     <RowDefinition
                         Height="*"/>

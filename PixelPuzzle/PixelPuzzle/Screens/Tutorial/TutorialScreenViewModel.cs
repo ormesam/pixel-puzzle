@@ -11,6 +11,7 @@ namespace PixelPuzzle.Screens.Tutorial {
         private Queue<TutorialStep> steps;
         private TutorialStep currentStep;
         private bool isTutorialComplete;
+        private bool showCompleteDialog;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
 
@@ -34,9 +35,20 @@ namespace PixelPuzzle.Screens.Tutorial {
             }
         }
 
+        public bool ShowCompleteDialog {
+            get { return showCompleteDialog; }
+            set {
+                if (showCompleteDialog != value) {
+                    showCompleteDialog = value;
+                    OnPropertyChanged(nameof(ShowCompleteDialog));
+                }
+            }
+        }
+
         public TutorialScreenViewModel(MainContext context) : base(context) {
             steps = new Queue<TutorialStep>();
             PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap());
+            PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             RegisterStep("Welcome to Pixel Puzzle!", null, null);
             RegisterStep("Here is a quick guide to help you on your way.", null, null);
@@ -74,6 +86,10 @@ namespace PixelPuzzle.Screens.Tutorial {
             RegisterStep("As we blocked off the other pixels we know the group of 4 can only go here.", async () => { await FillRow(7); }, null);
             RegisterStep("There is always a way to complete the puzzle.", null, null);
             RegisterStep("Can you complete the rest of this puzzle?", async () => { IsTutorialComplete = true; }, null);
+        }
+
+        private void Game_GameCompleted(object sender, EventArgs e) {
+            ShowCompleteDialog = true;
         }
 
         private Task FillRow(int rowIdx) {

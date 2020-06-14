@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Controls;
@@ -7,8 +8,19 @@ using PixelPuzzle.Logic;
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
         private Level level;
+        private bool showCompleteDialog;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
+
+        public bool ShowCompleteDialog {
+            get { return showCompleteDialog; }
+            set {
+                if (showCompleteDialog != value) {
+                    showCompleteDialog = value;
+                    OnPropertyChanged(nameof(ShowCompleteDialog));
+                }
+            }
+        }
 
         public string CompletedPercentage {
             get {
@@ -21,18 +33,40 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
+        public bool IsComplete => level.IsComplete;
+
         public PuzzleScreenViewModel(MainContext context, Level level) : base(context) {
             this.level = level;
 
             PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map);
+            PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             if (level.UserMap != null) {
                 PuzzleControlViewModel.Game.ApplyUserValues(level.UserMap);
             }
         }
 
+        private void Game_GameCompleted(object sender, EventArgs e) {
+            ShowCompleteDialog = true;
+        }
+
         public async Task SaveGameState() {
-            await Context.Model.SaveLevel(level.LevelNumber, level.Difficulty, PuzzleControlViewModel.Game.GetUserMap(), PuzzleControlViewModel.IsComplete);
+            await Context.Model.SaveLevel(
+                level.LevelNumber,
+                level.Difficulty,
+                PuzzleControlViewModel.Game.GetUserMap(),
+                PuzzleControlViewModel.Game.IsComplete);
+        }
+
+        public void Reset() {
+            foreach (var cell in PuzzleControlViewModel.Game.Cells) {
+                cell.UserValue = CellValue.Blank;
+            }
+
+            level.IsComplete = false;
+            level.UserMap = PuzzleControlViewModel.Game.GetUserMap();
+
+            OnPropertyChanged();
         }
     }
 }
