@@ -36,5 +36,8 @@ namespace PixelPuzzle.Contexts {
         public async Task GoToDifficulty(Difficulty difficulty) {
             await GoToScreenAsync(new DifficultyScreen(context, difficulty));
         }
+
+        public async Task GoToAboutScreen() {
+        }
     }
 }

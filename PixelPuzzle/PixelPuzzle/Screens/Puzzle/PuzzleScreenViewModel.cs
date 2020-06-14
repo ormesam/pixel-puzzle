@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Controls;
 using PixelPuzzle.Logic;
@@ -8,6 +9,19 @@ namespace PixelPuzzle.Screens.Puzzle {
         private Level level;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
+
+        public string CompletedPercentage {
+            get {
+                int complete = Context.Model.SavedLevels
+                    .Where(i => i.Value.Difficulty == level.Difficulty)
+                    .Where(i => i.Value.IsComplete)
+                    .Count();
+
+                var difficultyLevelCount = Context.Model.GetLevels(level.Difficulty).Count;
+
+                return $"{complete}/{difficultyLevelCount}";
+            }
+        }
 
         public PuzzleScreenViewModel(MainContext context, Level level) : base(context) {
             this.level = level;

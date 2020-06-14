@@ -94,5 +94,11 @@ namespace PixelPuzzle.Controls {
 
             return null;
         }
+
+        public void Reset() {
+            foreach (var cell in Game.Cells) {
+                cell.UserValue = CellValue.Blank;
+            }
+        }
     }
 }
