@@ -4,10 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.Puzzle.PuzzleScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="Red">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -15,8 +17,10 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <controls:AdMobView />
+
             <Grid
-                Grid.Row="1">
+                Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -69,10 +73,11 @@
 
             <controls:PuzzleControl
                 x:Name="PuzzleControl"
-                Grid.Row="3"
+                Grid.Row="4"
                 BindingContext="{Binding PuzzleControlViewModel}"/>
 
             <Grid
+                Grid.Row="1"
                 Grid.RowSpan="5"
                 IsVisible="{Binding PuzzleControlViewModel.IsComplete}">
                 <Grid.RowDefinitions>

@@ -115,7 +115,7 @@ namespace PixelPuzzle.Screens.Tutorial {
         }
 
         private async Task BlinkSelectedValue() {
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 4; i++) {
                 await Task.Delay(500);
                 PuzzleControlViewModel.SelectedValue = PuzzleControlViewModel.SelectedValueIsBlocked ? CellValue.Filled : CellValue.Blocked;
             }

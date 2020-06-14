@@ -61,12 +61,16 @@
     <PackageReference Include="akavache">
       <Version>6.10.20</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Ads">
+      <Version>71.1601.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effects\TouchEffect.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\AdMobViewRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

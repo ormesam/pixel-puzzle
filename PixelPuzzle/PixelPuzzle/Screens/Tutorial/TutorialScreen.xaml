@@ -8,16 +8,19 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
+
+            <controls:AdMobView />
 
             <Grid
                 Padding="10"
                 BackgroundColor="White"
-                Grid.Row="1">
+                Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -42,7 +45,7 @@
             </Grid>
 
             <Grid
-                Grid.Row="2"
+                Grid.Row="3"
                 InputTransparent="{Binding IsTutorialComplete, Converter={StaticResource InvertBoolConverter}}">
                 <controls:PuzzleControl
                     x:Name="PuzzleControl"
@@ -50,6 +53,7 @@
             </Grid>
 
             <Grid
+                Grid.Row="1"
                 Grid.RowSpan="4"
                 IsVisible="{Binding PuzzleControlViewModel.IsComplete}">
                 <Grid.RowDefinitions>

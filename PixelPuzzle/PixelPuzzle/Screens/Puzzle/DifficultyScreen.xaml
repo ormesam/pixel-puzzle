@@ -2,62 +2,73 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     x:Class="PixelPuzzle.Screens.Puzzle.DifficultyScreen"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Grid
-                    Grid.Row="1"
-                    Margin="0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                    <BoxView
-                        Grid.ColumnSpan="2"
-                        BackgroundColor="White"
-                        Opacity=".75"/>
+            <controls:AdMobView />
 
-                    <Label
-                        Grid.ColumnSpan="2"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="Center"
-                        Text="{Binding Difficulty}" />
+            <ScrollView
+                Grid.Row="1">
+                <StackLayout>
+                    <Grid
+                        Grid.Row="1"
+                        Margin="0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <ImageButton
-                        Grid.Column="0"
+                        <BoxView
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="White"
+                            Opacity=".75"/>
+
+                        <Label
+                            Grid.ColumnSpan="2"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Difficulty}" />
+
+                        <ImageButton
+                            Grid.Column="0"
+                            Padding="10"
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            Source="back.png"
+                            Clicked="Back_Clicked"
+                            CornerRadius="5" />
+                    </Grid>
+                    <FlexLayout
+                        BindableLayout.ItemsSource="{Binding Levels}"
+                        Direction="Row"
+                        JustifyContent="Center"
+                        AlignContent="Center"
+                        Wrap="Wrap"
                         Padding="10"
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        Source="back.png"
-                        Clicked="Back_Clicked"
-                        CornerRadius="5" />
-                </Grid>
-                <FlexLayout
-                    BindableLayout.ItemsSource="{Binding Levels}"
-                    Direction="Row"
-                    JustifyContent="Center"
-                    AlignContent="Center"
-                    Wrap="Wrap"
-                    Padding="10"
-                    VerticalOptions="Start">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Button
-                                HeightRequest="50"
-                                WidthRequest="50"
-                                Padding=".5"
-                                BackgroundColor="{Binding IsComplete, Converter={StaticResource LevelColourConverter}}"
-                                TextColor="{Binding IsComplete, Converter={StaticResource LevelInvertColourConverter}}"
-                                Text="{Binding LevelNumber}"
-                                Clicked="Level_Tapped"
-                                CornerRadius="0"/>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </FlexLayout>
-            </StackLayout>
-        </ScrollView>
+                        VerticalOptions="Start">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                    Padding=".5"
+                                    BackgroundColor="{Binding IsComplete, Converter={StaticResource LevelColourConverter}}"
+                                    TextColor="{Binding IsComplete, Converter={StaticResource LevelInvertColourConverter}}"
+                                    Text="{Binding LevelNumber}"
+                                    Clicked="Level_Tapped"
+                                    CornerRadius="0"/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
