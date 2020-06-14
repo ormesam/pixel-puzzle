@@ -24,8 +24,6 @@
                 <RowDefinition
                     Height="Auto"/>
                 <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
                     Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -40,49 +38,57 @@
             <controls:AdMobView
                 Grid.ColumnSpan="3"/>
 
+            <BoxView
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.RowSpan="5"
+                BackgroundColor="White"
+                CornerRadius="5"
+                Opacity=".9"/>
+
             <Label
                 Grid.Row="2"
                 Grid.Column="1"
                 FontSize="Large"
                 HorizontalTextAlignment="Center"
-                Text="Welcome to Pixel Puzzle!" />
-            <Label
-                Grid.Row="3"
-                Grid.Column="1"
-                HorizontalTextAlignment="Center"
-                Text="Select difficulty level" />
+                Text="Welcome to Pixel Puzzle!"
+                Margin="15" />
             <Button
-                Grid.Row="4"
+                Grid.Row="3"
                 Grid.Column="1"
                 Text="Tutorial"
                 BackgroundColor="Green"
                 TextColor="White"
                 Clicked="Tutorial_Clicked"
-                CornerRadius="50" />
+                CornerRadius="50"
+                Margin="0 15" />
             <Button
-                Grid.Row="5"
+                Grid.Row="4"
                 Grid.Column="1"
                 Text="Easy (8x8)"
                 BackgroundColor="Green"
                 TextColor="White"
                 Clicked="Easy_Clicked"
-                CornerRadius="50" />
+                CornerRadius="50"
+                Margin="0 15" />
             <Button
-                Grid.Row="6"
+                Grid.Row="5"
                 Grid.Column="1"
                 Text="Medium (12x12)"
                 BackgroundColor="Orange"
                 TextColor="White"
                 Clicked="Medium_Clicked"
-                CornerRadius="50" />
+                CornerRadius="50"
+                Margin="0 15" />
             <Button
-                Grid.Row="7"
+                Grid.Row="6"
                 Grid.Column="1"
                 Text="Hard (15x15)"
                 BackgroundColor="Red"
                 TextColor="White"
                 Clicked="Hard_Clicked"
-                CornerRadius="50" />
+                CornerRadius="50"
+                Margin="0 15 15 15" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
