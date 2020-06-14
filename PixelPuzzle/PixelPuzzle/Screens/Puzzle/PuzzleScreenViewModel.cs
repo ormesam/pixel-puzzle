@@ -12,14 +12,12 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         public string CompletedPercentage {
             get {
-                int complete = Context.Model.SavedLevels
-                    .Where(i => i.Value.Difficulty == level.Difficulty)
-                    .Where(i => i.Value.IsComplete)
+                var levels = Context.Model.GetLevels(level.Difficulty);
+                var complete = levels
+                    .Where(i => i.IsComplete)
                     .Count();
 
-                var difficultyLevelCount = Context.Model.GetLevels(level.Difficulty).Count;
-
-                return $"{complete}/{difficultyLevelCount}";
+                return $"{complete}/{levels.Count}";
             }
         }
 
@@ -28,8 +26,8 @@ namespace PixelPuzzle.Screens.Puzzle {
 
             PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map);
 
-            if (Context.Model.SavedLevels.TryGetValue(Context.Model.CreateKey(level.LevelNumber, level.Difficulty), out SavedGame savedGame)) {
-                PuzzleControlViewModel.Game.ApplyUserValues(savedGame.Map);
+            if (level.UserMap != null) {
+                PuzzleControlViewModel.Game.ApplyUserValues(level.UserMap);
             }
         }
 

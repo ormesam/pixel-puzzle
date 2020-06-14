@@ -7,11 +7,34 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label
-                    Text="{Binding Difficulty}"
-                    HorizontalTextAlignment="Center"
-                    Padding="15"
-                    FontSize="Large"/>
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="White"
+                        Opacity=".75"/>
+
+                    <Label
+                        Grid.ColumnSpan="2"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Difficulty}" />
+
+                    <ImageButton
+                        Grid.Column="0"
+                        Padding="10"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        Source="back.png"
+                        Clicked="Back_Clicked"
+                        CornerRadius="5" />
+                </Grid>
                 <FlexLayout
                     BindableLayout.ItemsSource="{Binding Levels}"
                     Direction="Row"
@@ -22,23 +45,15 @@
                     VerticalOptions="Start">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <Grid
+                            <Button
                                 HeightRequest="50"
                                 WidthRequest="50"
                                 Padding=".5"
-                                BackgroundColor="Gray">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="Level_Tapped"/>
-                                </Grid.GestureRecognizers>
-                                <BoxView
-                                    BackgroundColor="White" />
-
-                                <Label
-                                    VerticalTextAlignment="Center"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding LevelNumber}" />
-                            </Grid>
+                                BackgroundColor="{Binding IsComplete, Converter={StaticResource LevelColourConverter}}"
+                                TextColor="{Binding IsComplete, Converter={StaticResource LevelInvertColourConverter}}"
+                                Text="{Binding LevelNumber}"
+                                Clicked="Level_Tapped"
+                                CornerRadius="0"/>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>

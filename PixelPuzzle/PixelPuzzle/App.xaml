@@ -7,5 +7,9 @@
     <Application.Resources>
         <converters:InvertBoolConverter
             x:Key="InvertBoolConverter" />
+        <converters:LevelColourConverter
+            x:Key="LevelColourConverter" />
+        <converters:LevelInvertColourConverter
+            x:Key="LevelInvertColourConverter" />
     </Application.Resources>
 </Application>

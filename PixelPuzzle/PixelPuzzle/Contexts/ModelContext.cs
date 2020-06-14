@@ -1,18 +1,57 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Contexts {
     public class ModelContext {
         private StorageContext storageContext;
-        public IDictionary<string, SavedGame> SavedLevels { get; }
+        private IDictionary<string, SavedGame> savedLevels;
+
+        public IList<Level> Easy { get; }
+        public IList<Level> Medium { get; }
+        public IList<Level> Hard { get; }
 
         public ModelContext() {
             storageContext = new StorageContext();
-            SavedLevels = storageContext.GetSavedGames();
+
+            savedLevels = storageContext.GetSavedGames();
+
+            Easy = GetEasyLevels();
+            Medium = GetMediumLevels();
+            Hard = GetHardLevels();
+
+            TransformLevels();
+        }
+
+        private void TransformLevels() {
+            TransformLevels(Easy);
+            TransformLevels(Medium);
+            TransformLevels(Hard);
+        }
+
+        private void TransformLevels(IList<Level> levels) {
+            foreach (var level in levels) {
+                if (!savedLevels.ContainsKey(level.Key)) {
+                    continue;
+                }
+
+                var state = savedLevels[level.Key];
+                level.UserMap = state.Map;
+                level.IsComplete = state.IsComplete;
+            }
         }
 
         public async Task SaveLevel(int levelNumber, Difficulty difficulty, CellValue[,] userMap, bool isComplete) {
+            var level = GetLevels(difficulty)
+                .Where(i => i.LevelNumber == levelNumber)
+                .SingleOrDefault();
+
+            if (level != null) {
+                level.UserMap = userMap;
+                level.IsComplete = isComplete;
+            }
+
             var save = new SavedGame {
                 Difficulty = difficulty,
                 IsComplete = isComplete,
@@ -22,14 +61,14 @@ namespace PixelPuzzle.Contexts {
 
             await storageContext.SaveGame(save);
 
-            SavedLevels[save.Key] = save;
+            savedLevels[save.Key] = save;
         }
 
         public SavedGame LoadLevel(int levelNumber, Difficulty difficulty) {
             var key = CreateKey(levelNumber, difficulty);
 
-            if (SavedLevels.ContainsKey(key)) {
-                return SavedLevels[key];
+            if (savedLevels.ContainsKey(key)) {
+                return savedLevels[key];
             }
 
             return null;
@@ -42,11 +81,11 @@ namespace PixelPuzzle.Contexts {
         public IList<Level> GetLevels(Difficulty difficulty) {
             switch (difficulty) {
                 case Difficulty.Easy:
-                    return GetEasyLevels();
+                    return Easy;
                 case Difficulty.Medium:
-                    return GetMediumLevels();
+                    return Medium;
                 case Difficulty.Hard:
-                    return GetHardLevels();
+                    return Hard;
                 default:
                     return new List<Level>();
             }

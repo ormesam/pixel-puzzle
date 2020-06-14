@@ -15,12 +15,16 @@ namespace PixelPuzzle.Screens.Puzzle {
         public DifficultyScreenViewModel ViewModel => BindingContext as DifficultyScreenViewModel;
 
         private async void Level_Tapped(object sender, EventArgs e) {
-            var cell = sender as Grid;
+            var cell = sender as Button;
             var level = cell?.BindingContext as Level;
 
             if (level != null) {
                 await ViewModel.GoToLevel(level);
             }
+        }
+
+        private async void Back_Clicked(object sender, EventArgs e) {
+            await Navigation.PopAsync();
         }
     }
 }
