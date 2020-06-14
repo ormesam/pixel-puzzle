@@ -61,7 +61,7 @@
                 TextColor="White"
                 Clicked="Tutorial_Clicked"
                 CornerRadius="50"
-                Margin="0 15" />
+                Margin="15, 0, 15, 0" />
             <Button
                 Grid.Row="4"
                 Grid.Column="1"
@@ -70,7 +70,7 @@
                 TextColor="White"
                 Clicked="Easy_Clicked"
                 CornerRadius="50"
-                Margin="0 15" />
+                Margin="15, 0, 15, 0" />
             <Button
                 Grid.Row="5"
                 Grid.Column="1"
@@ -79,7 +79,7 @@
                 TextColor="White"
                 Clicked="Medium_Clicked"
                 CornerRadius="50"
-                Margin="0 15" />
+                Margin="15, 0, 15, 0" />
             <Button
                 Grid.Row="6"
                 Grid.Column="1"
@@ -88,7 +88,7 @@
                 TextColor="White"
                 Clicked="Hard_Clicked"
                 CornerRadius="50"
-                Margin="0 15 15 15" />
+                Margin="15, 0, 15, 15" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

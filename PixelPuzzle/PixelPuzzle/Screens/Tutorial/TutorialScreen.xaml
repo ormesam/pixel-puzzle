@@ -31,7 +31,7 @@
                         Tapped="MoveNext_Clicked" />
                 </Grid.GestureRecognizers>
                 <Label
-                    HeightRequest="60"
+                    HeightRequest="50"
                     VerticalTextAlignment="Center"
                     Text="{Binding CurrentStep.Message}"
                     FontSize="12" />
