@@ -99,6 +99,7 @@ namespace PixelPuzzle.Controls {
                     BindingContext = ViewModel.Game.Rows[i],
                     Padding = new Thickness(2, 2, 10, 2),
                     BackgroundColor = Color.White,
+                    WidthRequest = 60,
                 };
 
                 container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
@@ -111,7 +112,7 @@ namespace PixelPuzzle.Controls {
 
                     container.Children.Add(new Label {
                         Text = segment.ToString(),
-                        FontSize = 10,
+                        FontSize = 8,
                         VerticalTextAlignment = TextAlignment.Center,
                     }, j + 1, 0);
                 }
@@ -132,6 +133,7 @@ namespace PixelPuzzle.Controls {
                     BindingContext = ViewModel.Game.Columns[i],
                     Padding = new Thickness(2, 2, 2, 10),
                     BackgroundColor = Color.White,
+                    HeightRequest = 60,
                 };
 
                 container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
@@ -144,7 +146,7 @@ namespace PixelPuzzle.Controls {
 
                     container.Children.Add(new Label {
                         Text = segment.ToString(),
-                        FontSize = 10,
+                        FontSize = 8,
                         HorizontalTextAlignment = TextAlignment.Center,
                     }, 0, j + 1);
                 }

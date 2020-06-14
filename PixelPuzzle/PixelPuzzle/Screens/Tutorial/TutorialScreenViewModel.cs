@@ -40,7 +40,8 @@ namespace PixelPuzzle.Screens.Tutorial {
 
             RegisterStep("Welcome to Pixel Puzzle!", null, null);
             RegisterStep("Here is a quick guide to help you on your way.", null, null);
-            RegisterStep("The numbers around the grid tell you how many filled pixels are on each row or column.", null, null);
+            RegisterStep("The numbers around the grid tell you how many grouped, filled pixels are on each row or column.", null, null);
+            RegisterStep("You can fill or block out a pixel by selecting these boxes.", async () => { await BlinkSelectedValue(); }, null);
             RegisterStep("For example, we know this row has 8 filled pixels.", async () => { await FillRow(4); }, null);
             RegisterStep("The row's number is grayed out when the row is logically complete.", null, null);
             RegisterStep("If you know a pixel cannot be filled, mark it with an X.", null, null);
@@ -72,7 +73,7 @@ namespace PixelPuzzle.Screens.Tutorial {
             RegisterStep("And we know this row has 6 filled pixels.", async () => { await FillRow(6); }, null);
             RegisterStep("As we blocked off the other pixels we know the group of 4 can only go here.", async () => { await FillRow(7); }, null);
             RegisterStep("There is always a way to complete the puzzle.", null, null);
-            RegisterStep("Can you complete this puzzle?", async () => { IsTutorialComplete = true; }, null);
+            RegisterStep("Can you complete the rest of this puzzle?", async () => { IsTutorialComplete = true; }, null);
         }
 
         private Task FillRow(int rowIdx) {
@@ -110,6 +111,13 @@ namespace PixelPuzzle.Screens.Tutorial {
 
                 await Task.Delay(100);
                 cell.UserValue = CellValue.Blocked;
+            }
+        }
+
+        private async Task BlinkSelectedValue() {
+            for (int i = 0; i < 6; i++) {
+                await Task.Delay(500);
+                PuzzleControlViewModel.SelectedValue = PuzzleControlViewModel.SelectedValueIsBlocked ? CellValue.Filled : CellValue.Blocked;
             }
         }
 
