@@ -1,7 +1,11 @@
 ﻿using System;
 using Akavache;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Screens.Puzzle;
+using PixelPuzzle.Utility;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -16,6 +20,7 @@ namespace PixelPuzzle {
         }
 
         protected override void OnStart() {
+            AppCenter.Start(Constants.AppCentreKey, typeof(Analytics), typeof(Crashes));
             VersionTracking.Track();
 
 #if DEBUG
@@ -28,6 +33,7 @@ namespace PixelPuzzle {
         }
 
         protected override void OnSleep() {
+            BlobCache.LocalMachine.Flush();
         }
 
         protected override void OnResume() {

@@ -1,11 +1,30 @@
-﻿using Android.App;
+﻿using System;
+using System.Threading.Tasks;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Microsoft.AppCenter.Crashes;
 
 namespace PixelPuzzle.Droid {
     [Activity(Label = "PixelPuzzle", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
+        public MainActivity() {
+            TaskScheduler.UnobservedTaskException += (sender, args) => {
+                Crashes.TrackError(args.Exception);
+            };
+
+            AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) => {
+                Crashes.TrackError(args.Exception);
+            };
+
+            AppDomain.CurrentDomain.UnhandledException += (object sender, UnhandledExceptionEventArgs e) => {
+                if (e.ExceptionObject is Exception ex) {
+                    Crashes.TrackError(ex);
+                }
+            };
+        }
+
         protected override void OnCreate(Bundle savedInstanceState) {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
