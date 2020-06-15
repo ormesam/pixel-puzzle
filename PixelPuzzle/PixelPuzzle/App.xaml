@@ -11,5 +11,10 @@
             x:Key="LevelColourConverter" />
         <converters:LevelInvertColourConverter
             x:Key="LevelInvertColourConverter" />
+
+        <GridLength
+            x:Key="AdBannerHeight">
+            50
+        </GridLength>
     </Application.Resources>
 </Application>

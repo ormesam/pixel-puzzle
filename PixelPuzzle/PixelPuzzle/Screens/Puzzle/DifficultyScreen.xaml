@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="{StaticResource AdBannerHeight}"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
