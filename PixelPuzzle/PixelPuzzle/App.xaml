@@ -11,10 +11,27 @@
             x:Key="LevelColourConverter" />
         <converters:LevelInvertColourConverter
             x:Key="LevelInvertColourConverter" />
+        <converters:LevelBackgroundConverter
+            x:Key="LevelBackgroundConverter" />
 
         <GridLength
             x:Key="AdBannerHeight">
             50
         </GridLength>
+
+        <Color
+            x:Key="Red">
+            #e8522b
+        </Color>
+
+        <Color
+            x:Key="Orange">
+            #f8a921
+        </Color>
+
+        <Color
+            x:Key="Green">
+            #86bc5c
+        </Color>
     </Application.Resources>
 </Application>

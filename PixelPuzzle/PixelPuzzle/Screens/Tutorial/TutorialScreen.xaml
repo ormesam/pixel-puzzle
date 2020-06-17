@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.Tutorial.TutorialScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    NavigationPage.HasNavigationBar="False"
-    BackgroundImageSource="background.png">
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,6 +14,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
+
+            <Image
+                Source="bg_tutorial.png"
+                Grid.RowSpan="5"
+                Aspect="AspectFill" />
 
             <controls:AdMobView />
 
@@ -99,7 +103,7 @@
                     Grid.Column="1"
                     Margin="25"
                     Text="Let me at them!"
-                    BackgroundColor="Green"
+                    BackgroundColor="{StaticResource Green}"
                     TextColor="White"
                     Clicked="Complete_Clicked"
                     CornerRadius="50"/>

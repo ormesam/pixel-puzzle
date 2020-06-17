@@ -5,17 +5,17 @@ using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class DifficultyScreenViewModel : ViewModelBase {
-        private Difficulty difficulty;
-
-        public string Difficulty => difficulty.ToString();
-        public IList<Level> Levels => Context.Model.GetLevels(difficulty);
+        public Difficulty Difficulty { get; }
+        public IList<Level> Levels => Context.Model.GetLevels(Difficulty);
 
         public DifficultyScreenViewModel(MainContext context, Difficulty difficulty) : base(context) {
-            this.difficulty = difficulty;
+            Difficulty = difficulty;
         }
 
         public async Task GoToLevel(Level level) {
             await Context.UI.GoToGame(level);
         }
+
+        public override string Title => Difficulty.ToString();
     }
 }

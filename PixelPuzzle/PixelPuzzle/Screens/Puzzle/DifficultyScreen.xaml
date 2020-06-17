@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     x:Class="PixelPuzzle.Screens.Puzzle.DifficultyScreen"
-    BackgroundImageSource="background.png"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
@@ -12,6 +11,11 @@
                 <RowDefinition Height="{StaticResource AdBannerHeight}"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <Image
+                Source="{Binding Difficulty, Converter={StaticResource LevelBackgroundConverter}}"
+                Grid.RowSpan="2"
+                Aspect="AspectFill" />
 
             <controls:AdMobView />
 
@@ -35,7 +39,7 @@
                             Grid.ColumnSpan="2"
                             VerticalTextAlignment="Center"
                             HorizontalTextAlignment="Center"
-                            Text="{Binding Difficulty}" />
+                            Text="{Binding Title}" />
 
                         <ImageButton
                             Grid.Column="0"

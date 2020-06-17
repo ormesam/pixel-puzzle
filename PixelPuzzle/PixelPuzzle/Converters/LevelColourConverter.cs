@@ -10,7 +10,7 @@ namespace PixelPuzzle.Converters {
             }
 
             if (value is bool levelValue) {
-                return levelValue ? Color.Green : Color.White;
+                return levelValue ? Color.FromHex("#86bc5c") : Color.White;
             }
 
             return Color.Default;

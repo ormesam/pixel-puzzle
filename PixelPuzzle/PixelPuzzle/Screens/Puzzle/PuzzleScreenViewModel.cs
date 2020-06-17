@@ -35,6 +35,8 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         public bool IsComplete => level.IsComplete;
 
+        public Difficulty Difficulty => level.Difficulty;
+
         public PuzzleScreenViewModel(MainContext context, Level level) : base(context) {
             this.level = level;
 
