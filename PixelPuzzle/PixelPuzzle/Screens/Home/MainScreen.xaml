@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Screens.Home.MainScreen"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
-    x:Class="PixelPuzzle.Screens.Puzzle.MenuScreen"
-    BackgroundImageSource="bg_home.png"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="Transparent">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

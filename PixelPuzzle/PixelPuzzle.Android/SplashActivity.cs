@@ -1,5 +1,5 @@
-﻿
-using Android.App;
+﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 
@@ -9,7 +9,11 @@ namespace PixelPuzzle.Droid {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
 
-            StartActivity(typeof(MainActivity));
+            Intent intent = new Intent(Application.ApplicationContext, typeof(MainActivity));
+
+            intent.ReplaceExtras(Intent);
+
+            StartActivity(intent);
         }
     }
 }

@@ -2,7 +2,7 @@
     public class MainContext {
         public MainContext() {
             UI = new UIContext(this);
-            Model = new ModelContext();
+            // Model = new ModelContext();
         }
 
         public UIContext UI { get; }

@@ -23,9 +23,6 @@
     <Compile Update="Screens\Puzzle\DifficultyScreen.xaml.cs">
       <DependentUpon>DifficultyScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Screens\Puzzle\MenuScreen.xaml.cs">
-      <DependentUpon>MenuScreen.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +32,10 @@
     <EmbeddedResource Update="Screens\About\InfoScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Screens\Puzzle\DifficultyScreen.xaml">
+    <EmbeddedResource Update="Screens\Home\MainScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Screens\Puzzle\MenuScreen.xaml">
+    <EmbeddedResource Update="Screens\Puzzle\DifficultyScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Screens\Puzzle\PuzzleScreen.xaml">

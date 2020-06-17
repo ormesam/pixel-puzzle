@@ -24,6 +24,8 @@
     <item name="windowActionModeOverlay">true</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+    <item name="android:windowBackground">@mipmap/main</item>
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
@@ -31,9 +33,10 @@
   </style>
 
   <style name="MainTheme.Splash" parent ="MainTheme.Base">
-    <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowBackground">@mipmap/splashscreen</item>
     <item name="android:windowNoTitle">true</item>
-    <item name="android:windowFullscreen">false</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
   </style>
 </resources>

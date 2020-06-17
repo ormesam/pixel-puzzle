@@ -4,15 +4,15 @@ using PixelPuzzle.Logic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PixelPuzzle.Screens.Puzzle {
+namespace PixelPuzzle.Screens.Home {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuScreen : ContentPage {
-        public MenuScreen(MainContext context) {
+    public partial class MainScreen : ContentPage {
+        public MainScreen(MainContext context) {
             InitializeComponent();
-            BindingContext = new MenuScreenViewModel(context);
+            BindingContext = new MainScreenViewModel(context);
         }
 
-        public MenuScreenViewModel ViewModel => BindingContext as MenuScreenViewModel;
+        public MainScreenViewModel ViewModel => BindingContext as MainScreenViewModel;
 
         private async void Tutorial_Clicked(object sender, EventArgs e) {
             await ViewModel.GoToTutorial();

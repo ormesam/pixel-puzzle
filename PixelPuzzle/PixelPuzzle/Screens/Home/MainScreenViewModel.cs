@@ -2,9 +2,9 @@
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 
-namespace PixelPuzzle.Screens.Puzzle {
-    public class MenuScreenViewModel : ViewModelBase {
-        public MenuScreenViewModel(MainContext context) : base(context) {
+namespace PixelPuzzle.Screens.Home {
+    public class MainScreenViewModel : ViewModelBase {
+        public MainScreenViewModel(MainContext context) : base(context) {
         }
 
         public async Task GoToGame(Difficulty difficulty) {
