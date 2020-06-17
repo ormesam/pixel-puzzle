@@ -30,7 +30,7 @@
                 <ColumnDefinition
                     Width="*" />
                 <ColumnDefinition
-                    Width="Auto" />
+                    Width="10*" />
                 <ColumnDefinition
                     Width="*" />
             </Grid.ColumnDefinitions>
@@ -44,21 +44,21 @@
             <controls:AdMobView
                 Grid.ColumnSpan="3"/>
 
-            <BoxView
+            <Image
                 Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Source="logo.png"
+                Margin="15"
+                HorizontalOptions="Center" />
+
+            <BoxView
+                Grid.Row="3"
                 Grid.Column="1"
-                Grid.RowSpan="5"
+                Grid.RowSpan="4"
                 BackgroundColor="White"
-                CornerRadius="5"
+                CornerRadius="28"
                 Opacity=".9"/>
 
-            <Label
-                Grid.Row="2"
-                Grid.Column="1"
-                FontSize="Large"
-                HorizontalTextAlignment="Center"
-                Text="Welcome to Pixel Puzzle!"
-                Margin="15" />
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
@@ -67,7 +67,7 @@
                 TextColor="White"
                 Clicked="Tutorial_Clicked"
                 CornerRadius="50"
-                Margin="15, 0, 15, 0" />
+                Margin="15, 15, 15, 0" />
             <Button
                 Grid.Row="4"
                 Grid.Column="1"

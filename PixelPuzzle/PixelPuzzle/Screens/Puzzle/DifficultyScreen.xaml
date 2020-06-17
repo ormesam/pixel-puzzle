@@ -57,13 +57,16 @@
                         AlignContent="Center"
                         Wrap="Wrap"
                         Padding="10"
-                        VerticalOptions="Start">
+                        VerticalOptions="Start"
+                        BackgroundColor="White"
+                        Opacity=".9"
+                        Margin="8">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Button
                                     HeightRequest="50"
                                     WidthRequest="50"
-                                    Padding=".5"
+                                    Margin=".5"
                                     BackgroundColor="{Binding IsComplete, Converter={StaticResource LevelColourConverter}}"
                                     TextColor="{Binding IsComplete, Converter={StaticResource LevelInvertColourConverter}}"
                                     Text="{Binding LevelNumber}"
