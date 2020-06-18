@@ -134,6 +134,7 @@ namespace PixelPuzzle.Controls {
                     Padding = new Thickness(2, 2, 2, 10),
                     BackgroundColor = Color.White,
                     HeightRequest = 60,
+                    RowSpacing = 0,
                 };
 
                 container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });

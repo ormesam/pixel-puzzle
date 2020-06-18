@@ -26,5 +26,9 @@ namespace PixelPuzzle.Screens.Puzzle {
         private async void Back_Clicked(object sender, EventArgs e) {
             await Navigation.PopAsync();
         }
+
+        private async void Random_Clicked(object sender, EventArgs e) {
+            await ViewModel.GoToRandom();
+        }
     }
 }

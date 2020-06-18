@@ -12,10 +12,27 @@ namespace PixelPuzzle.Screens.Puzzle {
             Difficulty = difficulty;
         }
 
+        public override string Title => Difficulty.ToString();
+
         public async Task GoToLevel(Level level) {
             await Context.UI.GoToGame(level);
         }
 
-        public override string Title => Difficulty.ToString();
+        public async Task GoToRandom() {
+            await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(GetRandomSize()), true));
+        }
+
+        private int GetRandomSize() {
+            switch (Difficulty) {
+                case Difficulty.Easy:
+                    return Game.Small;
+                case Difficulty.Medium:
+                    return Game.Medium;
+                case Difficulty.Hard:
+                    return Game.Large;
+                default:
+                    return Game.Small;
+            }
+        }
     }
 }
