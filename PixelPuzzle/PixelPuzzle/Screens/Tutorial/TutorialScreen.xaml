@@ -68,38 +68,49 @@
                     <RowDefinition
                         Height="Auto"/>
                     <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
                         Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
                         Width="*" />
                     <ColumnDefinition
-                        Width="Auto" />
+                        Width="10*" />
                     <ColumnDefinition
                         Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <BoxView
-                    Grid.RowSpan="4"
+                    Grid.RowSpan="5"
                     Grid.ColumnSpan="3"
                     BackgroundColor="White"
                     Opacity=".9"/>
 
                 <BoxView
                     Grid.Row="1"
-                    Grid.RowSpan="2"
+                    Grid.RowSpan="3"
                     Grid.Column="1"
-                    CornerRadius="25"
+                    CornerRadius="20"
                     BackgroundColor="White" />
 
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="25,25,25,0"
+                    Margin="20,20,20,0"
                     FontSize="Large"
+                    HorizontalTextAlignment="Center"
                     Text="Tutorial Complete!" />
-                <Button
+
+                <Label
                     Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    Text="You are ready..." />
+
+                <Button
+                    Grid.Row="3"
                     Grid.Column="1"
                     Margin="25"
                     Text="Let me at them!"

@@ -100,7 +100,7 @@
                     <ColumnDefinition
                         Width="*" />
                     <ColumnDefinition
-                        Width="Auto" />
+                        Width="10*" />
                     <ColumnDefinition
                         Width="*" />
                 </Grid.ColumnDefinitions>
@@ -115,20 +115,21 @@
                     Grid.Row="1"
                     Grid.RowSpan="2"
                     Grid.Column="1"
-                    CornerRadius="25"
+                    CornerRadius="20"
                     BackgroundColor="White" />
 
                 <Label
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="25,25,25,0"
+                    Margin="20,20,20,0"
                     FontSize="Large"
+                    HorizontalTextAlignment="Center"
                     Text="Puzzle Complete!" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="25"
-                    Text="Give Me More!"
+                    Text="Continue"
                     BackgroundColor="{StaticResource Green}"
                     TextColor="White"
                     Clicked="Complete_Clicked"
