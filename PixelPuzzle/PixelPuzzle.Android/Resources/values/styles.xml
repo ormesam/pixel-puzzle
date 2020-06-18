@@ -26,6 +26,7 @@
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
 
     <item name="android:windowBackground">@mipmap/main</item>
+    <item name="android:windowFullscreen">true</item>
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">

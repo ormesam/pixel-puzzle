@@ -10,7 +10,7 @@ using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(AdMobView), typeof(AdMobViewRenderer))]
 namespace PixelPuzzle.Droid.Renderers {
-    class AdMobViewRenderer : ViewRenderer<AdMobView, AdView> {
+    public class AdMobViewRenderer : ViewRenderer<AdMobView, AdView> {
         public AdMobViewRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<AdMobView> e) {
