@@ -205,9 +205,9 @@ namespace MapGenerator {
 
         private int GetWeight() {
             switch (difficulty) {
-                case 1: return 58;
-                case 2: return 63;
-                case 3: return 67;
+                case 1: return 30;
+                case 2: return 35;
+                case 3: return 40;
                 default: return 0;
             }
         }
