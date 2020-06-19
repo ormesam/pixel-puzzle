@@ -76,7 +76,7 @@
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                     <Button
-                        Text="Auto Generated Puzzle"
+                        Text="Generate Puzzle"
                         Clicked="Random_Clicked"
                         BackgroundColor="White"
                         Margin="8"
