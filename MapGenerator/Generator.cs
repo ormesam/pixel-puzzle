@@ -40,7 +40,7 @@ namespace MapGenerator {
 
             Console.WriteLine($"Finished generating {numberToCreate} maps");
 
-            if (string.IsNullOrWhiteSpace(export)) {
+            if (!string.IsNullOrWhiteSpace(export)) {
                 File.WriteAllText("export.txt", export);
             }
         }
