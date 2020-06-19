@@ -112,12 +112,10 @@ namespace MapGenerator {
                 int df = FreedomFromArray(cells);
 
                 if (df == size) {
-                    /* Do not want completely empty region */
                     InsertFilled(cells);
                     continue;
                 }
 
-                /* Do not want to produce totally empty regions */
                 int min = Math.Min(size - 1, minFreedom + (i < 2 || i > size - 3 ? edgeBias : 0));
 
                 if (df >= min) {
@@ -137,12 +135,10 @@ namespace MapGenerator {
                 int df = FreedomFromArray(cells);
 
                 if (df == size) {
-                    /* Do not want completely empty region */
                     InsertFilled(cells);
                     continue;
                 }
 
-                /* Do not want to produce totally empty regions */
                 int min = Math.Min(size - 1, minFreedom + (i < 2 || i > size - 3 ? edgeBias : 0));
 
                 if (df >= min) {
@@ -201,20 +197,33 @@ namespace MapGenerator {
         }
 
         private void AvoidEmptyColumnRegions(int[,] map) {
+            for (int i = 0; i < size; i++) {
+                int[] cells = GetColumnCells(map, i);
+
+                int df = FreedomFromArray(cells);
+                if (df >= size) {
+                    InsertFilled(cells);
+                    ResetColumn(map, i, cells);
+                    continue;
+                }
+            }
         }
 
         private int GetWeight() {
             switch (difficulty) {
-                case 1: return 30;
-                case 2: return 35;
-                case 3: return 40;
+                case 1: return 29;
+                case 2: return 31;
+                case 3: return 34;
+                case 4: return 37;
                 default: return 0;
             }
         }
 
         private int GetEdgeBias() {
             switch (difficulty) {
+                case 2:
                 case 3: return 1;
+                case 4: return 2;
                 default: return 0;
             }
         }
@@ -223,6 +232,7 @@ namespace MapGenerator {
             switch (difficulty) {
                 case 2:
                 case 3: return 2;
+                case 4: return 3;
                 default: return 1;
             }
         }
