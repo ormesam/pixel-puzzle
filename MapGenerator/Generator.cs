@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 
 namespace MapGenerator {
@@ -9,11 +10,13 @@ namespace MapGenerator {
         private readonly int threshold;
         private readonly int edgeBias;
         private readonly int minFreedom;
+        private string export;
 
         public Generator(int size, int difficulty) {
             this.size = size;
             this.difficulty = difficulty;
             random = new Random();
+            export = string.Empty;
 
             threshold = GetWeight();
             edgeBias = GetEdgeBias();
@@ -27,9 +30,19 @@ namespace MapGenerator {
                 int[,] map = GenerateMap();
 
                 DisplayMap(map);
+
+                Console.WriteLine("Export?");
+
+                if (Console.ReadLine().ToLower() == "y") {
+                    Export(map);
+                }
             }
 
             Console.WriteLine($"Finished generating {numberToCreate} maps");
+
+            if (string.IsNullOrWhiteSpace(export)) {
+                File.WriteAllText("export.txt", export);
+            }
         }
 
         private int[,] GenerateMap() {
@@ -214,20 +227,6 @@ namespace MapGenerator {
             }
         }
 
-        private void DisplayMap(int[,] map) {
-            StringBuilder sb = new StringBuilder();
-
-            for (int row = 0; row < size; row++) {
-                for (int col = 0; col < size; col++) {
-                    sb.Append(map[row, col] + " ");
-                }
-
-                sb.AppendLine();
-            }
-
-            Console.WriteLine(sb.ToString());
-        }
-
         public void InsertEmpty(int replace, int[] cells) {
             int count = 0;
             int lim = cells.Length - 2;
@@ -276,6 +275,45 @@ namespace MapGenerator {
             }
 
             return (length - filled - (blocks - 1));
+        }
+
+        private void DisplayMap(int[,] map) {
+            StringBuilder sb = new StringBuilder();
+
+            for (int row = 0; row < size; row++) {
+                for (int col = 0; col < size; col++) {
+                    sb.Append(map[row, col] + " ");
+                }
+
+                sb.AppendLine();
+            }
+
+            Console.WriteLine(sb.ToString());
+        }
+
+        private void Export(int[,] map) {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("        public static int[,] Game() {");
+            sb.AppendLine("            return new int[" + size + "," + size + "] {");
+
+            for (int row = 0; row < size; row++) {
+                sb.Append("                { ");
+
+                for (int col = 0; col < size; col++) {
+                    sb.Append(map[row, col] + (col < size - 1 ? ", " : " "));
+                }
+
+                sb.Append("},");
+                sb.AppendLine();
+            }
+
+            sb.AppendLine("            };");
+            sb.AppendLine("        }");
+
+            Console.WriteLine(sb.ToString());
+
+            export += sb.ToString();
         }
     }
 }
