@@ -1,26 +1,51 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace MapGenerator {
     public class Generator {
         private readonly int size;
         private readonly int difficulty;
+        private int exportNumber;
         private readonly Random random;
-        private readonly int threshold;
+        private readonly int initialWeight;
         private readonly int edgeBias;
-        private readonly int minFreedom;
         private string export;
 
-        public Generator(int size, int difficulty) {
+        public Generator(int size, int difficulty, int exportNumber) {
             this.size = size;
             this.difficulty = difficulty;
+            this.exportNumber = exportNumber;
             random = new Random();
             export = string.Empty;
 
-            threshold = GetWeight();
+            initialWeight = GetInitialWeight();
             edgeBias = GetEdgeBias();
-            minFreedom = GetMinFreedom();
+        }
+
+        private int GetInitialWeight() {
+            switch (difficulty) {
+                case 1:
+                    return 65;
+                case 2:
+                    return 60;
+                case 3:
+                    return 55;
+                default:
+                    return 50;
+            }
+        }
+
+        private int GetEdgeBias() {
+            switch (difficulty) {
+                case 3:
+                    return 1;
+                case 4:
+                    return 2;
+                default:
+                    return 0;
+            }
         }
 
         public void Run(int numberToCreate) {
@@ -30,12 +55,7 @@ namespace MapGenerator {
                 int[,] map = GenerateMap();
 
                 DisplayMap(map);
-
-                Console.WriteLine("Export?");
-
-                if (Console.ReadLine().ToLower() == "y") {
-                    Export(map);
-                }
+                Export(map);
             }
 
             Console.WriteLine($"Finished generating {numberToCreate} maps");
@@ -49,240 +69,161 @@ namespace MapGenerator {
             var map = new int[size, size];
 
             GenerateRows(map);
-            GenerateColumns(map);
-
-            if (minFreedom > 0) {
-                AdjustRowRegions(map);
-                AdjustColumnRegions(map);
-            }
-
-            AvoidEmptyRowRegions(map);
-            AvoidEmptyColumnRegions(map);
+            FillEmptyRows(map);
+            FillEmptyColumns(map);
+            MergeBrokenRowGroups(map);
+            MergeBrokenColumnGroups(map);
 
             return map;
         }
 
-        private void GenerateRows(int[,] map) {
-            var randomCells = GenerateRandomCells();
-            int index = 0;
+        private void MergeBrokenRowGroups(int[,] map) {
+            for (int row = 0; row < size; row++) {
+                int[] cells = GetRowCells(map, row);
 
+                int tryCount = 0;
+
+                while (!cells.Except(new int[3] { 0, 1, 0 }).Any() && tryCount < 3) {
+                    tryCount++;
+                    bool replace = GetRandomBool();
+
+                    if (!replace) {
+                        continue;
+                    }
+
+                    bool goRight = GetRandomBool();
+
+                    for (int col = goRight ? 1 : size - 2; goRight ? col < size - 2 : col >= 1; col += goRight ? 1 : -1) {
+                        if (cells[col] == 1 && cells[col + 1] == 0 && cells[col - 1] == 0) {
+                            bool regenerate = GetRandomBool();
+
+                            if (regenerate) {
+                                map[row, col - 1] = GenerateCell(map, row, col);
+                                map[row, col + 1] = GenerateCell(map, row, col);
+                            } else {
+                                map[row, col - 1] = 0;
+                                map[row, col + 1] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void MergeBrokenColumnGroups(int[,] map) {
+            for (int col = 0; col < size; col++) {
+                int[] cells = GetColumnCells(map, col);
+
+                int tryCount = 0;
+
+                while (!cells.Except(new int[3] { 0, 1, 0 }).Any() && tryCount < 3) {
+                    tryCount++;
+                    bool replace = GetRandomBool();
+
+                    if (!replace) {
+                        continue;
+                    }
+
+                    bool goRight = GetRandomBool();
+
+                    for (int row = goRight ? 1 : size - 2; goRight ? row < size - 2 : row >= 1; row += goRight ? 1 : -1) {
+                        if (cells[row] == 1 && cells[row + 1] == 0 && cells[row - 1] == 0) {
+                            bool regenerate = GetRandomBool();
+
+                            if (regenerate) {
+                                map[row - 1, col] = GenerateCell(map, row, col);
+                                map[row + 1, col] = GenerateCell(map, row, col);
+                            } else {
+                                map[row - 1, col] = 0;
+                                map[row + 1, col] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool GetRandomBool() {
+            return random.Next(0, 2) == 1;
+        }
+
+        private void FillEmptyRows(int[,] map) {
+            for (int row = 0; row < size; row++) {
+                int[] cells = GetRowCells(map, row);
+
+                if (cells.All(i => i == 0)) {
+                    for (int col = 0; col < size; col++) {
+                        // try regenerate cells for row
+                        map[row, col] = GenerateCell(map, row, col);
+                    }
+                }
+            }
+        }
+
+        private void FillEmptyColumns(int[,] map) {
+            for (int col = 0; col < size; col++) {
+                int[] cells = GetColumnCells(map, col);
+
+                if (cells.All(i => i == 0)) {
+                    for (int row = 0; row < size; row++) {
+                        // try regenerate cells for column
+                        map[row, col] = GenerateCell(map, row, row);
+                    }
+                }
+            }
+        }
+
+        private void GenerateRows(int[,] map) {
             for (int row = 0; row < size; row++) {
                 for (int col = 0; col < size; col++) {
-                    map[row, col] = randomCells[index];
-                    index++;
+                    map[row, col] = GenerateCell(map, row, col);
                 }
             }
         }
 
-        private void GenerateColumns(int[,] map) {
-            var randomCells = GenerateRandomCells();
-            int index = 0;
+        private int GenerateCell(int[,] map, int row, int col) {
+            int weight = initialWeight;
+            ApplyEdgeWeightAdjustment(row, col, ref weight);
+            ApplySurroundingCellAdjustment(map, row, col, ref weight);
 
-            for (int col = 0; col < size; col++) {
-                for (int row = 0; row < size; row++) {
-                    map[row, col] = randomCells[index];
-                    index++;
-                }
+            return random.Next(1, 100) < weight ? 1 : 0;
+        }
+
+        private void ApplySurroundingCellAdjustment(int[,] map, int row, int col, ref int weight) {
+            bool lastRowCellWasFilled = col > 0 && map[row, col - 1] == 1;
+            bool lastColCellWasFilled = row > 0 && map[row - 1, col] == 1;
+
+            if (lastRowCellWasFilled) {
+                weight += 2;
+            }
+
+            if (lastColCellWasFilled) {
+                weight += 2;
             }
         }
 
-        private int[] GenerateRandomCells() {
-            int[] cells = new int[size * size];
-            int total = cells.Length;
-            int index = 0;
+        private void ApplyEdgeWeightAdjustment(int row, int col, ref int weight) {
+            int topEdge = edgeBias;
+            int leftEdge = edgeBias;
+            int rightEdge = size - 1 - edgeBias;
+            int bottomEdge = size - 1 - edgeBias;
 
-            while (index < total) {
-                var cs = random.Next(0, 99) > threshold ? 1 : 0;
-                var length = random.Next(1, 3);
+            bool isEdge = row < topEdge || col < leftEdge || row > rightEdge || col > bottomEdge;
 
-                while (length > 0 && index < total) {
-                    cells[index] = cs;
-                    index++;
-                    length--;
-                }
+            if (!isEdge) {
+                return;
             }
 
-            return cells;
-        }
-
-        private void AdjustRowRegions(int[,] map) {
-            for (int i = 0; i < size; i++) {
-                int[] cells = GetRowCells(map, i);
-
-                int df = FreedomFromArray(cells);
-
-                if (df == size) {
-                    InsertFilled(cells);
-                    continue;
-                }
-
-                int min = Math.Min(size - 1, minFreedom + (i < 2 || i > size - 3 ? edgeBias : 0));
-
-                if (df >= min) {
-                    continue;
-                }
-
-                InsertEmpty(min - df, cells);
-
-                ResetRow(map, i, cells);
-            }
-        }
-
-        private void AdjustColumnRegions(int[,] map) {
-            for (int i = 0; i < size; i++) {
-                int[] cells = GetColumnCells(map, i);
-
-                int df = FreedomFromArray(cells);
-
-                if (df == size) {
-                    InsertFilled(cells);
-                    continue;
-                }
-
-                int min = Math.Min(size - 1, minFreedom + (i < 2 || i > size - 3 ? edgeBias : 0));
-
-                if (df >= min) {
-                    continue;
-                }
-
-                InsertEmpty(min - df, cells);
-
-                ResetColumn(map, i, cells);
-            }
-        }
-
-        private int[] GetRowCells(int[,] map, int rowIdx) {
-            int[] row = new int[size];
-
-            for (int col = 0; col < size; col++) {
-                row[col] = map[rowIdx, col];
-            }
-
-            return row;
-        }
-
-        private void ResetRow(int[,] map, int rowIdx, int[] cells) {
-            for (int col = 0; col < size; col++) {
-                map[rowIdx, col] = cells[col];
-            }
-        }
-
-        private int[] GetColumnCells(int[,] map, int colIdx) {
-            int[] col = new int[size];
-
-            for (int row = 0; row < size; row++) {
-                col[row] = map[row, colIdx];
-            }
-
-            return col;
-        }
-
-        private void ResetColumn(int[,] map, int colIdx, int[] cells) {
-            for (int row = 0; row < size; row++) {
-                map[row, colIdx] = cells[row];
-            }
-        }
-
-        private void AvoidEmptyRowRegions(int[,] map) {
-            for (int i = 0; i < size; i++) {
-                int[] cells = GetRowCells(map, i);
-
-                int df = FreedomFromArray(cells);
-                if (df >= size) {
-                    InsertFilled(cells);
-                    ResetRow(map, i, cells);
-                    continue;
-                }
-            }
-        }
-
-        private void AvoidEmptyColumnRegions(int[,] map) {
-            for (int i = 0; i < size; i++) {
-                int[] cells = GetColumnCells(map, i);
-
-                int df = FreedomFromArray(cells);
-                if (df >= size) {
-                    InsertFilled(cells);
-                    ResetColumn(map, i, cells);
-                    continue;
-                }
-            }
-        }
-
-        private int GetWeight() {
             switch (difficulty) {
-                case 1: return 29;
-                case 2: return 31;
-                case 3: return 34;
-                case 4: return 37;
-                default: return 0;
+                case 3:
+                    weight -= 5;
+                    break;
+                case 4:
+                    weight -= 10;
+                    break;
+                default:
+                    break;
             }
-        }
-
-        private int GetEdgeBias() {
-            switch (difficulty) {
-                case 3: return 1;
-                case 4: return 2;
-                default: return 0;
-            }
-        }
-
-        private int GetMinFreedom() {
-            switch (difficulty) {
-                case 3: return 2;
-                case 4: return 3;
-                default: return 1;
-            }
-        }
-
-        public void InsertEmpty(int replace, int[] cells) {
-            int count = 0;
-            int lim = cells.Length - 2;
-
-            for (int i = 1; i <= lim / 2 + 1; i++) {
-                int idx = i;
-
-                if (cells[idx] == 1) {
-                    cells[idx] = 0;
-                    if (++count == replace) {
-                        break;
-                    }
-                }
-
-                idx = lim - idx;
-
-                if (cells[idx] == 1) {
-                    cells[idx] = 0;
-                    if (++count == replace) {
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void InsertFilled(int[] cells) {
-            int lim = cells.Length - 2;
-
-            var ptr = random.Next(1, lim);
-            cells[ptr] = 1;
-        }
-
-        private int FreedomFromArray(int[] cells) {
-            var filled = 0; // count of filled cells
-            var blocks = 0; // count of filled groups
-            int length = cells.Length;
-
-            for (int i = 0; i < length; i++) {
-                if (cells[i] == 1) {
-                    filled++;
-
-                    if (i == 0 || cells[i - 1] == 0) {
-                        blocks++;
-                    }
-                }
-            }
-
-            return length - filled - (blocks - 1);
         }
 
         private void DisplayMap(int[,] map) {
@@ -302,7 +243,7 @@ namespace MapGenerator {
         private void Export(int[,] map) {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("        public static int[,] Game() {");
+            sb.AppendLine("        public static int[,] Game" + exportNumber++ + "() {");
             sb.AppendLine("            return new int[" + size + "," + size + "] {");
 
             for (int row = 0; row < size; row++) {
@@ -320,9 +261,27 @@ namespace MapGenerator {
             sb.AppendLine("        }");
             sb.AppendLine();
 
-            Console.WriteLine(sb.ToString());
-
             export += sb.ToString();
+        }
+
+        private int[] GetRowCells(int[,] map, int row) {
+            int[] cells = new int[size];
+
+            for (int col = 0; col < size; col++) {
+                cells[col] = map[row, col];
+            }
+
+            return cells;
+        }
+
+        private int[] GetColumnCells(int[,] map, int col) {
+            int[] cells = new int[size];
+
+            for (int row = 0; row < size; row++) {
+                cells[row] = map[row, col];
+            }
+
+            return cells;
         }
     }
 }

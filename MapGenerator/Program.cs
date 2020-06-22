@@ -14,7 +14,10 @@ namespace MapGenerator {
             Console.WriteLine("How many puzzles should be generated?");
             int numberToCreate = GetNumber(1, 100);
 
-            Generator generator = new Generator(size, difficulty);
+            Console.WriteLine("What number should be used as the starting number?");
+            int exportNumber = GetNumber(1, 999);
+
+            Generator generator = new Generator(size, difficulty, exportNumber);
             generator.Run(numberToCreate);
 
             Console.WriteLine("Press any key to quit...");
