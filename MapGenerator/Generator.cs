@@ -221,7 +221,6 @@ namespace MapGenerator {
 
         private int GetEdgeBias() {
             switch (difficulty) {
-                case 2:
                 case 3: return 1;
                 case 4: return 2;
                 default: return 0;
@@ -230,7 +229,6 @@ namespace MapGenerator {
 
         private int GetMinFreedom() {
             switch (difficulty) {
-                case 2:
                 case 3: return 2;
                 case 4: return 3;
                 default: return 1;
@@ -284,7 +282,7 @@ namespace MapGenerator {
                 }
             }
 
-            return (length - filled - (blocks - 1));
+            return length - filled - (blocks - 1);
         }
 
         private void DisplayMap(int[,] map) {
@@ -320,6 +318,7 @@ namespace MapGenerator {
 
             sb.AppendLine("            };");
             sb.AppendLine("        }");
+            sb.AppendLine();
 
             Console.WriteLine(sb.ToString());
 

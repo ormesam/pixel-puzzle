@@ -5,24 +5,26 @@ using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class DifficultyScreenViewModel : ViewModelBase {
+        private int difficultySize;
         public Difficulty Difficulty { get; }
         public IList<Level> Levels => Context.Model.GetLevels(Difficulty);
 
         public DifficultyScreenViewModel(MainContext context, Difficulty difficulty) : base(context) {
             Difficulty = difficulty;
+            difficultySize = GetDifficultySize();
         }
 
-        public override string Title => Difficulty.ToString();
+        public override string Title => $"{difficultySize} x {difficultySize}";
 
         public async Task GoToLevel(Level level) {
             await Context.UI.GoToGame(level);
         }
 
         public async Task GoToRandom() {
-            await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(GetRandomSize()), true));
+            await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(difficultySize), true));
         }
 
-        private int GetRandomSize() {
+        private int GetDifficultySize() {
             switch (Difficulty) {
                 case Difficulty.Easy:
                     return Game.Small;
