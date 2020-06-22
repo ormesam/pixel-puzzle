@@ -11,7 +11,16 @@ namespace PixelPuzzle.Converters {
             }
 
             if (value is CellValue cellValue) {
-                return cellValue == CellValue.Filled ? Color.Black : Color.White;
+                switch (cellValue) {
+                    case CellValue.Filled:
+                        return Color.Black;
+                    case CellValue.Blocked:
+                        return Color.Transparent;
+                    case CellValue.Blank:
+                        return Color.White;
+                    default:
+                        return Color.Default;
+                }
             }
 
             return Color.Default;

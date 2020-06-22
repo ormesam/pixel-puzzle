@@ -57,11 +57,11 @@ namespace PixelPuzzle.Controls {
                 for (int col = 0; col < gridLength; col++) {
                     var cell = ViewModel.Game.Rows[row].Cells[col];
 
-                    Label text = new Label();
-                    text.Text = "✘";
-                    text.VerticalTextAlignment = TextAlignment.Center;
-                    text.HorizontalTextAlignment = TextAlignment.Center;
-                    text.SetBinding(Image.IsVisibleProperty, nameof(Logic.Cell.IsBlocked));
+                    Image image = new Image();
+                    image.Source = "cross.png";
+                    image.VerticalOptions = LayoutOptions.Center;
+                    image.HorizontalOptions = LayoutOptions.Center;
+                    image.BackgroundColor = Color.White;
 
                     BoxView boxView = new BoxView();
                     boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
@@ -70,8 +70,8 @@ namespace PixelPuzzle.Controls {
                     cellView.BackgroundColor = Color.Gray;
                     cellView.Padding = .5;
                     cellView.BindingContext = cell;
+                    cellView.Children.Add(image);
                     cellView.Children.Add(boxView);
-                    cellView.Children.Add(text);
 
                     Binding heightBinding = new Binding();
                     heightBinding.Source = cellView;
