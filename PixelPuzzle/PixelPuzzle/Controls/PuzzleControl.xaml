@@ -95,11 +95,13 @@
                         VerticalOptions="Center"
                         HorizontalOptions="Center" />
 
-                    <Label
-                        FontSize="Large"
-                        HorizontalTextAlignment="Center"
-                        VerticalTextAlignment="Center"
-                        Text="✘" />
+                    <Image
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Source="cross.png"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        BackgroundColor="White"/>
                 </Grid>
             </Grid>
         </Grid>

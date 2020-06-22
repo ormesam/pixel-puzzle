@@ -61,7 +61,9 @@ namespace PixelPuzzle.Controls {
                     image.Source = "cross.png";
                     image.VerticalOptions = LayoutOptions.Center;
                     image.HorizontalOptions = LayoutOptions.Center;
-                    image.BackgroundColor = Color.White;
+
+                    BoxView imageBackground = new BoxView();
+                    imageBackground.BackgroundColor = Color.White;
 
                     BoxView boxView = new BoxView();
                     boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
@@ -70,6 +72,7 @@ namespace PixelPuzzle.Controls {
                     cellView.BackgroundColor = Color.Gray;
                     cellView.Padding = .5;
                     cellView.BindingContext = cell;
+                    cellView.Children.Add(imageBackground);
                     cellView.Children.Add(image);
                     cellView.Children.Add(boxView);
 
