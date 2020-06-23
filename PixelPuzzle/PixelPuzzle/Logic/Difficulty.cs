@@ -1,7 +1,7 @@
 ﻿namespace PixelPuzzle.Logic {
     public enum Difficulty {
-        Easy = 0,
+        Small = 0,
         Medium = 1,
-        Hard = 2,
+        Large = 2,
     }
 }

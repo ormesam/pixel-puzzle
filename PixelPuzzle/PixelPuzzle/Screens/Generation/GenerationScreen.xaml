@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Screens.Generation.GenerationScreen"
+    xmlns:controls="clr-namespace:PixelPuzzle.Controls"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource AdBannerHeight}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image
+                Source="bg_tutorial.png"
+                Grid.RowSpan="6"
+                Aspect="AspectFill" />
+
+            <controls:AdMobView />
+
+            <Grid
+                Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView
+                    Grid.ColumnSpan="9"
+                    BackgroundColor="White"
+                    Opacity=".9"/>
+
+                <ImageButton
+                    Grid.Column="1"
+                    Padding="10"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    Source="back.png"
+                    Clicked="Back_Clicked"
+                    CornerRadius="5" />
+
+                <Button
+                    Grid.Column="3"
+                    Padding="10"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    Text="Share"
+                    Clicked="Generate_Clicked"
+                    CornerRadius="5" />
+            </Grid>
+
+            <Grid
+                Grid.Row="4"
+                InputTransparent="{Binding IsComplete}">
+                <controls:PuzzleControl
+                    x:Name="PuzzleControl"
+                    BindingContext="{Binding PuzzleControlViewModel}"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

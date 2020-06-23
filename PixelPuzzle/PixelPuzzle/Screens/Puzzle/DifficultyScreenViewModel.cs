@@ -24,13 +24,17 @@ namespace PixelPuzzle.Screens.Puzzle {
             await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(difficultySize), true));
         }
 
+        public async Task GoToGenerationScreen() {
+            await Context.UI.GoToGenerationScreen(difficultySize);
+        }
+
         private int GetDifficultySize() {
             switch (Difficulty) {
-                case Difficulty.Easy:
+                case Difficulty.Small:
                     return Game.Small;
                 case Difficulty.Medium:
                     return Game.Medium;
-                case Difficulty.Hard:
+                case Difficulty.Large:
                     return Game.Large;
                 default:
                     return Game.Small;

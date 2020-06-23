@@ -12,11 +12,11 @@ namespace PixelPuzzle.Converters {
 
             if (value is Difficulty difficulty) {
                 switch (difficulty) {
-                    case Difficulty.Easy:
+                    case Difficulty.Small:
                         return "bg_easy.png";
                     case Difficulty.Medium:
                         return "bg_medium.png";
-                    case Difficulty.Hard:
+                    case Difficulty.Large:
                         return "bg_hard.png";
                     default:
                         break;

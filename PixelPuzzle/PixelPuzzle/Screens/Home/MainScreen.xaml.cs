@@ -19,7 +19,7 @@ namespace PixelPuzzle.Screens.Home {
         }
 
         private async void Easy_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Difficulty.Easy);
+            await ViewModel.GoToGame(Difficulty.Small);
         }
 
         private async void Medium_Clicked(object sender, EventArgs e) {
@@ -27,7 +27,7 @@ namespace PixelPuzzle.Screens.Home {
         }
 
         private async void Hard_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGame(Difficulty.Hard);
+            await ViewModel.GoToGame(Difficulty.Large);
         }
     }
 }

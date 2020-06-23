@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Screens.About;
+using PixelPuzzle.Screens.Generation;
 using PixelPuzzle.Screens.Puzzle;
 using PixelPuzzle.Screens.Tutorial;
 using Xamarin.Forms;
@@ -40,6 +41,10 @@ namespace PixelPuzzle.Contexts {
 
         public async Task GoToAboutScreen() {
             await GoToScreenAsync(new InfoScreen(context));
+        }
+
+        public async Task GoToGenerationScreen(int size) {
+            await GoToScreenAsync(new GenerationScreen(context, size));
         }
     }
 }
