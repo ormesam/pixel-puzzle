@@ -6,7 +6,7 @@
     x:Class="PixelPuzzle.Controls.PuzzleControl">
     <ContentView.Content>
         <Grid
-                Padding="10">
+            Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -19,7 +19,7 @@
                 x:Name="gameGrid">
                 <Grid.Effects>
                     <touch:TouchEffect
-                    TouchAction="TouchEffect_TouchAction"/>
+                        TouchAction="TouchEffect_TouchAction"/>
                 </Grid.Effects>
             </Grid>
 

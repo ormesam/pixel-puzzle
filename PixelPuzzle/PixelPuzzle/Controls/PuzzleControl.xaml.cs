@@ -44,10 +44,6 @@ namespace PixelPuzzle.Controls {
         }
 
         public void RenderGame() {
-            gameGrid.Children.Clear();
-            gameGrid.RowDefinitions.Clear();
-            gameGrid.ColumnDefinitions.Clear();
-
             int gridLength = ViewModel.Game.GridLength;
 
             SetupGrid();
@@ -92,71 +88,54 @@ namespace PixelPuzzle.Controls {
         }
 
         private void AddRowHeaders() {
-            for (int i = 0; i < ViewModel.Game.GridLength; i++) {
-                Grid border = new Grid() {
+            for (int row = 0; row < ViewModel.Game.GridLength; row++) {
+                Grid border = new Grid {
                     Padding = new Thickness(0, .5, .5, .5),
                     BackgroundColor = Color.Gray,
                 };
 
-                Grid container = new Grid() {
-                    BindingContext = ViewModel.Game.Rows[i],
-                    Padding = new Thickness(2, 2, 10, 2),
+                Label label = new Label() {
+                    BindingContext = ViewModel.Game.Rows[row],
+                    Padding = new Thickness(0, 0, 5, 0),
                     BackgroundColor = Color.White,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    HorizontalTextAlignment = TextAlignment.End,
+                    Text = string.Join("  ", ViewModel.Game.Rows[row].Segments),
+                    FontSize = 8,
                     WidthRequest = 60,
                 };
 
-                container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
-                container.SetBinding(StackLayout.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
+                label.SetBinding(Label.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
 
-                for (int j = 0; j < ViewModel.Game.Rows[i].Segments.Count; j++) {
-                    var segment = ViewModel.Game.Rows[i].Segments[j];
+                border.Children.Add(label);
 
-                    container.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-
-                    container.Children.Add(new Label {
-                        Text = segment.ToString(),
-                        FontSize = 8,
-                        VerticalTextAlignment = TextAlignment.Center,
-                    }, j + 1, 0);
-                }
-
-                border.Children.Add(container);
-                gameGrid.Children.Add(border, 0, i + 1);
+                gameGrid.Children.Add(border, 0, row + 1);
             }
         }
 
         private void AddColumnHeaders() {
-            for (int i = 0; i < ViewModel.Game.GridLength; i++) {
-                Grid border = new Grid() {
-                    Padding = new Thickness(.5, 0, .5, .5),
+            for (int col = 0; col < ViewModel.Game.GridLength; col++) {
+                Grid border = new Grid {
                     BackgroundColor = Color.Gray,
+                    Padding = new Thickness(.5, 0, .5, .5),
                 };
 
-                Grid container = new Grid() {
-                    BindingContext = ViewModel.Game.Columns[i],
-                    Padding = new Thickness(2, 2, 2, 10),
+                Label label = new Label() {
+                    BindingContext = ViewModel.Game.Columns[col],
+                    Padding = new Thickness(0, 0, 0, 5),
                     BackgroundColor = Color.White,
+                    VerticalTextAlignment = TextAlignment.End,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    Text = string.Join("\n", ViewModel.Game.Columns[col].Segments),
+                    FontSize = 8,
                     HeightRequest = 60,
-                    RowSpacing = 0,
                 };
 
-                container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Star });
-                container.SetBinding(StackLayout.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
+                label.SetBinding(Label.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
 
-                for (int j = 0; j < ViewModel.Game.Columns[i].Segments.Count; j++) {
-                    var segment = ViewModel.Game.Columns[i].Segments[j];
+                border.Children.Add(label);
 
-                    container.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-
-                    container.Children.Add(new Label {
-                        Text = segment.ToString(),
-                        FontSize = 8,
-                        HorizontalTextAlignment = TextAlignment.Center,
-                    }, 0, j + 1);
-                }
-
-                border.Children.Add(container);
-                gameGrid.Children.Add(border, i + 1, 0);
+                gameGrid.Children.Add(border, col + 1, 0);
             }
         }
 
