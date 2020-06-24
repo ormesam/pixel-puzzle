@@ -3,107 +3,112 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:touch="clr-namespace:PixelPuzzle.Touch"
+    xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     x:Class="PixelPuzzle.Controls.PuzzleControl">
-    <ContentView.Content>
+    <StackLayout
+            Padding="5">
+
         <Grid
-            Padding="10">
+                ColumnSpacing="0"
+                RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
             <Grid
-                RowSpacing="0"
-                ColumnSpacing="0"
-                VerticalOptions="Start"
-                x:Name="gameGrid">
+                    BindableLayout.ItemsSource="{Binding Game.Rows}"
+                    Grid.Row="1"
+                    RowSpacing="1"
+                    BackgroundColor="Gray"
+                    Padding="0, 1, 0, 1">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                                Grid.Row="{Binding Number}"
+                                Grid.Column="0">
+                            <Label
+                                    Text="{Binding SegmentDisplay}"
+                                    Padding="0, 0, 5, 0"
+                                    Margin="0"
+                                    BackgroundColor="White"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="End"
+                                    FontSize="8"
+                                    WidthRequest="60"
+                                    Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+
+            <Grid
+                    BindableLayout.ItemsSource="{Binding Game.Columns}"
+                    Grid.Column="1"
+                    ColumnSpacing="1"
+                    Padding="1, 0, 1, 0"
+                    BackgroundColor="Gray">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                                Grid.Column="{Binding Number}"
+                                Grid.Row="0">
+                            <Label
+                                    Text="{Binding SegmentDisplay}"
+                                    Padding="0, 0, 0, 5"
+                                    Margin="0"
+                                    BackgroundColor="White"
+                                    VerticalTextAlignment="End"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="8"
+                                    WidthRequest="60"
+                                    Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+
+            <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    x:Name="gameGrid"
+                    RowSpacing="1"
+                    ColumnSpacing="1"
+                    Padding="1"
+                    VerticalOptions="Start"
+                    BindableLayout.ItemsSource="{Binding Game.Cells}"
+                    BackgroundColor="Gray">
                 <Grid.Effects>
                     <touch:TouchEffect
-                        TouchAction="TouchEffect_TouchAction"/>
+                            TouchAction="TouchEffect_TouchAction"/>
                 </Grid.Effects>
-            </Grid>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                                Grid.Row="{Binding X}"
+                                Grid.Column="{Binding Y}"
+                                BackgroundColor="Gray"
+                                HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}">
+                            <BoxView
+                                    BackgroundColor="White" />
 
-            <Grid
-                Grid.Row="1"
-                Margin="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="2*" />
-                </Grid.ColumnDefinitions>
+                            <Image
+                                    Source="cross.png"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center" />
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70" />
-                </Grid.RowDefinitions>
-
-                <Grid
-                    Grid.Column="1">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="ValueFilled_Tapped" />
-                    </Grid.GestureRecognizers>
-
-                    <BoxView
-                        WidthRequest="60"
-                        HeightRequest="60"
-                        BackgroundColor="Black"
-                        CornerRadius="15"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        IsVisible="{Binding SelectedValueIsFilled}" />
-
-                    <BoxView
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        BackgroundColor="White"
-                        CornerRadius="10"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center" />
-
-                    <BoxView
-                        WidthRequest="40"
-                        HeightRequest="40"
-                        CornerRadius="5"
-                        BackgroundColor="Black" 
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center" />
-                </Grid>
-
-                <Grid
-                    Grid.Column="3">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Tapped="ValueBlocked_Tapped" />
-                    </Grid.GestureRecognizers>
-
-                    <BoxView
-                        WidthRequest="60"
-                        HeightRequest="60"
-                        BackgroundColor="Black"
-                        CornerRadius="15"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        IsVisible="{Binding SelectedValueIsBlocked}" />
-
-                    <BoxView
-                        WidthRequest="50"
-                        HeightRequest="50"
-                        BackgroundColor="White"
-                        CornerRadius="10"
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center" />
-
-                    <Image
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        Source="cross.png"
-                        WidthRequest="40"
-                        HeightRequest="40"
-                        BackgroundColor="White"/>
-                </Grid>
+                            <BoxView
+                                    BackgroundColor="{Binding UserValue, Converter={StaticResource CellColourConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </Grid>
         </Grid>
-    </ContentView.Content>
+
+        <controls:CellStateSelection />
+    </StackLayout>
 </ContentView>

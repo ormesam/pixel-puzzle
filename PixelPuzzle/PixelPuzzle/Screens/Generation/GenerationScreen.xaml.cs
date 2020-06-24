@@ -13,12 +13,6 @@ namespace PixelPuzzle.Screens.Generation {
 
         public GenerationScreenViewModel ViewModel => BindingContext as GenerationScreenViewModel;
 
-        protected override void OnAppearing() {
-            base.OnAppearing();
-
-            PuzzleControl.RenderGame();
-        }
-
         private async void Back_Clicked(object sender, EventArgs e) {
             await Navigation.PopAsync();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 using Xamarin.Forms;
@@ -13,12 +14,6 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         public PuzzleScreenViewModel ViewModel => BindingContext as PuzzleScreenViewModel;
-
-        protected override void OnAppearing() {
-            base.OnAppearing();
-
-            PuzzleControl.RenderGame();
-        }
 
         protected async override void OnDisappearing() {
             await ViewModel.SaveGameState();

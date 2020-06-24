@@ -16,7 +16,6 @@ namespace PixelPuzzle.Screens.Tutorial {
         protected override async void OnAppearing() {
             base.OnAppearing();
 
-            PuzzleControl.RenderGame();
             await ViewModel.MoveNext();
         }
 

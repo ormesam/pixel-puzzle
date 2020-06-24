@@ -6,11 +6,16 @@ namespace PixelPuzzle.Logic {
     public class Line : NotifyPropertyChangedBase {
         public Cell[] Cells { get; }
         public IList<int> Segments { get; private set; }
+        public int Number { get; }
+        private bool IsRow { get; }
         public bool IsValid => GetIsValid();
+        public string SegmentDisplay => string.Join(IsRow ? "  " : "\n", Segments);
 
-        public Line(int gridLength) {
+        public Line(int gridLength, bool isRow, int number) {
             Cells = new Cell[gridLength];
             Segments = new List<int>();
+            IsRow = isRow;
+            Number = number;
         }
 
         public void GenerateSegments() {

@@ -61,7 +61,7 @@ namespace PixelPuzzle.Controls {
             Game.CheckIsComplete();
         }
 
-        private CellValue? GetTouchValue(Logic.Cell cell) {
+        private CellValue? GetTouchValue(Cell cell) {
             if (SelectedValue == CellValue.Filled) {
                 if (cell.UserValue == CellValue.Filled) {
                     return CellValue.Blank;

@@ -13,6 +13,10 @@
             x:Key="LevelInvertColourConverter" />
         <converters:LevelBackgroundConverter
             x:Key="LevelBackgroundConverter" />
+        <converters:LineOpacityConverter
+            x:Key="LineOpacityConverter" />
+        <converters:CellColourConverter
+            x:Key="CellColourConverter" />
 
         <GridLength
             x:Key="AdBannerHeight">

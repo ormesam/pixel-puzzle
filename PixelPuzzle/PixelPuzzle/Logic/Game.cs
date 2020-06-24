@@ -28,14 +28,14 @@ namespace PixelPuzzle.Logic {
             Cells = new List<Cell>();
 
             for (int row = 0; row < GridLength; row++) {
-                Rows[row] = new Line(GridLength);
+                Rows[row] = new Line(GridLength, isRow: true, number: row);
 
                 for (int col = 0; col < GridLength; col++) {
                     if (row == 0) {
-                        Columns[col] = new Line(GridLength);
+                        Columns[col] = new Line(GridLength, isRow: false, number: col);
                     }
 
-                    var cell = new Cell(row + 1, col + 1, map[row, col] == 1 ? CellValue.Filled : CellValue.Blocked);
+                    var cell = new Cell(row, col, map[row, col] == 1 ? CellValue.Filled : CellValue.Blocked);
                     var currentRow = Rows[row];
                     var currentColumn = Columns[col];
 
@@ -77,7 +77,7 @@ namespace PixelPuzzle.Logic {
             var map = new CellValue[GridLength, GridLength];
 
             foreach (var cell in Cells) {
-                map[cell.X - 1, cell.Y - 1] = cell.UserValue;
+                map[cell.X, cell.Y] = cell.UserValue;
             }
 
             return map;
@@ -85,7 +85,7 @@ namespace PixelPuzzle.Logic {
 
         public void ApplyUserValues(CellValue[,] map) {
             foreach (var cell in Cells) {
-                cell.UserValue = map[cell.X - 1, cell.Y - 1];
+                cell.UserValue = map[cell.X, cell.Y];
             }
         }
     }
