@@ -103,11 +103,14 @@ namespace PixelPuzzle.Contexts {
                 new Level(8, Difficulty.Small,  MapGenerator.SmallPattern2()),
                 new Level(9, Difficulty.Small,  MapGenerator.SmallTower()),
                 new Level(10, Difficulty.Small,  MapGenerator.SmallLamp()),
-                new Level(11, Difficulty.Small,  MapGenerator.Small1()),
-                new Level(12, Difficulty.Small,  MapGenerator.Small2()),
-                new Level(13, Difficulty.Small,  MapGenerator.Small3()),
-                new Level(14, Difficulty.Small,  MapGenerator.Small4()),
-                new Level(15, Difficulty.Small,  MapGenerator.Small5()),
+                new Level(11, Difficulty.Small,  MapGenerator.SmallApple()),
+                new Level(12, Difficulty.Small,  MapGenerator.SmallLightning()),
+                new Level(13, Difficulty.Small,  MapGenerator.SmallMedal()),
+                new Level(14, Difficulty.Small,  MapGenerator.SmallPattern3()),
+                new Level(15, Difficulty.Small,  MapGenerator.SmallSkull()),
+                new Level(16, Difficulty.Small,  MapGenerator.SmallBag()),
+                new Level(17, Difficulty.Small,  MapGenerator.SmallKettle()),
+                new Level(18, Difficulty.Small,  MapGenerator.SmallSpaceHoper()),
             };
         }
 
@@ -119,6 +122,10 @@ namespace PixelPuzzle.Contexts {
                 new Level(4, Difficulty.Medium,  MapGenerator.MediumTv()),
                 new Level(5, Difficulty.Medium,  MapGenerator.MediumSoundIcon()),
                 new Level(6, Difficulty.Medium,  MapGenerator.MediumLock()),
+                new Level(7, Difficulty.Medium,  MapGenerator.MediumMartini()),
+                new Level(8, Difficulty.Medium,  MapGenerator.MediumPenguin()),
+                new Level(9, Difficulty.Medium,  MapGenerator.MediumCactus()),
+                new Level(10, Difficulty.Medium,  MapGenerator.MediumHouse()),
             };
         }
 
@@ -142,6 +149,7 @@ namespace PixelPuzzle.Contexts {
                 new Level(16, Difficulty.Large,  MapGenerator.LargeShip()),
                 new Level(17, Difficulty.Large,  MapGenerator.LargeQuad()),
                 new Level(18, Difficulty.Large,  MapGenerator.LargeWizardHat()),
+                new Level(19, Difficulty.Large,  MapGenerator.LargeClock()),
             };
         }
     }
