@@ -7,9 +7,9 @@ using Xamarin.Forms.Xaml;
 namespace PixelPuzzle.Screens.Puzzle {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HintModal : ContentPage {
-        public HintModal(MainContext context, Line line) {
+        public HintModal(MainContext context, Game game, Line line) {
             InitializeComponent();
-            BindingContext = new HintModalViewModel(context, line);
+            BindingContext = new HintModalViewModel(context, game, line);
         }
 
         public HintModalViewModel ViewModel => BindingContext as HintModalViewModel;

@@ -7,11 +7,13 @@ namespace PixelPuzzle.Screens.Puzzle {
     public class HintModalViewModel : ViewModelBase {
         private bool adLoaded;
         private readonly IHintAd ad;
+        private readonly Game game;
         private readonly Line line;
 
-        public HintModalViewModel(MainContext context, Line line) : base(context) {
+        public HintModalViewModel(MainContext context, Game game, Line line) : base(context) {
             ad = DependencyService.Get<IHintAd>();
             this.line = line;
+            this.game = game;
         }
 
         public bool AdLoaded {
@@ -38,6 +40,8 @@ namespace PixelPuzzle.Screens.Puzzle {
                 await line.ShowHint();
 
                 await nav.PopModalAsync();
+
+                game.CheckIsComplete();
             });
         }
     }

@@ -59,8 +59,8 @@ namespace PixelPuzzle.Contexts {
             await GoToScreenAsync(new GenerationScreen(context, size));
         }
 
-        public async Task ShowHintModal(Line line) {
-            await ShowModal(new HintModal(context, line));
+        public async Task ShowHintModal(Game game, Line line) {
+            await ShowModal(new HintModal(context, game, line));
         }
 
         public async Task ShowCompletedModal() {

@@ -86,10 +86,11 @@ namespace PixelPuzzle.Controls {
         public async Task ShowHintModal(Line line) {
             if (!showHintAd) {
                 await line.ShowHint();
+                Game.CheckIsComplete();
                 return;
             }
 
-            await Context.UI.ShowHintModal(line);
+            await Context.UI.ShowHintModal(Game, line);
         }
     }
 }
