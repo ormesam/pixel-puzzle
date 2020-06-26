@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Microsoft.AppCenter.Crashes;
+using Plugin.CurrentActivity;
 
 namespace PixelPuzzle.Droid {
     [Activity(Label = "Pixel Puzzle", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -33,6 +34,7 @@ namespace PixelPuzzle.Droid {
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, "ca-app-pub-1992270298763477~2946433905");
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
