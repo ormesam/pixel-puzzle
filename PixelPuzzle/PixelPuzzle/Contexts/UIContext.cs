@@ -27,6 +27,18 @@ namespace PixelPuzzle.Contexts {
             isNavigating = false;
         }
 
+        public async Task ShowModal(Page page) {
+            if (isNavigating) {
+                return;
+            }
+
+            isNavigating = true;
+
+            await App.RootPage.Navigation.PushModalAsync(page);
+
+            isNavigating = false;
+        }
+
         public async Task GoToGame(Level level) {
             await GoToScreenAsync(new PuzzleScreen(context, level));
         }
@@ -45,6 +57,14 @@ namespace PixelPuzzle.Contexts {
 
         public async Task GoToGenerationScreen(int size) {
             await GoToScreenAsync(new GenerationScreen(context, size));
+        }
+
+        public async Task ShowHintModal(Line line) {
+            await ShowModal(new HintModal(context, line));
+        }
+
+        public async Task ShowCompletedModal() {
+            await ShowModal(new CompletedModal(context));
         }
     }
 }

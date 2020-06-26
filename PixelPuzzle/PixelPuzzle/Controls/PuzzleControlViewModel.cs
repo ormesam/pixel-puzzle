@@ -1,18 +1,22 @@
 ﻿using System;
+using System.Threading.Tasks;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Screens;
+using Cell = PixelPuzzle.Logic.Cell;
 
 namespace PixelPuzzle.Controls {
     public class PuzzleControlViewModel : ViewModelBase {
+        private readonly bool showHintAd;
         private CellValue selectedValue;
         private Guid? touchId;
         private CellValue? touchValue;
         private int? touchXRow;
         private int? touchYRow;
 
-        public PuzzleControlViewModel(MainContext context, int[,] map) : base(context) {
+        public PuzzleControlViewModel(MainContext context, int[,] map, bool showHintAd) : base(context) {
             selectedValue = CellValue.Filled;
+            this.showHintAd = showHintAd;
 
             Game = new Game(map);
         }
@@ -77,6 +81,15 @@ namespace PixelPuzzle.Controls {
             };
 
             return null;
+        }
+
+        public async Task ShowHintModal(Line line) {
+            if (!showHintAd) {
+                await line.ShowHint();
+                return;
+            }
+
+            await Context.UI.ShowHintModal(line);
         }
     }
 }

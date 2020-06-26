@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PixelPuzzle.Utility;
 
 namespace PixelPuzzle.Logic {
@@ -65,6 +67,13 @@ namespace PixelPuzzle.Logic {
 
         public void UpdateIsValid() {
             OnPropertyChanged(nameof(IsValid));
+        }
+
+        public async Task ShowHint() {
+            foreach (Cell cell in Cells) {
+                cell.UserValue = cell.CorrectValue;
+                await Task.Delay(100);
+            }
         }
     }
 }

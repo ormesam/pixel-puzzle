@@ -9,6 +9,7 @@ namespace PixelPuzzle.Screens.Tutorial {
         public TutorialScreen(MainContext context) {
             InitializeComponent();
             BindingContext = new TutorialScreenViewModel(context);
+            ViewModel.TutorialComplete += ViewModel_TutorialComplete;
         }
 
         public TutorialScreenViewModel ViewModel => BindingContext as TutorialScreenViewModel;
@@ -19,12 +20,12 @@ namespace PixelPuzzle.Screens.Tutorial {
             await ViewModel.MoveNext();
         }
 
-        private async void Complete_Clicked(object sender, EventArgs e) {
-            await Navigation.PopToRootAsync();
-        }
-
         private async void MoveNext_Clicked(object sender, EventArgs e) {
             await ViewModel.MoveNext();
+        }
+
+        private async void ViewModel_TutorialComplete(object sender, EventArgs e) {
+            await Navigation.PopToRootAsync();
         }
     }
 }

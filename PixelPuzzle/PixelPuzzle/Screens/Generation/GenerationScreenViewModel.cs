@@ -10,7 +10,7 @@ namespace PixelPuzzle.Screens.Generation {
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
 
         public GenerationScreenViewModel(MainContext context, int size) : base(context) {
-            PuzzleControlViewModel = new PuzzleControlViewModel(context, GetMap(size));
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, GetMap(size), true);
         }
 
         private int[,] GetMap(int size) {

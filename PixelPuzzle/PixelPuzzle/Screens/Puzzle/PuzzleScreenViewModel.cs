@@ -8,19 +8,8 @@ using PixelPuzzle.Logic;
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
         private Level level;
-        private bool showCompleteDialog;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
-
-        public bool ShowCompleteDialog {
-            get { return showCompleteDialog; }
-            set {
-                if (showCompleteDialog != value) {
-                    showCompleteDialog = value;
-                    OnPropertyChanged(nameof(ShowCompleteDialog));
-                }
-            }
-        }
 
         public string CompletedPercentage {
             get {
@@ -40,7 +29,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         public PuzzleScreenViewModel(MainContext context, Level level) : base(context) {
             this.level = level;
 
-            PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map);
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map, true);
             PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             if (level.UserMap != null) {
@@ -48,8 +37,11 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        private void Game_GameCompleted(object sender, EventArgs e) {
-            ShowCompleteDialog = true;
+        private async void Game_GameCompleted(object sender, EventArgs e) {
+            await Context.UI.ShowCompletedModal();
+
+            OnPropertyChanged(nameof(IsComplete));
+            OnPropertyChanged(nameof(CompletedPercentage));
         }
 
         public async Task SaveGameState() {

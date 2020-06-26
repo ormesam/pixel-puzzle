@@ -8,10 +8,10 @@ using PixelPuzzle.Logic;
 namespace PixelPuzzle.Screens.Tutorial {
     public class TutorialScreenViewModel : ViewModelBase {
         private bool isMovingStep;
-        private Queue<TutorialStep> steps;
+        private readonly Queue<TutorialStep> steps;
         private TutorialStep currentStep;
         private bool isTutorialComplete;
-        private bool showCompleteDialog;
+        public event EventHandler<EventArgs> TutorialComplete;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
 
@@ -35,19 +35,9 @@ namespace PixelPuzzle.Screens.Tutorial {
             }
         }
 
-        public bool ShowCompleteDialog {
-            get { return showCompleteDialog; }
-            set {
-                if (showCompleteDialog != value) {
-                    showCompleteDialog = value;
-                    OnPropertyChanged(nameof(ShowCompleteDialog));
-                }
-            }
-        }
-
         public TutorialScreenViewModel(MainContext context) : base(context) {
             steps = new Queue<TutorialStep>();
-            PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap());
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap(), false);
             PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             RegisterStep("Welcome to Pixel Puzzle!", null, null);
@@ -88,8 +78,14 @@ namespace PixelPuzzle.Screens.Tutorial {
             RegisterStep("Can you complete the rest of this puzzle?", async () => { IsTutorialComplete = true; }, null);
         }
 
-        private void Game_GameCompleted(object sender, EventArgs e) {
-            ShowCompleteDialog = true;
+        private async void Game_GameCompleted(object sender, EventArgs e) {
+            var modal = new TutorialCompletedModal(Context);
+
+            modal.Disappearing += (s, ev) => {
+                TutorialComplete?.Invoke(s, ev);
+            };
+
+            await Context.UI.ShowModal(modal);
         }
 
         private Task FillRow(int rowIdx) {

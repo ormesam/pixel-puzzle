@@ -23,6 +23,12 @@
     <Compile Update="Screens\Puzzle\DifficultyScreen.xaml.cs">
       <DependentUpon>DifficultyScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Screens\Puzzle\HintModal.xaml.cs">
+      <DependentUpon>HintModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Screens\Tutorial\TutorialCompletedModal.xaml.cs">
+      <DependentUpon>TutorialCompletedModal.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +47,16 @@
     <EmbeddedResource Update="Screens\Home\MainScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Screens\Puzzle\CompletedModal.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Screens\Puzzle\DifficultyScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Screens\Puzzle\PuzzleScreen.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Screens\Puzzle\HintModal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Screens\Tutorial\TutorialScreen.xaml">

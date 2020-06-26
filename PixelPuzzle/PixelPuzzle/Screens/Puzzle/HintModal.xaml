@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Screens.Puzzle.HintModal">
+    <ContentPage.Content>
+        <Frame
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            BackgroundColor="White"
+            CornerRadius="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Padding="20, 20, 20, 0"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="Need a Hint?" />
+                <Button
+                    Grid.Row="1"
+                    Margin="25"
+                    TextColor="White"
+                    Text="{Binding WatchText}"
+                    IsEnabled="{Binding AdLoaded}"
+                    BackgroundColor="{StaticResource Green}"
+                    Clicked="DisplayHintAd_Clicked"
+                    CornerRadius="50"
+                    WidthRequest="200"/>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

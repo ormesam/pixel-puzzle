@@ -25,14 +25,14 @@ namespace PixelPuzzle.Droid.Renderers {
             base.OnElementPropertyChanged(sender, e);
 
             if (e.PropertyName == nameof(AdView.AdUnitId)) {
-                Control.AdUnitId = Constants.AdMobKey;
+                Control.AdUnitId = Constants.BannerAdMobKey;
             }
         }
 
         private AdView CreateAdView() {
             var adView = new AdView(Context) {
                 AdSize = AdSize.SmartBanner,
-                AdUnitId = Constants.AdMobKey,
+                AdUnitId = Constants.BannerAdMobKey,
             };
 
             adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);

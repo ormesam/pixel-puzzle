@@ -5,33 +5,38 @@
     xmlns:touch="clr-namespace:PixelPuzzle.Touch"
     xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     x:Class="PixelPuzzle.Controls.PuzzleControl">
-    <StackLayout
+    <ContentView.Content>
+        <StackLayout
             Padding="5">
 
-        <Grid
+            <Grid
                 ColumnSpacing="0"
                 RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Grid
+                <Grid
                     BindableLayout.ItemsSource="{Binding Game.Rows}"
                     Grid.Row="1"
                     RowSpacing="1"
                     BackgroundColor="Gray"
                     Padding="0, 1, 0, 1">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
                                 Grid.Row="{Binding Number}"
                                 Grid.Column="0">
-                            <Label
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="Line_Tapped" />
+                                </Grid.GestureRecognizers>
+                                <Label
                                     Text="{Binding SegmentDisplay}"
                                     Padding="0, 0, 5, 0"
                                     Margin="0"
@@ -41,23 +46,27 @@
                                     FontSize="8"
                                     WidthRequest="60"
                                     Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
-                        </Grid>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </Grid>
 
-            <Grid
+                <Grid
                     BindableLayout.ItemsSource="{Binding Game.Columns}"
                     Grid.Column="1"
                     ColumnSpacing="1"
                     Padding="1, 0, 1, 0"
                     BackgroundColor="Gray">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
                                 Grid.Column="{Binding Number}"
                                 Grid.Row="0">
-                            <Label
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="Line_Tapped" />
+                                </Grid.GestureRecognizers>
+                                <Label
                                     Text="{Binding SegmentDisplay}"
                                     Padding="0, 0, 0, 5"
                                     Margin="0"
@@ -67,12 +76,12 @@
                                     FontSize="8"
                                     WidthRequest="60"
                                     Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
-                        </Grid>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </Grid>
 
-            <Grid
+                <Grid
                     Grid.Row="1"
                     Grid.Column="1"
                     x:Name="gameGrid"
@@ -82,33 +91,34 @@
                     VerticalOptions="Start"
                     BindableLayout.ItemsSource="{Binding Game.Cells}"
                     BackgroundColor="Gray">
-                <Grid.Effects>
-                    <touch:TouchEffect
+                    <Grid.Effects>
+                        <touch:TouchEffect
                             TouchAction="TouchEffect_TouchAction"/>
-                </Grid.Effects>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Grid
+                    </Grid.Effects>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
                                 Grid.Row="{Binding X}"
                                 Grid.Column="{Binding Y}"
                                 BackgroundColor="Gray"
                                 HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}">
-                            <BoxView
+                                <BoxView
                                     BackgroundColor="White" />
 
-                            <Image
+                                <Image
                                     Source="cross.png"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center" />
 
-                            <BoxView
+                                <BoxView
                                     BackgroundColor="{Binding UserValue, Converter={StaticResource CellColourConverter}}" />
-                        </Grid>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </Grid>
             </Grid>
-        </Grid>
 
-        <controls:CellStateSelection />
-    </StackLayout>
+            <controls:CellStateSelection />
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>

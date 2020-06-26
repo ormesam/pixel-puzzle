@@ -81,59 +81,6 @@
                 <controls:PuzzleControl
                     x:Name="PuzzleControl"
                     BindingContext="{Binding PuzzleControlViewModel}"/>
-             </Grid>
-
-            <Grid
-                Grid.RowSpan="6"
-                IsVisible="{Binding ShowCompleteDialog}">
-                <Grid.RowDefinitions>
-                    <RowDefinition
-                        Height="*"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="Auto"/>
-                    <RowDefinition
-                        Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="10*" />
-                    <ColumnDefinition
-                        Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <BoxView
-                    Grid.RowSpan="4"
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="White"
-                    Opacity=".75"/>
-
-                <BoxView
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="1"
-                    CornerRadius="20"
-                    BackgroundColor="White" />
-
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="20,20,20,0"
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
-                    Text="Puzzle Complete!" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="25"
-                    Text="Continue"
-                    BackgroundColor="{StaticResource Green}"
-                    TextColor="White"
-                    Clicked="Complete_Clicked"
-                    CornerRadius="50"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

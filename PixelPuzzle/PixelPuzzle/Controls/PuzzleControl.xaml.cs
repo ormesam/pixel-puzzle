@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using PixelPuzzle.Converters;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Touch;
 using Xamarin.Forms;
@@ -43,119 +42,12 @@ namespace PixelPuzzle.Controls {
             }
         }
 
-        public void RenderGame() {
-            int gridLength = ViewModel.Game.GridLength;
+        private async void Line_Tapped(object sender, EventArgs e) {
+            var grid = sender as Grid;
 
-            SetupGrid();
-            AddHeaders();
-
-            for (int row = 0; row < gridLength; row++) {
-                for (int col = 0; col < gridLength; col++) {
-                    var cell = ViewModel.Game.Rows[row].Cells[col];
-
-                    Image image = new Image();
-                    image.Source = "cross.png";
-                    image.VerticalOptions = LayoutOptions.Center;
-                    image.HorizontalOptions = LayoutOptions.Center;
-
-                    BoxView imageBackground = new BoxView();
-                    imageBackground.BackgroundColor = Color.White;
-
-                    BoxView boxView = new BoxView();
-                    boxView.SetBinding(BoxView.BackgroundColorProperty, nameof(Logic.Cell.UserValue), converter: new CellColourConverter());
-
-                    Grid cellView = new Grid();
-                    cellView.BackgroundColor = Color.Gray;
-                    cellView.Padding = .5;
-                    cellView.BindingContext = cell;
-                    cellView.Children.Add(imageBackground);
-                    cellView.Children.Add(image);
-                    cellView.Children.Add(boxView);
-
-                    Binding heightBinding = new Binding();
-                    heightBinding.Source = cellView;
-                    heightBinding.Path = nameof(Grid.Width);
-                    cellView.SetBinding(Grid.HeightRequestProperty, heightBinding);
-
-                    gameGrid.Children.Add(cellView, col + 1, row + 1);
-                }
+            if (grid?.BindingContext is Line line) {
+                await ViewModel.ShowHintModal(line);
             }
-        }
-
-        private void AddHeaders() {
-            AddRowHeaders();
-            AddColumnHeaders();
-        }
-
-        private void AddRowHeaders() {
-            for (int row = 0; row < ViewModel.Game.GridLength; row++) {
-                Grid border = new Grid {
-                    Padding = new Thickness(0, .5, .5, .5),
-                    BackgroundColor = Color.Gray,
-                };
-
-                Label label = new Label() {
-                    BindingContext = ViewModel.Game.Rows[row],
-                    Padding = new Thickness(0, 0, 5, 0),
-                    BackgroundColor = Color.White,
-                    VerticalTextAlignment = TextAlignment.Center,
-                    HorizontalTextAlignment = TextAlignment.End,
-                    Text = string.Join("  ", ViewModel.Game.Rows[row].Segments),
-                    FontSize = 8,
-                    WidthRequest = 60,
-                };
-
-                label.SetBinding(Label.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
-
-                border.Children.Add(label);
-
-                gameGrid.Children.Add(border, 0, row + 1);
-            }
-        }
-
-        private void AddColumnHeaders() {
-            for (int col = 0; col < ViewModel.Game.GridLength; col++) {
-                Grid border = new Grid {
-                    BackgroundColor = Color.Gray,
-                    Padding = new Thickness(.5, 0, .5, .5),
-                };
-
-                Label label = new Label() {
-                    BindingContext = ViewModel.Game.Columns[col],
-                    Padding = new Thickness(0, 0, 0, 5),
-                    BackgroundColor = Color.White,
-                    VerticalTextAlignment = TextAlignment.End,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    Text = string.Join("\n", ViewModel.Game.Columns[col].Segments),
-                    FontSize = 8,
-                    HeightRequest = 60,
-                };
-
-                label.SetBinding(Label.OpacityProperty, nameof(Line.IsValid), converter: new LineOpacityConverter());
-
-                border.Children.Add(label);
-
-                gameGrid.Children.Add(border, col + 1, 0);
-            }
-        }
-
-        private void SetupGrid() {
-            gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-
-            for (int i = 0; i < ViewModel.Game.GridLength; i++) {
-                gameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
-                gameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
-            }
-        }
-
-        private void ValueFilled_Tapped(object sender, EventArgs e) {
-            ViewModel.SelectedValue = CellValue.Filled;
-        }
-
-        private void ValueBlocked_Tapped(object sender, EventArgs e) {
-            ViewModel.SelectedValue = CellValue.Blocked;
-
         }
     }
 }

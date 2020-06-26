@@ -3,7 +3,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PixelPuzzle.Screens.About.InfoScreen"
-    Title="Pixel Puzzle">
+    Title="Pixel Puzzle"
+    BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout
             Padding="15">

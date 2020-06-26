@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 using Xamarin.Forms;

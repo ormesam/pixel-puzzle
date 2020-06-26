@@ -1,0 +1,44 @@
+﻿using PixelPuzzle.Contexts;
+using PixelPuzzle.Logic;
+using PixelPuzzle.Utility;
+using Xamarin.Forms;
+
+namespace PixelPuzzle.Screens.Puzzle {
+    public class HintModalViewModel : ViewModelBase {
+        private bool adLoaded;
+        private readonly IHintAd ad;
+        private readonly Line line;
+
+        public HintModalViewModel(MainContext context, Line line) : base(context) {
+            ad = DependencyService.Get<IHintAd>();
+            this.line = line;
+        }
+
+        public bool AdLoaded {
+            get { return adLoaded; }
+            set {
+                if (adLoaded != value) {
+                    adLoaded = value;
+                    OnPropertyChanged(nameof(AdLoaded));
+                    OnPropertyChanged(nameof(WatchText));
+                }
+            }
+        }
+
+        public string WatchText => AdLoaded ? "Watch Ad" : "Loading...";
+
+        public void LoadAd() {
+            ad.Load(() => {
+                AdLoaded = true;
+            });
+        }
+
+        public void ShowAd(INavigation nav) {
+            ad.Show(async () => {
+                await line.ShowHint();
+
+                await nav.PopModalAsync();
+            });
+        }
+    }
+}
