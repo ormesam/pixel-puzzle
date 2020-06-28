@@ -14,10 +14,12 @@ namespace PixelPuzzle.Logic {
         public Line[] Rows { get; set; }
         public Line[] Columns { get; set; }
         public bool IsComplete => GetIsComplete();
+        public int[,] Map { get; }
 
         public event EventHandler<EventArgs> GameCompleted;
 
         public Game(int[,] map) {
+            Map = map;
             GridLength = (int)Math.Sqrt(map.Length);
             GenerateMap(map);
         }
@@ -86,6 +88,12 @@ namespace PixelPuzzle.Logic {
         public void ApplyUserValues(CellValue[,] map) {
             foreach (var cell in Cells) {
                 cell.UserValue = map[cell.X, cell.Y];
+            }
+        }
+
+        public void Solve() {
+            foreach (var cell in Cells) {
+                cell.UserValue = cell.CorrectValue == CellValue.Filled ? CellValue.Filled : CellValue.Blank;
             }
         }
     }

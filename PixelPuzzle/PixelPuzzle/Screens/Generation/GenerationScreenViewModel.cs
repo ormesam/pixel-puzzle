@@ -15,6 +15,12 @@ namespace PixelPuzzle.Screens.Generation {
             PuzzleControlViewModel = new PuzzleControlViewModel(context, GetMap(size), true);
         }
 
+        public GenerationScreenViewModel(MainContext context, int[,] map) : base(context) {
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, map, true);
+
+            PuzzleControlViewModel.Game.Solve();
+        }
+
         private int[,] GetMap(int size) {
             var map = new int[size, size];
 

@@ -10,6 +10,10 @@ namespace PixelPuzzle.Screens.Generation {
             InitializeComponent();
             BindingContext = new GenerationScreenViewModel(context, size);
         }
+        public GenerationScreen(MainContext context, int[,] map) {
+            InitializeComponent();
+            BindingContext = new GenerationScreenViewModel(context, map);
+        }
 
         public GenerationScreenViewModel ViewModel => BindingContext as GenerationScreenViewModel;
 

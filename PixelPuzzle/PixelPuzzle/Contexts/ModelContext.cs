@@ -111,6 +111,11 @@ namespace PixelPuzzle.Contexts {
                 new Level(16, Difficulty.Small,  MapGenerator.SmallBag()),
                 new Level(17, Difficulty.Small,  MapGenerator.SmallKettle()),
                 new Level(18, Difficulty.Small,  MapGenerator.SmallSpaceHoper()),
+                new Level(19, Difficulty.Small,  MapGenerator.SmallPattern4()),
+                new Level(20, Difficulty.Small,  MapGenerator.SmallPattern5()),
+                new Level(21, Difficulty.Small,  MapGenerator.SmallDog()),
+                new Level(22, Difficulty.Small,  MapGenerator.SmallBed()),
+                new Level(23, Difficulty.Small,  MapGenerator.SmallFinger()),
             };
         }
 
@@ -126,6 +131,15 @@ namespace PixelPuzzle.Contexts {
                 new Level(8, Difficulty.Medium,  MapGenerator.MediumPenguin()),
                 new Level(9, Difficulty.Medium,  MapGenerator.MediumCactus()),
                 new Level(10, Difficulty.Medium,  MapGenerator.MediumHouse()),
+                new Level(11, Difficulty.Medium,  MapGenerator.MediumLamp()),
+                new Level(12, Difficulty.Medium,  MapGenerator.MediumSheep()),
+                new Level(13, Difficulty.Medium,  MapGenerator.MediumMotorbike()),
+                new Level(14, Difficulty.Medium,  MapGenerator.MediumKart()),
+                new Level(15, Difficulty.Medium,  MapGenerator.MediumYingYang()),
+                new Level(16, Difficulty.Medium,  MapGenerator.MediumHeart()),
+                new Level(17, Difficulty.Medium,  MapGenerator.MediumMushroom()),
+                new Level(18, Difficulty.Medium,  MapGenerator.MediumFootball()),
+                new Level(19, Difficulty.Medium,  MapGenerator.MediumPlant()),
             };
         }
 
@@ -150,6 +164,19 @@ namespace PixelPuzzle.Contexts {
                 new Level(17, Difficulty.Large,  MapGenerator.LargeQuad()),
                 new Level(18, Difficulty.Large,  MapGenerator.LargeWizardHat()),
                 new Level(19, Difficulty.Large,  MapGenerator.LargeClock()),
+                new Level(20, Difficulty.Large,  MapGenerator.LargeBag()),
+                new Level(21, Difficulty.Large,  MapGenerator.LargeCamera()),
+                new Level(22, Difficulty.Large,  MapGenerator.LargeCandle()),
+                new Level(23, Difficulty.Large,  MapGenerator.LargeCarrot()),
+                new Level(24, Difficulty.Large,  MapGenerator.LargeChair()),
+                new Level(25, Difficulty.Large,  MapGenerator.LargeDice()),
+                new Level(26, Difficulty.Large,  MapGenerator.LargeDrum()),
+                new Level(27, Difficulty.Large,  MapGenerator.LargeHotAirBalloon()),
+                new Level(28, Difficulty.Large,  MapGenerator.LargePattern()),
+                new Level(29, Difficulty.Large,  MapGenerator.LargePattern2()),
+                new Level(30, Difficulty.Large,  MapGenerator.LargePumpkin()),
+                new Level(31, Difficulty.Large,  MapGenerator.LargeRocket2()),
+                new Level(32, Difficulty.Large,  MapGenerator.LargeSnail()),
             };
         }
     }
