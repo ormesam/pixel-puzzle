@@ -20,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\PuzzleGeneration\PuzzleGeneration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Screens\Puzzle\DifficultyScreen.xaml.cs">
       <DependentUpon>DifficultyScreen.xaml</DependentUpon>
     </Compile>

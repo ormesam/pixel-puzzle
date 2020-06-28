@@ -1,18 +1,14 @@
 ﻿using System;
+using PuzzleGeneration;
 
 namespace PixelPuzzle.Logic {
     public static class MapGenerator {
         public static int[,] GenerateRandom(int size) {
-            var map = new int[size, size];
             Random rnd = new Random();
+            int difficulty = rnd.Next(1, 5);
 
-            for (int row = 0; row < size; row++) {
-                for (int col = 0; col < size; col++) {
-                    map[row, col] = rnd.Next(1, 101) > 30 ? 1 : 0; // Add weight to the filled squares
-                }
-            }
-
-            return map;
+            Generator generator = new Generator(size, difficulty, null);
+            return generator.GenerateMap();
         }
 
         #region Small

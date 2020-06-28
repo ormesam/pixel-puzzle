@@ -1,4 +1,5 @@
 ﻿using System;
+using PuzzleGeneration;
 
 namespace MapGenerator {
     class Program {

@@ -3,17 +3,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace MapGenerator {
+namespace PuzzleGeneration {
     public class Generator {
         private readonly int size;
         private readonly int difficulty;
-        private int exportNumber;
+        private int? exportNumber;
         private readonly Random random;
         private readonly int initialWeight;
         private readonly int edgeBias;
         private string export;
 
-        public Generator(int size, int difficulty, int exportNumber) {
+        public Generator(int size, int difficulty, int? exportNumber) {
             this.size = size;
             this.difficulty = difficulty;
             this.exportNumber = exportNumber;
@@ -65,7 +65,7 @@ namespace MapGenerator {
             }
         }
 
-        private int[,] GenerateMap() {
+        public int[,] GenerateMap() {
             var map = new int[size, size];
 
             GenerateRows(map);
