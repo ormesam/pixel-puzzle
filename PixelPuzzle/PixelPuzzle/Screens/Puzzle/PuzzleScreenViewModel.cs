@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Controls;
@@ -11,14 +10,11 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
 
-        public string CompletedPercentage {
+        public string LevelNumber {
             get {
-                var levels = Context.Model.GetLevels(level.Difficulty);
-                var complete = levels
-                    .Where(i => i.IsComplete)
-                    .Count();
+                var levelCount = Context.Model.GetLevels(level.Difficulty).Count;
 
-                return $"{complete}/{levels.Count}";
+                return $"{level.LevelNumber}/{levelCount}";
             }
         }
 
@@ -41,7 +37,6 @@ namespace PixelPuzzle.Screens.Puzzle {
             await Context.UI.ShowCompletedModal();
 
             OnPropertyChanged(nameof(IsComplete));
-            OnPropertyChanged(nameof(CompletedPercentage));
         }
 
         public async Task SaveGameState() {

@@ -54,7 +54,7 @@
                 <Label
                     Grid.Column="3"
                     VerticalTextAlignment="Center"
-                    Text="{Binding CompletedPercentage}" />
+                    Text="{Binding LevelNumber}" />
 
                 <ImageButton
                     Grid.Column="5"

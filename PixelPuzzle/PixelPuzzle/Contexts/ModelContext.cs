@@ -115,7 +115,7 @@ namespace PixelPuzzle.Contexts {
                 new Level(20, Difficulty.Small,  MapGenerator.SmallPattern5()),
                 new Level(21, Difficulty.Small,  MapGenerator.SmallDog()),
                 new Level(22, Difficulty.Small,  MapGenerator.SmallBed()),
-                new Level(23, Difficulty.Small,  MapGenerator.SmallFinger()),
+                new Level(23, Difficulty.Small,  MapGenerator.SmallPattern6()),
             };
         }
 
