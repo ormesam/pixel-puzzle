@@ -37,7 +37,7 @@ namespace PixelPuzzle.Screens.Tutorial {
 
         public TutorialScreenViewModel(MainContext context) : base(context) {
             steps = new Queue<TutorialStep>();
-            PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap(), false);
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap(), true);
             PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             RegisterStep("Welcome to Pixel Puzzle!", null, null);
