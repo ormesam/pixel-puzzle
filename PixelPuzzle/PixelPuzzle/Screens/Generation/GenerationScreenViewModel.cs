@@ -36,13 +36,12 @@ namespace PixelPuzzle.Screens.Generation {
         public Task Generate() {
             var map = PuzzleControlViewModel.Game.GetUserMap();
             int size = (int)Math.Sqrt(map.Length);
-            string difficulty = size == 8 ? "Small" : size == 12 ? "Medium" : size == 15 ? "Large" : "";
 
             IPromptUtility prompt = DependencyService.Get<IPromptUtility>();
             prompt.ShowInputDialog("What is this?", string.Empty, async (name) => {
                 StringBuilder sb = new StringBuilder();
 
-                sb.AppendLine("        public static int[,] " + difficulty.Replace(" ", "").Trim() + name + "() {");
+                sb.AppendLine("        public static int[,] " + name.Replace(" ", "").Trim() + "() {");
                 sb.AppendLine("            return new int[" + size + "," + size + "] {");
 
                 for (int row = 0; row < size; row++) {
