@@ -117,6 +117,22 @@ namespace PixelPuzzle.Contexts {
                 new Level(22, Difficulty.Small,  SmallMapGenerator.Bed()),
                 new Level(23, Difficulty.Small,  SmallMapGenerator.Pattern6()),
                 new Level(24, Difficulty.Small,  SmallMapGenerator.Creeper()),
+                new Level(25, Difficulty.Small,  SmallMapGenerator.Ghost()),
+                new Level(26, Difficulty.Small,  SmallMapGenerator.Pi()),
+                new Level(27, Difficulty.Small,  SmallMapGenerator.Pokemon()),
+                new Level(28, Difficulty.Small,  SmallMapGenerator.Axe()),
+                new Level(29, Difficulty.Small,  SmallMapGenerator.Face()),
+                new Level(30, Difficulty.Small,  SmallMapGenerator.Mushroom()),
+                new Level(31, Difficulty.Small,  SmallMapGenerator.Tortoise()),
+                new Level(32, Difficulty.Small,  SmallMapGenerator.Dungbell()),
+                new Level(33, Difficulty.Small,  SmallMapGenerator.Cat()),
+                new Level(34, Difficulty.Small,  SmallMapGenerator.TennisRacket()),
+                new Level(35, Difficulty.Small,  SmallMapGenerator.Glasses()),
+                new Level(36, Difficulty.Small,  SmallMapGenerator.Snake()),
+                new Level(37, Difficulty.Small,  SmallMapGenerator.SpaceShip()),
+                new Level(38, Difficulty.Small,  SmallMapGenerator.Wink()),
+                new Level(39, Difficulty.Small,  SmallMapGenerator.Candle()),
+                new Level(40, Difficulty.Small,  SmallMapGenerator.Cookie()),
             };
         }
 
