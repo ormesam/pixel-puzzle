@@ -34,9 +34,9 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         private async void Game_GameCompleted(object sender, EventArgs e) {
-            await Context.UI.ShowCompletedModal();
-
             OnPropertyChanged(nameof(IsComplete));
+
+            await Context.UI.ShowCompletedModal();
         }
 
         public async Task SaveGameState() {
