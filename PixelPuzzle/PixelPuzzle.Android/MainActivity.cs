@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Microsoft.AppCenter.Crashes;
+using PixelPuzzle.Utility;
 using Plugin.CurrentActivity;
 
 namespace PixelPuzzle.Droid {
@@ -33,7 +34,7 @@ namespace PixelPuzzle.Droid {
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Android.Gms.Ads.MobileAds.Initialize(ApplicationContext, "ca-app-pub-1992270298763477~2946433905");
+            Android.Gms.Ads.MobileAds.Initialize(this, Constants.AdMobAppId);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

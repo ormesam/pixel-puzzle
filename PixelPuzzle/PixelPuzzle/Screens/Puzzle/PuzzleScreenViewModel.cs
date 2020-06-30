@@ -25,7 +25,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         public PuzzleScreenViewModel(MainContext context, Level level) : base(context) {
             this.level = level;
 
-            PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map, false);
+            PuzzleControlViewModel = new PuzzleControlViewModel(context, level.Map, true);
             PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
 
             if (level.UserMap != null) {
