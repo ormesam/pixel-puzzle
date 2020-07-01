@@ -37,7 +37,11 @@ namespace PixelPuzzle.Droid.Renderers {
 
             adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
 
+#if DEBUG
+            adView.LoadAd(new AdRequest.Builder().AddTestDevice("25A827ECEB216919C8A883CDC21B651A").Build());
+#else
             adView.LoadAd(new AdRequest.Builder().Build());
+#endif
 
             return adView;
         }

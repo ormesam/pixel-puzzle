@@ -163,6 +163,21 @@ namespace PixelPuzzle.Contexts {
                 new Level(23, Difficulty.Medium,  MediumMapGenerator.People()),
                 new Level(24, Difficulty.Medium,  MediumMapGenerator.MarioMushroom()),
                 new Level(25, Difficulty.Medium,  MediumMapGenerator.Smile()),
+                new Level(26, Difficulty.Medium,  MediumMapGenerator.Toilet()),
+                new Level(27, Difficulty.Medium,  MediumMapGenerator.Table()),
+                new Level(28, Difficulty.Medium,  MediumMapGenerator.Balloon()),
+                new Level(29, Difficulty.Medium,  MediumMapGenerator.Hat()),
+                new Level(30, Difficulty.Medium,  MediumMapGenerator.Submarine()),
+                new Level(31, Difficulty.Medium,  MediumMapGenerator.Jug()),
+                new Level(32, Difficulty.Medium,  MediumMapGenerator.Wine()),
+                new Level(33, Difficulty.Medium,  MediumMapGenerator.MoonAndStars()),
+                new Level(34, Difficulty.Medium,  MediumMapGenerator.DancingBoy()),
+                new Level(35, Difficulty.Medium,  MediumMapGenerator),
+                new Level(36, Difficulty.Medium,  MediumMapGenerator),
+                new Level(37, Difficulty.Medium,  MediumMapGenerator),
+                new Level(38, Difficulty.Medium,  MediumMapGenerator),
+                new Level(39, Difficulty.Medium,  MediumMapGenerator),
+                new Level(40, Difficulty.Medium,  MediumMapGenerator),
             };
         }
 
