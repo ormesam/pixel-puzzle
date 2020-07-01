@@ -5,7 +5,7 @@ using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class DifficultyScreenViewModel : ViewModelBase {
-        private int difficultySize;
+        private readonly int difficultySize;
         public Difficulty Difficulty { get; }
         public IList<Level> Levels => Context.Model.GetLevels(Difficulty);
 
@@ -24,9 +24,9 @@ namespace PixelPuzzle.Screens.Puzzle {
             await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(difficultySize), true));
         }
 
-        public async Task GoToGenerationScreen() {
-            await Context.UI.GoToGenerationScreen(difficultySize);
-        }
+        //public async Task GoToGenerationScreen() {
+        //    await Context.UI.GoToGenerationScreen(difficultySize);
+        //}
 
         private int GetDifficultySize() {
             switch (Difficulty) {

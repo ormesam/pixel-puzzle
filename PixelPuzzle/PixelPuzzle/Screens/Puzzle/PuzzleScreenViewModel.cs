@@ -6,7 +6,7 @@ using PixelPuzzle.Logic;
 
 namespace PixelPuzzle.Screens.Puzzle {
     public class PuzzleScreenViewModel : ViewModelBase {
-        private Level level;
+        private readonly Level level;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
 

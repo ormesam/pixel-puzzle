@@ -33,7 +33,7 @@ namespace PixelPuzzle.Screens.Puzzle {
         }
 
         private async void Info_Clicked(object sender, EventArgs e) {
-            await ViewModel.Context.UI.GoToGenerationScreen(ViewModel.PuzzleControlViewModel.Game.Map);
+            await ViewModel.Context.UI.GoToAboutScreen();
         }
 
         private async void Back_Clicked(object sender, EventArgs e) {

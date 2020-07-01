@@ -16,9 +16,8 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         private async void Level_Tapped(object sender, EventArgs e) {
             var cell = sender as Button;
-            var level = cell?.BindingContext as Level;
 
-            if (level != null) {
+            if (cell?.BindingContext is Level level) {
                 await ViewModel.GoToLevel(level);
             }
         }
@@ -35,8 +34,8 @@ namespace PixelPuzzle.Screens.Puzzle {
             await ViewModel.GoToRandom();
         }
 
-        private async void Create_Clicked(object sender, EventArgs e) {
-            await ViewModel.GoToGenerationScreen();
-        }
+        //private async void Create_Clicked(object sender, EventArgs e) {
+        //    await ViewModel.GoToGenerationScreen();
+        //}
     }
 }

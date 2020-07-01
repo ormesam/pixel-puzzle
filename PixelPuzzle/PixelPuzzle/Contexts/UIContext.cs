@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Screens.About;
-using PixelPuzzle.Screens.Generation;
 using PixelPuzzle.Screens.Puzzle;
 using PixelPuzzle.Screens.Tutorial;
 using Xamarin.Forms;
@@ -55,13 +54,13 @@ namespace PixelPuzzle.Contexts {
             await GoToScreenAsync(new InfoScreen(context));
         }
 
-        public async Task GoToGenerationScreen(int size) {
-            await GoToScreenAsync(new GenerationScreen(context, size));
-        }
+        //public async Task GoToGenerationScreen(int size) {
+        //    await GoToScreenAsync(new GenerationScreen(context, size));
+        //}
 
-        public async Task GoToGenerationScreen(int[,] map) {
-            await GoToScreenAsync(new GenerationScreen(context, map));
-        }
+        //public async Task GoToGenerationScreen(int[,] map) {
+        //    await GoToScreenAsync(new GenerationScreen(context, map));
+        //}
 
         public async Task ShowHintModal(Game game, Line line) {
             await ShowModal(new HintModal(context, game, line));

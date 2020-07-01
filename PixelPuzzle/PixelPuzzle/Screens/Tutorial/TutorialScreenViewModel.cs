@@ -42,17 +42,17 @@ namespace PixelPuzzle.Screens.Tutorial {
 
             RegisterStep("Welcome to Pixel Puzzle!", null, null);
             RegisterStep("Here is a quick guide to help you on your way.", null, null);
-            RegisterStep("The game consists of filling out patterns or images using the numbers around the grid.", null, null);
+            RegisterStep("The game consists of filling out patterns or images of varying difficulty using the numbers around the grid.", null, null);
             RegisterStep("The numbers around the grid tell you how many grouped, filled pixels are on each row or column.", null, null);
             RegisterStep("You can fill or block out a pixel by selecting these boxes.", async () => { await BlinkSelectedValue(); }, null);
             RegisterStep("For example, we know this row has 8 filled pixels.", async () => { await FillRow(4); }, null);
             RegisterStep("The row's number is grayed out when the row is logically complete.", null, null);
             RegisterStep("If you know a pixel cannot be filled, mark it with an X. This will help you keep on track.", null, null);
-            RegisterStep("We know these rows cannot have any pixels in them.", async () => { await BlockRow(0); await BlockRow(3); }, null);
-            RegisterStep("We also know the first column only has 2 filled pixes, so the second pixel must go here.",
+            RegisterStep("We know these rows do not have any pixels in them.", async () => { await BlockRow(0); await BlockRow(3); }, null);
+            RegisterStep("We also know the first column only has a group of 2 filled pixes, so the second pixel must go here.",
                 async () => { await FillCells(PuzzleControlViewModel.Game.Rows[5].Cells[0]); }, null);
             RegisterStep("And now we can block out the remaining pixels in that column.", async () => { await BlockColumn(0); }, null);
-            RegisterStep("And similary on the other side.",
+            RegisterStep("And the same on the other side.",
                 async () => { await FillCells(PuzzleControlViewModel.Game.Rows[5].Cells[7]); await BlockColumn(7); }, null);
             RegisterStep("The second column has a group of 2, and a group of 3 pixels. There is only one way to fit them in.",
                 async () => {
@@ -63,7 +63,7 @@ namespace PixelPuzzle.Screens.Tutorial {
                         PuzzleControlViewModel.Game.Rows[6].Cells[1]);
                     await BlockColumn(1);
                 }, null);
-            RegisterStep("And similary on the other side.",
+            RegisterStep("And the same on the other side.",
                 async () => {
                     await FillCells(
                         PuzzleControlViewModel.Game.Rows[1].Cells[6],
@@ -72,9 +72,9 @@ namespace PixelPuzzle.Screens.Tutorial {
                         PuzzleControlViewModel.Game.Rows[6].Cells[6]);
                     await BlockColumn(6);
                 }, null);
-            RegisterStep("This row is now logically complete.", async () => { await BlockRow(5); }, null);
-            RegisterStep("And we know this row has 6 filled pixels.", async () => { await FillRow(6); }, null);
-            RegisterStep("As we blocked off the other pixels we know the group of 4 can only go here.", async () => { await FillRow(7); }, null);
+            RegisterStep("This row is now logically complete so lets block of the cells.", async () => { await BlockRow(5); }, null);
+            RegisterStep("And we know this row has 6 filled pixels which must go here.", async () => { await FillRow(6); }, null);
+            RegisterStep("As we have blocked off the other pixels we know the group of 4 must go here.", async () => { await FillRow(7); }, null);
             RegisterStep("There is always a way to complete the puzzle. You can tap the row or column headings to give you a hint.", null, null);
             RegisterStep("Can you complete the rest of this puzzle?", async () => { IsTutorialComplete = true; }, null);
         }
