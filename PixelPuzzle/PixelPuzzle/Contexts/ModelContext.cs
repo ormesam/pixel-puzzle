@@ -11,24 +11,200 @@ namespace PixelPuzzle.Contexts {
 
         public IList<Level> Small { get; }
         public IList<Level> Medium { get; }
-        public IList<Level> Hard { get; }
+        public IList<Level> Large { get; }
 
         public ModelContext() {
             storageContext = new StorageContext();
 
             savedLevels = storageContext.GetSavedGames();
 
-            Small = GetSmallLevels();
-            Medium = GetMediumLevels();
-            Hard = GetHardLevels();
+            Small = new List<Level>();
+            Medium = new List<Level>();
+            Large = new List<Level>();
 
+            RegisterLevels();
             TransformLevels();
+        }
+
+        private void RegisterLevels() {
+            RegisterSmallLevels();
+            RegisterMediumLevels();
+            RegisterHardLevels();
+        }
+
+        private void RegisterSmallLevels() {
+            RegisterSmallLevel(1, SmallMapGenerator.Boat());
+            RegisterSmallLevel(2, SmallMapGenerator.Pattern());
+            RegisterSmallLevel(3, SmallMapGenerator.Heart());
+            RegisterSmallLevel(4, SmallMapGenerator.Bag());
+            RegisterSmallLevel(5, SmallMapGenerator.Pi());
+            RegisterSmallLevel(6, SmallMapGenerator.Medal());
+            RegisterSmallLevel(7, SmallMapGenerator.Dungbell());
+            RegisterSmallLevel(8, SmallMapGenerator.BowlingBall());
+            RegisterSmallLevel(9, SmallMapGenerator.Cross());
+            RegisterSmallLevel(10, SmallMapGenerator.Tower());
+            RegisterSmallLevel(11, SmallMapGenerator.Lamp());
+            RegisterSmallLevel(12, SmallMapGenerator.Pattern4());
+            RegisterSmallLevel(13, SmallMapGenerator.Face());
+            RegisterSmallLevel(14, SmallMapGenerator.Tortoise());
+            RegisterSmallLevel(15, SmallMapGenerator.Apple());
+            RegisterSmallLevel(16, SmallMapGenerator.Kettle());
+            RegisterSmallLevel(17, SmallMapGenerator.SpaceHoper());
+            RegisterSmallLevel(18, SmallMapGenerator.Axe());
+            RegisterSmallLevel(19, SmallMapGenerator.Candle());
+            RegisterSmallLevel(20, SmallMapGenerator.Lightning());
+            RegisterSmallLevel(21, SmallMapGenerator.Pattern3());
+            RegisterSmallLevel(22, SmallMapGenerator.Pattern5());
+            RegisterSmallLevel(23, SmallMapGenerator.Cookie());
+            RegisterSmallLevel(24, SmallMapGenerator.Skull());
+            RegisterSmallLevel(25, SmallMapGenerator.Bed());
+            RegisterSmallLevel(26, SmallMapGenerator.Creeper());
+            RegisterSmallLevel(27, SmallMapGenerator.Pokemon());
+            RegisterSmallLevel(28, SmallMapGenerator.SpaceShip());
+            RegisterSmallLevel(29, SmallMapGenerator.Fish());
+            RegisterSmallLevel(30, SmallMapGenerator.Dog());
+            RegisterSmallLevel(31, SmallMapGenerator.Pattern6());
+            RegisterSmallLevel(32, SmallMapGenerator.Ghost());
+            RegisterSmallLevel(33, SmallMapGenerator.Mushroom());
+            RegisterSmallLevel(34, SmallMapGenerator.Cat());
+            RegisterSmallLevel(35, SmallMapGenerator.Wink());
+            RegisterSmallLevel(36, SmallMapGenerator.Snake());
+            RegisterSmallLevel(37, SmallMapGenerator.Sword());
+            RegisterSmallLevel(38, SmallMapGenerator.Pattern2());
+            RegisterSmallLevel(39, SmallMapGenerator.TennisRacket());
+            RegisterSmallLevel(40, SmallMapGenerator.Glasses());
+        }
+
+        private void RegisterSmallLevel(int number, int[,] map) {
+            if (Small.Any(i => i.LevelNumber == number)) {
+#if DEBUG
+                throw new Exception("Level already exists for Small: " + number);
+#else
+                return;
+#endif
+            }
+
+            Small.Add(CreateLevel(number, Difficulty.Small, map));
+        }
+
+        private void RegisterMediumLevels() {
+            RegisterMediumLevel(1, MediumMapGenerator.JellyFish());
+            RegisterMediumLevel(2, MediumMapGenerator.Tree());
+            RegisterMediumLevel(3, MediumMapGenerator.Hat());
+            RegisterMediumLevel(4, MediumMapGenerator.Jug());
+            RegisterMediumLevel(5, MediumMapGenerator.Pig());
+            RegisterMediumLevel(6, MediumMapGenerator.Camera());
+            RegisterMediumLevel(7, MediumMapGenerator.Heart());
+            RegisterMediumLevel(8, MediumMapGenerator.Pint());
+            RegisterMediumLevel(9, MediumMapGenerator.Socks());
+            RegisterMediumLevel(10, MediumMapGenerator.Ghost());
+            RegisterMediumLevel(11, MediumMapGenerator.Smile());
+            RegisterMediumLevel(12, MediumMapGenerator.Toilet());
+            RegisterMediumLevel(13, MediumMapGenerator.MoonAndStars());
+            RegisterMediumLevel(14, MediumMapGenerator.SoundIcon());
+            RegisterMediumLevel(15, MediumMapGenerator.House());
+            RegisterMediumLevel(16, MediumMapGenerator.Sheep());
+            RegisterMediumLevel(17, MediumMapGenerator.Mushroom());
+            RegisterMediumLevel(18, MediumMapGenerator.MarioMushroom());
+            RegisterMediumLevel(19, MediumMapGenerator.Submarine());
+            RegisterMediumLevel(20, MediumMapGenerator.Gameboy());
+            RegisterMediumLevel(21, MediumMapGenerator.Tv());
+            RegisterMediumLevel(22, MediumMapGenerator.Lock());
+            RegisterMediumLevel(23, MediumMapGenerator.Lamp());
+            RegisterMediumLevel(24, MediumMapGenerator.Kangaroo());
+            RegisterMediumLevel(25, MediumMapGenerator.Perfume());
+            RegisterMediumLevel(26, MediumMapGenerator.Pattern());
+            RegisterMediumLevel(27, MediumMapGenerator.Paw());
+            RegisterMediumLevel(28, MediumMapGenerator.Wine());
+            RegisterMediumLevel(29, MediumMapGenerator.DancingBoy());
+            RegisterMediumLevel(30, MediumMapGenerator.TennisRacketAndBall());
+            RegisterMediumLevel(31, MediumMapGenerator.Scales());
+            RegisterMediumLevel(32, MediumMapGenerator.Martini());
+            RegisterMediumLevel(33, MediumMapGenerator.Penguin());
+            RegisterMediumLevel(34, MediumMapGenerator.YingYang());
+            RegisterMediumLevel(35, MediumMapGenerator.Table());
+            RegisterMediumLevel(36, MediumMapGenerator.Plant());
+            RegisterMediumLevel(37, MediumMapGenerator.People());
+            RegisterMediumLevel(38, MediumMapGenerator.Balloon());
+            RegisterMediumLevel(39, MediumMapGenerator.Motorbike());
+            RegisterMediumLevel(40, MediumMapGenerator.Kart());
+        }
+
+        private void RegisterMediumLevel(int number, int[,] map) {
+            if (Medium.Any(i => i.LevelNumber == number)) {
+#if DEBUG
+                throw new Exception("Level already exists for Medium: " + number);
+#else
+                return;
+#endif
+            }
+
+            Medium.Add(CreateLevel(number, Difficulty.Medium, map));
+        }
+
+        private void RegisterHardLevels() {
+            RegisterLargeLevel(1, LargeMapGenerator.Castle());
+            RegisterLargeLevel(2, LargeMapGenerator.Apple());
+            RegisterLargeLevel(3, LargeMapGenerator.Umbrella());
+            RegisterLargeLevel(4, LargeMapGenerator.Pumpkin());
+            RegisterLargeLevel(5, LargeMapGenerator.Robot());
+            RegisterLargeLevel(6, LargeMapGenerator.Tractor());
+            RegisterLargeLevel(7, LargeMapGenerator.Helicopter());
+            RegisterLargeLevel(8, LargeMapGenerator.Car());
+            RegisterLargeLevel(9, LargeMapGenerator.Microphone());
+            RegisterLargeLevel(10, LargeMapGenerator.Truck());
+            RegisterLargeLevel(11, LargeMapGenerator.Ship());
+            RegisterLargeLevel(12, LargeMapGenerator.Bag());
+            RegisterLargeLevel(13, LargeMapGenerator.Rocket2());
+            RegisterLargeLevel(14, LargeMapGenerator.Rocket());
+            RegisterLargeLevel(15, LargeMapGenerator.WizardHat());
+            RegisterLargeLevel(16, LargeMapGenerator.Dice());
+            RegisterLargeLevel(17, LargeMapGenerator.Clover());
+            RegisterLargeLevel(18, LargeMapGenerator.House());
+            RegisterLargeLevel(19, LargeMapGenerator.Plane());
+            RegisterLargeLevel(20, LargeMapGenerator.Chair());
+            RegisterLargeLevel(21, LargeMapGenerator.Duck());
+            RegisterLargeLevel(22, LargeMapGenerator.Swan());
+            RegisterLargeLevel(23, LargeMapGenerator.Moose());
+            RegisterLargeLevel(24, LargeMapGenerator.FlowerPot());
+            RegisterLargeLevel(25, LargeMapGenerator.Cat());
+            RegisterLargeLevel(26, LargeMapGenerator.Candle());
+            RegisterLargeLevel(27, LargeMapGenerator.Bee());
+            RegisterLargeLevel(28, LargeMapGenerator.Clock());
+            RegisterLargeLevel(29, LargeMapGenerator.Camera());
+            RegisterLargeLevel(30, LargeMapGenerator.Carrot());
+            RegisterLargeLevel(31, LargeMapGenerator.HotAirBalloon());
+            RegisterLargeLevel(32, LargeMapGenerator.Panda());
+            RegisterLargeLevel(33, LargeMapGenerator.Snail());
+            RegisterLargeLevel(34, LargeMapGenerator.Turtle());
+            RegisterLargeLevel(35, LargeMapGenerator.Giraffe());
+            RegisterLargeLevel(36, LargeMapGenerator.Whale());
+            RegisterLargeLevel(37, LargeMapGenerator.Ladybug());
+            RegisterLargeLevel(38, LargeMapGenerator.Quad());
+            RegisterLargeLevel(39, LargeMapGenerator.Drum());
+            RegisterLargeLevel(40, LargeMapGenerator.Cherry());
+        }
+
+        private void RegisterLargeLevel(int number, int[,] map) {
+            if (Large.Any(i => i.LevelNumber == number)) {
+#if DEBUG
+                throw new Exception("Level already exists for Large: " + number);
+#else
+                return;
+#endif
+            }
+
+            Large.Add(CreateLevel(number, Difficulty.Large, map));
+        }
+
+        private Level CreateLevel(int number, Difficulty difficulty, int[,] map) {
+            return new Level(number, difficulty, map);
         }
 
         private void TransformLevels() {
             TransformLevels(Small);
             TransformLevels(Medium);
-            TransformLevels(Hard);
+            TransformLevels(Large);
         }
 
         private void TransformLevels(IList<Level> levels) {
@@ -87,145 +263,10 @@ namespace PixelPuzzle.Contexts {
                 case Difficulty.Medium:
                     return Medium;
                 case Difficulty.Large:
-                    return Hard;
+                    return Large;
                 default:
                     return new List<Level>();
             }
-        }
-
-        private IList<Level> GetSmallLevels() {
-            return new List<Level>(){
-                new Level(1, Difficulty.Small,  SmallMapGenerator.Boat()),
-                new Level(2, Difficulty.Small,  SmallMapGenerator.Pattern()),
-                new Level(3, Difficulty.Small,  SmallMapGenerator.Heart()),
-                new Level(4, Difficulty.Small,  SmallMapGenerator.Bag()),
-                new Level(5, Difficulty.Small,  SmallMapGenerator.Pi()),
-                new Level(6, Difficulty.Small,  SmallMapGenerator.Medal()),
-                new Level(7, Difficulty.Small,  SmallMapGenerator.Dungbell()),
-                new Level(8, Difficulty.Small,  SmallMapGenerator.BowlingBall()),
-                new Level(9, Difficulty.Small,  SmallMapGenerator.Cross()),
-                new Level(10, Difficulty.Small,  SmallMapGenerator.Tower()),
-                new Level(11, Difficulty.Small,  SmallMapGenerator.Lamp()),
-                new Level(12, Difficulty.Small,  SmallMapGenerator.Pattern4()),
-                new Level(13, Difficulty.Small,  SmallMapGenerator.Face()),
-                new Level(14, Difficulty.Small,  SmallMapGenerator.Tortoise()),
-                new Level(15, Difficulty.Small,  SmallMapGenerator.Apple()),
-                new Level(16, Difficulty.Small,  SmallMapGenerator.Kettle()),
-                new Level(17, Difficulty.Small,  SmallMapGenerator.SpaceHoper()),
-                new Level(18, Difficulty.Small,  SmallMapGenerator.Axe()),
-                new Level(19, Difficulty.Small,  SmallMapGenerator.Candle()),
-                new Level(20, Difficulty.Small,  SmallMapGenerator.Lightning()),
-                new Level(21, Difficulty.Small,  SmallMapGenerator.Pattern3()),
-                new Level(22, Difficulty.Small,  SmallMapGenerator.Pattern5()),
-                new Level(23, Difficulty.Small,  SmallMapGenerator.Cookie()),
-                new Level(24, Difficulty.Small,  SmallMapGenerator.Skull()),
-                new Level(25, Difficulty.Small,  SmallMapGenerator.Bed()),
-                new Level(26, Difficulty.Small,  SmallMapGenerator.Creeper()),
-                new Level(27, Difficulty.Small,  SmallMapGenerator.Pokemon()),
-                new Level(28, Difficulty.Small,  SmallMapGenerator.SpaceShip()),
-                new Level(29, Difficulty.Small,  SmallMapGenerator.Fish()),
-                new Level(30, Difficulty.Small,  SmallMapGenerator.Dog()),
-                new Level(31, Difficulty.Small,  SmallMapGenerator.Pattern6()),
-                new Level(32, Difficulty.Small,  SmallMapGenerator.Ghost()),
-                new Level(33, Difficulty.Small,  SmallMapGenerator.Mushroom()),
-                new Level(34, Difficulty.Small,  SmallMapGenerator.Cat()),
-                new Level(35, Difficulty.Small,  SmallMapGenerator.Wink()),
-                new Level(36, Difficulty.Small,  SmallMapGenerator.Snake()),
-                new Level(37, Difficulty.Small,  SmallMapGenerator.Sword()),
-                new Level(38, Difficulty.Small,  SmallMapGenerator.Pattern2()),
-                new Level(39, Difficulty.Small,  SmallMapGenerator.TennisRacket()),
-                new Level(40, Difficulty.Small,  SmallMapGenerator.Glasses()),
-            };
-        }
-
-        private IList<Level> GetMediumLevels() {
-            return new List<Level>(){
-                new Level(1, Difficulty.Medium,  MediumMapGenerator.JellyFish()),
-                new Level(2, Difficulty.Medium,  MediumMapGenerator.Tree()),
-                new Level(3, Difficulty.Medium,  MediumMapGenerator.Hat()),
-                new Level(4, Difficulty.Medium,  MediumMapGenerator.Jug()),
-                new Level(5, Difficulty.Medium,  MediumMapGenerator.Pig()),
-                new Level(6, Difficulty.Medium,  MediumMapGenerator.Camera()),
-                new Level(7, Difficulty.Medium,  MediumMapGenerator.Heart()),
-                new Level(8, Difficulty.Medium,  MediumMapGenerator.Pint()),
-                new Level(9, Difficulty.Medium,  MediumMapGenerator.Socks()),
-                new Level(10, Difficulty.Medium,  MediumMapGenerator.Ghost()),
-                new Level(11, Difficulty.Medium,  MediumMapGenerator.Smile()),
-                new Level(12, Difficulty.Medium,  MediumMapGenerator.Toilet()),
-                new Level(13, Difficulty.Medium,  MediumMapGenerator.MoonAndStars()),
-                new Level(14, Difficulty.Medium,  MediumMapGenerator.SoundIcon()),
-                new Level(15, Difficulty.Medium,  MediumMapGenerator.House()),
-                new Level(16, Difficulty.Medium,  MediumMapGenerator.Sheep()),
-                new Level(17, Difficulty.Medium,  MediumMapGenerator.Mushroom()),
-                new Level(18, Difficulty.Medium,  MediumMapGenerator.MarioMushroom()),
-                new Level(19, Difficulty.Medium,  MediumMapGenerator.Submarine()),
-                new Level(20, Difficulty.Medium,  MediumMapGenerator.Gameboy()),
-                new Level(21, Difficulty.Medium,  MediumMapGenerator.Tv()),
-                new Level(22, Difficulty.Medium,  MediumMapGenerator.Lock()),
-                new Level(23, Difficulty.Medium,  MediumMapGenerator.Lamp()),
-                new Level(24, Difficulty.Medium,  MediumMapGenerator.Kangaroo()),
-                new Level(25, Difficulty.Medium,  MediumMapGenerator.Perfume()),
-                new Level(26, Difficulty.Medium,  MediumMapGenerator.Pattern()),
-                new Level(27, Difficulty.Medium,  MediumMapGenerator.Paw()),
-                new Level(28, Difficulty.Medium,  MediumMapGenerator.Wine()),
-                new Level(29, Difficulty.Medium,  MediumMapGenerator.DancingBoy()),
-                new Level(30, Difficulty.Medium,  MediumMapGenerator.TennisRacketAndBall()),
-                new Level(31, Difficulty.Medium,  MediumMapGenerator.Scales()),
-                new Level(32, Difficulty.Medium,  MediumMapGenerator.Martini()),
-                new Level(33, Difficulty.Medium,  MediumMapGenerator.Penguin()),
-                new Level(34, Difficulty.Medium,  MediumMapGenerator.YingYang()),
-                new Level(35, Difficulty.Medium,  MediumMapGenerator.Table()),
-                new Level(36, Difficulty.Medium,  MediumMapGenerator.Plant()),
-                new Level(37, Difficulty.Medium,  MediumMapGenerator.People()),
-                new Level(38, Difficulty.Medium,  MediumMapGenerator.Balloon()),
-                new Level(39, Difficulty.Medium,  MediumMapGenerator.Motorbike()),
-                new Level(40, Difficulty.Medium,  MediumMapGenerator.Kart()),
-            };
-        }
-
-        private IList<Level> GetHardLevels() {
-            return new List<Level>(){
-                new Level(1, Difficulty.Large,  LargeMapGenerator.Castle()),
-                new Level(2, Difficulty.Large,  LargeMapGenerator.Apple()),
-                new Level(3, Difficulty.Large,  LargeMapGenerator.Umbrella()),
-                new Level(4, Difficulty.Large,  LargeMapGenerator.Pumpkin()),
-                new Level(5, Difficulty.Large,  LargeMapGenerator.Robot()),
-                new Level(6, Difficulty.Large,  LargeMapGenerator.Tractor()),
-                new Level(7, Difficulty.Large,  LargeMapGenerator.Helicopter()),
-                new Level(8, Difficulty.Large,  LargeMapGenerator.Car()),
-                new Level(9, Difficulty.Large,  LargeMapGenerator.Microphone()),
-                new Level(10, Difficulty.Large,  LargeMapGenerator.Truck()),
-                new Level(11, Difficulty.Large,  LargeMapGenerator.Ship()),
-                new Level(12, Difficulty.Large,  LargeMapGenerator.Bag()),
-                new Level(13, Difficulty.Large,  LargeMapGenerator.Rocket2()),
-                new Level(14, Difficulty.Large,  LargeMapGenerator.Rocket()),
-                new Level(15, Difficulty.Large,  LargeMapGenerator.WizardHat()),
-                new Level(16, Difficulty.Large,  LargeMapGenerator.Dice()),
-                new Level(17, Difficulty.Large,  LargeMapGenerator.Clover()),
-                new Level(18, Difficulty.Large,  LargeMapGenerator.House()),
-                new Level(19, Difficulty.Large,  LargeMapGenerator.Plane()),
-                new Level(20, Difficulty.Large,  LargeMapGenerator.Chair()),
-                new Level(21, Difficulty.Large,  LargeMapGenerator.Duck()),
-                new Level(22, Difficulty.Large,  LargeMapGenerator.Swan()),
-                new Level(23, Difficulty.Large,  LargeMapGenerator.Moose()),
-                new Level(24, Difficulty.Large,  LargeMapGenerator.FlowerPot()),
-                new Level(25, Difficulty.Large,  LargeMapGenerator.Cat()),
-                new Level(26, Difficulty.Large,  LargeMapGenerator.Candle()),
-                new Level(27, Difficulty.Large,  LargeMapGenerator.Bee()),
-                new Level(28, Difficulty.Large,  LargeMapGenerator.Clock()),
-                new Level(29, Difficulty.Large,  LargeMapGenerator.Camera()),
-                new Level(30, Difficulty.Large,  LargeMapGenerator.Carrot()),
-                new Level(31, Difficulty.Large,  LargeMapGenerator.HotAirBalloon()),
-                new Level(32, Difficulty.Large,  LargeMapGenerator.Panda()),
-                new Level(33, Difficulty.Large,  LargeMapGenerator.Snail()),
-                new Level(34, Difficulty.Large,  LargeMapGenerator.Turtle()),
-                new Level(35, Difficulty.Large,  LargeMapGenerator.Giraffe()),
-                new Level(36, Difficulty.Large,  LargeMapGenerator.Whale()),
-                new Level(37, Difficulty.Large,  LargeMapGenerator.Ladybug()),
-                new Level(38, Difficulty.Large,  LargeMapGenerator.Quad()),
-                new Level(39, Difficulty.Large,  LargeMapGenerator.Drum()),
-                new Level(40, Difficulty.Large,  LargeMapGenerator.Cherry()),
-            };
         }
     }
 }
