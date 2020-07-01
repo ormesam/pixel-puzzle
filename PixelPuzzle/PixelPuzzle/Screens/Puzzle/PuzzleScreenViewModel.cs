@@ -31,6 +31,7 @@ namespace PixelPuzzle.Screens.Puzzle {
             if (level.UserMap != null) {
                 PuzzleControlViewModel.Game.ApplyUserValues(level.UserMap);
             }
+                PuzzleControlViewModel.Game.Solve(); // temp REMOVE
         }
 
         private async void Game_GameCompleted(object sender, EventArgs e) {
