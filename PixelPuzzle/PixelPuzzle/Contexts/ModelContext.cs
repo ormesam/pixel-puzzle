@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PixelPuzzle.Logic;
@@ -57,6 +58,7 @@ namespace PixelPuzzle.Contexts {
                 IsComplete = isComplete,
                 LevelNumber = levelNumber,
                 Map = userMap,
+                SavedUtc = DateTime.UtcNow,
             };
 
             await storageContext.SaveGame(save);
@@ -172,12 +174,12 @@ namespace PixelPuzzle.Contexts {
                 new Level(32, Difficulty.Medium,  MediumMapGenerator.Wine()),
                 new Level(33, Difficulty.Medium,  MediumMapGenerator.MoonAndStars()),
                 new Level(34, Difficulty.Medium,  MediumMapGenerator.DancingBoy()),
-                new Level(35, Difficulty.Medium,  MediumMapGenerator),
-                new Level(36, Difficulty.Medium,  MediumMapGenerator),
-                new Level(37, Difficulty.Medium,  MediumMapGenerator),
-                new Level(38, Difficulty.Medium,  MediumMapGenerator),
-                new Level(39, Difficulty.Medium,  MediumMapGenerator),
-                new Level(40, Difficulty.Medium,  MediumMapGenerator),
+                new Level(35, Difficulty.Medium,  MediumMapGenerator.Scales()),
+                new Level(36, Difficulty.Medium,  MediumMapGenerator.Perfume()),
+                new Level(37, Difficulty.Medium,  MediumMapGenerator.TennisRacketAndBall()),
+                new Level(38, Difficulty.Medium,  MediumMapGenerator.Pig()),
+                new Level(39, Difficulty.Medium,  MediumMapGenerator.Pint()),
+                new Level(40, Difficulty.Medium,  MediumMapGenerator.Socks()),
             };
         }
 
