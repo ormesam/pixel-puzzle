@@ -13,6 +13,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label
                     Padding="20, 20, 20, 0"
@@ -27,6 +28,15 @@
                     IsEnabled="{Binding AdLoaded}"
                     BackgroundColor="{StaticResource Green}"
                     Clicked="DisplayHintAd_Clicked"
+                    CornerRadius="50"
+                    WidthRequest="200"/>
+                <Button
+                    Grid.Row="2"
+                    Margin="25, 0, 25, 25"
+                    TextColor="White"
+                    Text="Nope"
+                    BackgroundColor="{StaticResource Orange}"
+                    Clicked="Cancel_Clicked"
                     CornerRadius="50"
                     WidthRequest="200"/>
             </Grid>

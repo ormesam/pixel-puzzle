@@ -23,5 +23,9 @@ namespace PixelPuzzle.Screens.Puzzle {
         private void DisplayHintAd_Clicked(object sender, EventArgs e) {
             ViewModel.ShowAd(Navigation);
         }
+
+        private void Cancel_Clicked(object sender, EventArgs e) {
+            Navigation.PopModalAsync();
+        }
     }
 }
