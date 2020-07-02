@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AppCenter.Analytics;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Controls;
 using PixelPuzzle.Logic;
@@ -80,6 +81,8 @@ namespace PixelPuzzle.Screens.Tutorial {
         }
 
         private async void Game_GameCompleted(object sender, EventArgs e) {
+            Analytics.TrackEvent("Tutorial Completed");
+
             var modal = new TutorialCompletedModal(Context);
 
             modal.Disappearing += (s, ev) => {
