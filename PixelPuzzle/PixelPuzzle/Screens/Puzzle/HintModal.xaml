@@ -34,7 +34,7 @@
                     Grid.Row="2"
                     Margin="25, 0, 25, 25"
                     TextColor="White"
-                    Text="Nope"
+                    Text="Cancel"
                     BackgroundColor="{StaticResource Orange}"
                     Clicked="Cancel_Clicked"
                     CornerRadius="50"
