@@ -72,7 +72,7 @@ namespace PixelPuzzle.Screens.Tutorial {
                         PuzzleControlViewModel.Game.Rows[6].Cells[6]);
                     await BlockColumn(6);
                 }, null);
-            RegisterStep("This row is now logically complete so lets block of the cells.", async () => { await BlockRow(5); }, null);
+            RegisterStep("This row is now logically complete so lets block out the cells.", async () => { await BlockRow(5); }, null);
             RegisterStep("And we know this row has 6 filled pixels which must go here.", async () => { await FillRow(6); }, null);
             RegisterStep("As we have blocked off the other pixels we know the group of 4 must go here.", async () => { await FillRow(7); }, null);
             RegisterStep("There is always a way to complete the puzzle. If you get stuck, tap the row or column headings for a hint.", null, null);
