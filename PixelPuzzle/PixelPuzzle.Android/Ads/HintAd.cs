@@ -12,21 +12,21 @@ namespace PixelPuzzle.Droid.Ads {
     public class HintAd : IHintAd {
         private RewardedAd ad;
 
-        public void Load(Action whenLoaded) {
+        public void Load(Action onLoaded, Action onLoadedFailed) {
             ad = new RewardedAd(CrossCurrentActivity.Current.AppContext, Constants.HintAdMobKey);
 #if DEBUG
-            ad.LoadAd(new AdRequest.Builder().AddTestDevice("25A827ECEB216919C8A883CDC21B651A").Build(), new HintRewardedAdLoadCallback(whenLoaded));
+            ad.LoadAd(new AdRequest.Builder().AddTestDevice("25A827ECEB216919C8A883CDC21B651A").Build(), new HintRewardedAdLoadCallback(onLoaded, onLoadedFailed));
 #else
-            ad.LoadAd(new AdRequest.Builder().Build(), new HintRewardedAdLoadCallback(whenLoaded));
+            ad.LoadAd(new AdRequest.Builder().Build(), new HintRewardedAdLoadCallback(onLoaded, onLoadedFailed));
 #endif
         }
 
-        public void Show(Func<Task> whenComplete) {
+        public void Show(Func<Task> onRewarded, Func<Task> onClose) {
             if (ad == null || !ad.IsLoaded) {
                 return;
             }
 
-            var callback = new HintRewardedAdCallback(whenComplete);
+            var callback = new HintRewardedAdCallback(onRewarded, onClose);
             ad.Show(CrossCurrentActivity.Current.Activity, callback);
         }
     }

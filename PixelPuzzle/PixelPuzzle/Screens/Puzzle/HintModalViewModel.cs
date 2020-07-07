@@ -6,6 +6,7 @@ using Xamarin.Forms;
 namespace PixelPuzzle.Screens.Puzzle {
     public class HintModalViewModel : ViewModelBase {
         private bool adLoaded;
+        private bool adFailedToLoad;
         private readonly IHintAd ad;
         private readonly Game game;
         private readonly Line line;
@@ -27,18 +28,31 @@ namespace PixelPuzzle.Screens.Puzzle {
             }
         }
 
-        public string WatchText => AdLoaded ? "Watch Ad" : "Loading...";
+        public bool AdFailedToLoad {
+            get { return adFailedToLoad; }
+            set {
+                if (adFailedToLoad != value) {
+                    adFailedToLoad = value;
+                    OnPropertyChanged(nameof(AdFailedToLoad));
+                    OnPropertyChanged(nameof(WatchText));
+                }
+            }
+        }
+
+        public string WatchText => AdLoaded ? "Watch Ad" : AdFailedToLoad ? "Ad failed to load" : "Loading...";
 
         public void LoadAd() {
             ad.Load(() => {
                 AdLoaded = true;
+            }, () => {
+                AdFailedToLoad = true;
             });
         }
 
         public void ShowAd(INavigation nav) {
             ad.Show(async () => {
                 await line.ShowHint();
-
+            }, async () => {
                 await nav.PopModalAsync();
 
                 game.CheckIsComplete();

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace PixelPuzzle.Utility {
     public interface IHintAd {
-        void Load(Action whenLoaded);
+        void Load(Action onLoaded, Action onLoadedFailed);
 
-        void Show(Func<Task> whenComplete);
+        void Show(Func<Task> onReward, Func<Task> onClose);
     }
 }
