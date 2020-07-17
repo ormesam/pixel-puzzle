@@ -45,12 +45,5 @@ namespace PixelPuzzle.Logic {
                 UserValue = CellValue.Blank;
             }
         }
-
-        public bool IsCorrect() {
-            bool shouldBeFilled = CorrectValue == CellValue.Filled;
-            bool isFilled = UserValue == CellValue.Filled;
-
-            return shouldBeFilled == isFilled;
-        }
     }
 }
