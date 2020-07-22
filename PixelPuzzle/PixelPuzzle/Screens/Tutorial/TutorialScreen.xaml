@@ -46,12 +46,12 @@
                     HeightRequest="30"
                     VerticalOptions="Center"
                     Source="chevron.png"
-                    IsVisible="{Binding IsTutorialComplete, Converter={StaticResource InvertBoolConverter}}"/>
+                    IsVisible="{Binding CanMoveNext}"/>
             </Grid>
 
             <Grid
                 Grid.Row="3"
-                InputTransparent="{Binding IsTutorialComplete, Converter={StaticResource InvertBoolConverter}}">
+                InputTransparent="{Binding CanMoveNext}">
                 <controls:PuzzleControl
                     x:Name="PuzzleControl"
                     BindingContext="{Binding PuzzleControlViewModel}"/>

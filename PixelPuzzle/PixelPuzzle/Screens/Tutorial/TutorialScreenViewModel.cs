@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Analytics;
 using PixelPuzzle.Contexts;
@@ -11,7 +12,7 @@ namespace PixelPuzzle.Screens.Tutorial {
         private bool isMovingStep;
         private readonly Queue<TutorialStep> steps;
         private TutorialStep currentStep;
-        private bool isTutorialComplete;
+        private bool canMoveNext;
         public event EventHandler<EventArgs> TutorialComplete;
 
         public PuzzleControlViewModel PuzzleControlViewModel { get; }
@@ -26,17 +27,18 @@ namespace PixelPuzzle.Screens.Tutorial {
             }
         }
 
-        public bool IsTutorialComplete {
-            get { return isTutorialComplete; }
+        public bool CanMoveNext {
+            get { return canMoveNext; }
             set {
-                if (isTutorialComplete != value) {
-                    isTutorialComplete = value;
-                    OnPropertyChanged(nameof(IsTutorialComplete));
+                if (canMoveNext != value) {
+                    canMoveNext = value;
+                    OnPropertyChanged(nameof(CanMoveNext));
                 }
             }
         }
 
         public TutorialScreenViewModel(MainContext context) : base(context) {
+            canMoveNext = true;
             steps = new Queue<TutorialStep>();
             PuzzleControlViewModel = new PuzzleControlViewModel(context, CreateTutorialMap(), true);
             PuzzleControlViewModel.Game.GameCompleted += Game_GameCompleted;
@@ -77,19 +79,20 @@ namespace PixelPuzzle.Screens.Tutorial {
             RegisterStep("And we know this row has 6 filled pixels which must go here.", async () => { await FillRow(6); }, null);
             RegisterStep("As we have blocked off the other pixels we know the group of 4 must go here.", async () => { await FillRow(7); }, null);
             RegisterStep("There is always a way to complete the puzzle. If you get stuck, tap the row or column headings for a hint.", null, null);
-            RegisterStep("Can you complete the rest of this puzzle?", () => { IsTutorialComplete = true; return Task.CompletedTask; }, null);
+            RegisterStep("Can you complete the rest of this puzzle?", () => { CanMoveNext = false; return Task.CompletedTask; }, null);
         }
 
         private async void Game_GameCompleted(object sender, EventArgs e) {
             Analytics.TrackEvent("Tutorial Completed");
 
-            var modal = new TutorialCompletedModal(Context);
+            RegisterStep("Tutorial complete! You are ready...", null, () => {
+                TutorialComplete?.Invoke(null, null);
+                return Task.CompletedTask;
+            });
 
-            modal.Disappearing += (s, ev) => {
-                TutorialComplete?.Invoke(s, ev);
-            };
+            CanMoveNext = true;
 
-            await Context.UI.ShowModal(modal);
+            await MoveNext();
         }
 
         private Task FillRow(int rowIdx) {
@@ -138,7 +141,7 @@ namespace PixelPuzzle.Screens.Tutorial {
         }
 
         public async Task MoveNext() {
-            if (isMovingStep || isTutorialComplete) {
+            if (isMovingStep || !canMoveNext) {
                 return;
             }
 
@@ -146,6 +149,10 @@ namespace PixelPuzzle.Screens.Tutorial {
 
             if (CurrentStep?.After != null) {
                 await CurrentStep.After.Invoke();
+            }
+
+            if (!steps.Any()) {
+                return;
             }
 
             CurrentStep = steps.Dequeue();

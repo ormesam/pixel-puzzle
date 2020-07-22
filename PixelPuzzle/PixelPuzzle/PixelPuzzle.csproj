@@ -30,9 +30,6 @@
     <Compile Update="Screens\Puzzle\HintModal.xaml.cs">
       <DependentUpon>HintModal.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Screens\Tutorial\TutorialCompletedModal.xaml.cs">
-      <DependentUpon>TutorialCompletedModal.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>

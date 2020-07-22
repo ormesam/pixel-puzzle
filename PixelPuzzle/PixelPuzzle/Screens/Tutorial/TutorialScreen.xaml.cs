@@ -9,15 +9,20 @@ namespace PixelPuzzle.Screens.Tutorial {
         public TutorialScreen(MainContext context) {
             InitializeComponent();
             BindingContext = new TutorialScreenViewModel(context);
-            ViewModel.TutorialComplete += ViewModel_TutorialComplete;
         }
 
         public TutorialScreenViewModel ViewModel => BindingContext as TutorialScreenViewModel;
 
         protected override async void OnAppearing() {
             base.OnAppearing();
+            ViewModel.TutorialComplete += ViewModel_TutorialComplete;
 
             await ViewModel.MoveNext();
+        }
+
+        protected override void OnDisappearing() {
+            ViewModel.TutorialComplete -= ViewModel_TutorialComplete;
+            base.OnDisappearing();
         }
 
         private async void MoveNext_Clicked(object sender, EventArgs e) {
