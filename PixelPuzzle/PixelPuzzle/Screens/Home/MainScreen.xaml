@@ -7,94 +7,96 @@
     NavigationPage.HasNavigationBar="False"
     BackgroundColor="Transparent">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="{StaticResource AdBannerHeight}" />
-                <RowDefinition
-                    Height="*"/>
-                <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
-                    Height="Auto"/>
-                <RowDefinition
-                    Height="3*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition
-                    Width="*" />
-                <ColumnDefinition
-                    Width="10*" />
-                <ColumnDefinition
-                    Width="*" />
-            </Grid.ColumnDefinitions>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="{StaticResource AdBannerHeight}" />
+                    <RowDefinition
+                        Height="*"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="Auto"/>
+                    <RowDefinition
+                        Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="10*" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Image
-                Source="bg_home.png"
-                Grid.RowSpan="8"
-                Grid.ColumnSpan="3"
-                Aspect="AspectFill" />
+                <Image
+                    Source="bg_home.png"
+                    Grid.RowSpan="8"
+                    Grid.ColumnSpan="3"
+                    Aspect="AspectFill" />
 
-            <controls:AdMobView
-                Grid.ColumnSpan="3"/>
+                <controls:AdMobView
+                    Grid.ColumnSpan="3"/>
 
-            <Image
-                Grid.Row="2"
-                Grid.ColumnSpan="3"
-                Source="logo.png"
-                Margin="15"
-                HorizontalOptions="Center" />
+                <Image
+                    Grid.Row="2"
+                    Grid.ColumnSpan="3"
+                    Source="logo.png"
+                    Margin="15"
+                    HorizontalOptions="Center" />
 
-            <BoxView
-                Grid.Row="3"
-                Grid.Column="1"
-                Grid.RowSpan="4"
-                BackgroundColor="White"
-                CornerRadius="28"
-                Opacity=".9"/>
+                <BoxView
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.RowSpan="4"
+                    BackgroundColor="White"
+                    CornerRadius="28"
+                    Opacity=".9"/>
 
-            <Button
-                Grid.Row="3"
-                Grid.Column="1"
-                Text="Tutorial"
-                BackgroundColor="{StaticResource Green}"
-                TextColor="White"
-                Clicked="Tutorial_Clicked"
-                CornerRadius="50"
-                Margin="15, 15, 15, 0" />
-            <Button
-                Grid.Row="4"
-                Grid.Column="1"
-                Text="8 x 8"
-                BackgroundColor="{StaticResource Green}"
-                TextColor="White"
-                Clicked="Easy_Clicked"
-                CornerRadius="50"
-                Margin="15, 0, 15, 0" />
-            <Button
-                Grid.Row="5"
-                Grid.Column="1"
-                Text="12 x 12"
-                BackgroundColor="{StaticResource Orange}"
-                TextColor="White"
-                Clicked="Medium_Clicked"
-                CornerRadius="50"
-                Margin="15, 0, 15, 0" />
-            <Button
-                Grid.Row="6"
-                Grid.Column="1"
-                Text="15 x 15"
-                BackgroundColor="{StaticResource Red}"
-                TextColor="White"
-                Clicked="Hard_Clicked"
-                CornerRadius="50"
-                Margin="15, 0, 15, 15" />
-        </Grid>
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="Tutorial"
+                    BackgroundColor="{StaticResource Green}"
+                    TextColor="White"
+                    Clicked="Tutorial_Clicked"
+                    CornerRadius="50"
+                    Margin="15, 15, 15, 0" />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="8 x 8"
+                    BackgroundColor="{StaticResource Green}"
+                    TextColor="White"
+                    Clicked="Easy_Clicked"
+                    CornerRadius="50"
+                    Margin="15, 0, 15, 0" />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="12 x 12"
+                    BackgroundColor="{StaticResource Orange}"
+                    TextColor="White"
+                    Clicked="Medium_Clicked"
+                    CornerRadius="50"
+                    Margin="15, 0, 15, 0" />
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text="15 x 15"
+                    BackgroundColor="{StaticResource Red}"
+                    TextColor="White"
+                    Clicked="Hard_Clicked"
+                    CornerRadius="50"
+                    Margin="15, 0, 15, 15" />
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
