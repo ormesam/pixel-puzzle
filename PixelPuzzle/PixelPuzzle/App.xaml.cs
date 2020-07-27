@@ -26,6 +26,8 @@ namespace PixelPuzzle {
             AppCenter.Start(Constants.AppCentreKey, typeof(Analytics), typeof(Crashes));
             VersionTracking.Track();
 
+            Analytics.TrackEvent("App Started");
+
 #if DEBUG
             BlobCache.ApplicationName = "PixelPuzzleDev";
 #else
