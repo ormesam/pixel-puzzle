@@ -43,6 +43,7 @@
                     Aspect="AspectFill" />
 
                 <controls:AdMobView
+                    VerticalOptions="Start"
                     Grid.ColumnSpan="3"/>
 
                 <Image

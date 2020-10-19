@@ -20,7 +20,7 @@
 
         <GridLength
             x:Key="AdBannerHeight">
-            50
+            60
         </GridLength>
 
         <Color

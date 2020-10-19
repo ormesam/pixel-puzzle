@@ -13,8 +13,6 @@ namespace PixelPuzzle.Droid.Ads {
         }
 
         public override async void OnUserEarnedReward(IRewardItem p0) {
-            base.OnUserEarnedReward(p0);
-
             await whenComplete?.Invoke();
         }
 

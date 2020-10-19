@@ -17,7 +17,8 @@
                 Grid.RowSpan="2"
                 Aspect="AspectFill" />
 
-            <controls:AdMobView />
+            <controls:AdMobView
+                VerticalOptions="Start" />
 
             <ScrollView
                 Grid.Row="1">
