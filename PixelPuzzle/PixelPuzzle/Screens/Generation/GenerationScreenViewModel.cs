@@ -33,7 +33,7 @@ namespace PixelPuzzle.Screens.Generation {
             return map;
         }
 
-        public Task Generate() {
+        public Task Share() {
             var map = PuzzleControlViewModel.Game.GetUserMap();
             int size = (int)Math.Sqrt(map.Length);
 
@@ -59,9 +59,9 @@ namespace PixelPuzzle.Screens.Generation {
                 sb.AppendLine("        }");
                 sb.AppendLine();
 
-                await Share.RequestAsync(new ShareTextRequest {
+                await Xamarin.Essentials.Share.RequestAsync(new ShareTextRequest {
                     Text = sb.ToString(),
-                    Title = "Puzzle!"
+                    Title = "Share Puzzle"
                 });
             });
 

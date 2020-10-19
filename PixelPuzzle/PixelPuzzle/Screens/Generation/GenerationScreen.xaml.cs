@@ -10,6 +10,7 @@ namespace PixelPuzzle.Screens.Generation {
             InitializeComponent();
             BindingContext = new GenerationScreenViewModel(context, size);
         }
+
         public GenerationScreen(MainContext context, int[,] map) {
             InitializeComponent();
             BindingContext = new GenerationScreenViewModel(context, map);
@@ -21,8 +22,8 @@ namespace PixelPuzzle.Screens.Generation {
             await Navigation.PopAsync();
         }
 
-        private async void Generate_Clicked(object sender, EventArgs e) {
-            await ViewModel.Generate();
+        private async void Share_Clicked(object sender, EventArgs e) {
+            await ViewModel.Share();
         }
     }
 }

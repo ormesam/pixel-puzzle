@@ -34,8 +34,8 @@ namespace PixelPuzzle.Screens.Puzzle {
             await ViewModel.GoToRandom();
         }
 
-        //private async void Create_Clicked(object sender, EventArgs e) {
-        //    await ViewModel.GoToGenerationScreen();
-        //}
+        private async void SubmitPuzzle_Clicked(object sender, EventArgs e) {
+            await ViewModel.GoToGenerationScreen();
+        }
     }
 }

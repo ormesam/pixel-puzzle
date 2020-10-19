@@ -24,9 +24,15 @@ namespace PixelPuzzle.Screens.Puzzle {
             await Context.UI.GoToGame(new Level(1, Difficulty, MapGenerator.GenerateRandom(difficultySize), true));
         }
 
-        //public async Task GoToGenerationScreen() {
-        //    await Context.UI.GoToGenerationScreen(difficultySize);
-        //}
+#if DEBUG
+        public bool CanSubmitPuzzles => true;
+#else
+        public bool CanSubmitPuzzles => false;
+#endif
+
+        public async Task GoToGenerationScreen() {
+            await Context.UI.GoToGenerationScreen(difficultySize);
+        }
 
         private int GetDifficultySize() {
             switch (Difficulty) {

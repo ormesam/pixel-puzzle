@@ -54,7 +54,7 @@
                     WidthRequest="150"
                     HeightRequest="50"
                     Text="Share"
-                    Clicked="Generate_Clicked"
+                    Clicked="Share_Clicked"
                     CornerRadius="5" />
             </Grid>
 

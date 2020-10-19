@@ -76,15 +76,15 @@
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
-                    <!--<Button
-                        Text="Create Puzzle"
-                        Clicked="Create_Clicked"
-                        BackgroundColor="White"
-                        Margin="8"
-                        Opacity=".9"/>-->
                     <Button
                         Text="Generate Random Puzzle"
                         Clicked="Random_Clicked"
+                        BackgroundColor="White"
+                        Margin="8"
+                        Opacity=".9"/>
+                    <Button
+                        Text="Submit Puzzle"
+                        Clicked="SubmitPuzzle_Clicked"
                         BackgroundColor="White"
                         Margin="8"
                         Opacity=".9"/>
