@@ -1,4 +1,5 @@
 ﻿using System;
+using Android.Gms.Ads;
 using Android.Gms.Ads.Rewarded;
 
 namespace PixelPuzzle.Droid.Ads {
@@ -17,7 +18,7 @@ namespace PixelPuzzle.Droid.Ads {
             onLoaded();
         }
 
-        public override void OnRewardedAdFailedToLoad(int p0) {
+        public override void OnRewardedAdFailedToLoad(LoadAdError p0) {
             onLoadedFailed();
 
             base.OnRewardedAdFailedToLoad(p0);

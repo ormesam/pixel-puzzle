@@ -14,11 +14,7 @@ namespace PixelPuzzle.Droid.Ads {
 
         public void Load(Action onLoaded, Action onLoadedFailed) {
             ad = new RewardedAd(CrossCurrentActivity.Current.AppContext, Constants.HintAdMobKey);
-#if DEBUG
-            ad.LoadAd(new AdRequest.Builder().AddTestDevice("C9A23722CA1CA50E99E2084CB1B80DCF").Build(), new HintRewardedAdLoadCallback(onLoaded, onLoadedFailed));
-#else
             ad.LoadAd(new AdRequest.Builder().Build(), new HintRewardedAdLoadCallback(onLoaded, onLoadedFailed));
-#endif
         }
 
         public void Show(Func<Task> onRewarded, Func<Task> onClose) {
