@@ -25,6 +25,9 @@ using PixelPuzzle.Utility;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
+[assembly: UsesPermission(Android.Manifest.Permission.AccessNetworkState)]
+[assembly: UsesPermission(Android.Manifest.Permission.Internet)]
+
 [assembly: MetaData("com.google.android.gms.ads.APPLICATION_ID", Value = Constants.AdMobAppId)]
 
 [assembly: Application(

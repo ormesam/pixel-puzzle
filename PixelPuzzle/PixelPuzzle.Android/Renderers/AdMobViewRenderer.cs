@@ -31,7 +31,7 @@ namespace PixelPuzzle.Droid.Renderers {
 
         private AdView CreateAdView() {
             var adView = new AdView(Context) {
-                AdSize = AdSize.SmartBanner,
+                AdSize = AdSize.FullBanner,
                 AdUnitId = Constants.BannerAdMobKey,
             };
 
