@@ -24,9 +24,8 @@
                 <Grid
                     BindableLayout.ItemsSource="{Binding Game.Rows}"
                     Grid.Row="1"
-                    RowSpacing="1"
-                    BackgroundColor="Gray"
-                    Padding="0, 1, 0, 1">
+                    RowSpacing="2"
+                    Padding="0, 2, 0, 2">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Grid
@@ -54,9 +53,8 @@
                 <Grid
                     BindableLayout.ItemsSource="{Binding Game.Columns}"
                     Grid.Column="1"
-                    ColumnSpacing="1"
-                    Padding="1, 0, 1, 0"
-                    BackgroundColor="Gray">
+                    ColumnSpacing="2"
+                    Padding="2, 0, 2, 0">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <Grid
@@ -85,9 +83,9 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     x:Name="gameGrid"
-                    RowSpacing="1"
-                    ColumnSpacing="1"
-                    Padding="1"
+                    RowSpacing="2"
+                    ColumnSpacing="2"
+                    Padding="2"
                     VerticalOptions="Start"
                     BindableLayout.ItemsSource="{Binding Game.Cells}"
                     BackgroundColor="Gray">
