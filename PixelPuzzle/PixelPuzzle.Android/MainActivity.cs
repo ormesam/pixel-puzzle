@@ -10,7 +10,7 @@ using Microsoft.AppCenter.Crashes;
 using Plugin.CurrentActivity;
 
 namespace PixelPuzzle.Droid {
-    [Activity(Label = "Pixel Puzzle", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Theme = "@style/MainTheme", MainLauncher = false, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
         public MainActivity() {
             TaskScheduler.UnobservedTaskException += (sender, args) => {
