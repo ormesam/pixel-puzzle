@@ -10,7 +10,7 @@ namespace PixelPuzzle.Converters {
             }
 
             if (value is bool boolValue) {
-                return boolValue ? .5 : 1;
+                return boolValue ? .6 : 1;
             }
 
             return 1;
