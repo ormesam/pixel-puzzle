@@ -95,8 +95,8 @@
                             <Grid
                                 Grid.Row="{Binding X}"
                                 Grid.Column="{Binding Y}"
-                                BackgroundColor="Gray"
-                                HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}">
+                                HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}"
+                                BackgroundColor="Gray">
                                 <BoxView
                                     BackgroundColor="White" />
 

@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource AdBannerHeight}" />
+                <RowDefinition Height="{Binding AdBannerHeight}" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -42,8 +42,8 @@
                 <ImageButton
                     Grid.Column="1"
                     Padding="10"
-                    WidthRequest="50"
-                    HeightRequest="50"
+                    WidthRequest="{Binding ToolbarButtonSize}"
+                    HeightRequest="{Binding ToolbarButtonSize}"
                     Source="back.png"
                     Clicked="Back_Clicked"
                     CornerRadius="5" />
@@ -52,7 +52,7 @@
                     Grid.Column="3"
                     Padding="10"
                     WidthRequest="150"
-                    HeightRequest="50"
+                    HeightRequest="{Binding ToolbarButtonSize}"
                     Text="Share"
                     Clicked="Share_Clicked"
                     CornerRadius="5" />

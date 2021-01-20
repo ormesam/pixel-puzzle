@@ -30,5 +30,9 @@ namespace PixelPuzzle.Screens {
          * 2.7 = 2.2
         */
         public bool IsSmallScreen => ScreenHeight < 500 && (ScreenHeight / ScreenWidth) < 1.7;
+
+        public int AdBannerHeight => IsSmallScreen ? 30 : 60;
+
+        public int ToolbarButtonSize => IsSmallScreen ? 40 : 50;
     }
 }

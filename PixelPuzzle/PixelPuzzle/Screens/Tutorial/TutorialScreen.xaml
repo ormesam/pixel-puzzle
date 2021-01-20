@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="{StaticResource AdBannerHeight}" />
+                <RowDefinition Height="{Binding AdBannerHeight}" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
