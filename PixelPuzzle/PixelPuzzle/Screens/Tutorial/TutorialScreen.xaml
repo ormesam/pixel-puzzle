@@ -23,9 +23,10 @@
                 Aspect="AspectFill" />
 
             <Grid
-                Padding="10"
-                BackgroundColor="White"
-                Grid.Row="1">
+                Padding="12"
+                Margin="5"
+                Grid.Row="1"
+                HeightRequest="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -34,11 +35,15 @@
                     <TapGestureRecognizer
                         Tapped="MoveNext_Clicked" />
                 </Grid.GestureRecognizers>
+                <BoxView
+                    Grid.ColumnSpan="2"
+                    Margin="-10"
+                    CornerRadius="5"
+                    BackgroundColor="White" />
+
                 <Label
-                    HeightRequest="50"
                     VerticalTextAlignment="Center"
-                    Text="{Binding CurrentStep.Message}"
-                    FontSize="12" />
+                    Text="{Binding CurrentStep.Message}" />
 
                 <Image
                     Grid.Column="1"

@@ -24,26 +24,27 @@
                 Aspect="AspectFill" />
 
             <Grid
-                Grid.Row="1">
+                Grid.Row="1"
+                Padding="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <BoxView
-                    Grid.ColumnSpan="9"
+                    Grid.ColumnSpan="4"
                     BackgroundColor="White"
                     Opacity=".9"/>
 
+                <Label
+                    Grid.ColumnSpan="4"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding LevelNumber}" />
+
                 <ImageButton
-                    Grid.Column="1"
                     Padding="10"
                     WidthRequest="{Binding ToolbarButtonSize}"
                     HeightRequest="{Binding ToolbarButtonSize}"
@@ -51,13 +52,8 @@
                     Clicked="Back_Clicked"
                     CornerRadius="5" />
 
-                <Label
-                    Grid.Column="3"
-                    VerticalTextAlignment="Center"
-                    Text="{Binding LevelNumber}" />
-
                 <ImageButton
-                    Grid.Column="5"
+                    Grid.Column="2"
                     Padding="10"
                     WidthRequest="{Binding ToolbarButtonSize}"
                     HeightRequest="{Binding ToolbarButtonSize}"
@@ -66,7 +62,7 @@
                     CornerRadius="5" />
 
                 <ImageButton
-                    Grid.Column="7"
+                    Grid.Column="3"
                     Padding="10"
                     WidthRequest="{Binding ToolbarButtonSize}"
                     HeightRequest="{Binding ToolbarButtonSize}"

@@ -5,6 +5,8 @@
     x:Class="PixelPuzzle.Controls.CellStateSelection">
     <ContentView.Content>
         <Grid
+            HeightRequest="{Binding CellStateSelectedSize}"
+            MinimumHeightRequest="{Binding CellStateSelectedSize}"
             Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
@@ -14,10 +16,6 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-            </Grid.RowDefinitions>
-
             <Grid
                 Grid.Column="1">
                 <Grid.GestureRecognizers>
@@ -26,8 +24,8 @@
                 </Grid.GestureRecognizers>
 
                 <BoxView
-                    WidthRequest="60"
-                    HeightRequest="60"
+                    WidthRequest="{Binding CellStateSelectedSize}"
+                    HeightRequest="{Binding CellStateSelectedSize}"
                     BackgroundColor="Black"
                     CornerRadius="15"
                     VerticalOptions="Center"
@@ -35,16 +33,16 @@
                     IsVisible="{Binding SelectedValueIsFilled}" />
 
                 <BoxView
-                    WidthRequest="50"
-                    HeightRequest="50"
+                    WidthRequest="{Binding CellStateBorderSize}"
+                    HeightRequest="{Binding CellStateBorderSize}"
                     BackgroundColor="White"
                     CornerRadius="10"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
 
                 <BoxView
-                    WidthRequest="40"
-                    HeightRequest="40"
+                    WidthRequest="{Binding CellStateFillSize}"
+                    HeightRequest="{Binding CellStateFillSize}"
                     CornerRadius="5"
                     BackgroundColor="Black" 
                     VerticalOptions="Center"
@@ -59,8 +57,8 @@
                 </Grid.GestureRecognizers>
 
                 <BoxView
-                    WidthRequest="60"
-                    HeightRequest="60"
+                    WidthRequest="{Binding CellStateSelectedSize}"
+                    HeightRequest="{Binding CellStateSelectedSize}"
                     BackgroundColor="Black"
                     CornerRadius="15"
                     VerticalOptions="Center"
@@ -68,19 +66,19 @@
                     IsVisible="{Binding SelectedValueIsBlocked}" />
 
                 <BoxView
-                    WidthRequest="50"
-                    HeightRequest="50"
+                    WidthRequest="{Binding CellStateBorderSize}"
+                    HeightRequest="{Binding CellStateBorderSize}"
                     BackgroundColor="White"
                     CornerRadius="10"
                     VerticalOptions="Center"
                     HorizontalOptions="Center" />
 
                 <Image
+                    WidthRequest="{Binding CellStateFillSize}"
+                    HeightRequest="{Binding CellStateFillSize}"
+                    Source="cross.png"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Source="cross.png"
-                    WidthRequest="40"
-                    HeightRequest="40"
                     BackgroundColor="White"/>
             </Grid>
         </Grid>

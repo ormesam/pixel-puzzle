@@ -38,6 +38,10 @@ namespace PixelPuzzle.Controls {
         public bool SelectedValueIsFilled => SelectedValue == CellValue.Filled;
         public bool SelectedValueIsBlocked => SelectedValue == CellValue.Blocked;
 
+        public int CellStateSelectedSize => App.IsSmallScreen ? 46 : 60;
+        public int CellStateBorderSize => CellStateSelectedSize - 10;
+        public int CellStateFillSize => CellStateBorderSize - 10;
+
         public void SetCell(Cell cell) {
             if (touchValue == null) {
                 touchValue = GetTouchValue(cell);
