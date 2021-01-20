@@ -23,7 +23,7 @@
                     <RowDefinition
                         Height="Auto"/>
                     <RowDefinition
-                        Height="3*"/>
+                        Height="2*"/>
                     <RowDefinition
                         Height="{Binding AdBannerHeight}" />
                 </Grid.RowDefinitions>

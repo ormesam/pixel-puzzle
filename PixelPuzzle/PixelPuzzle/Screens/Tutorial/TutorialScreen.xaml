@@ -11,13 +11,15 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="{Binding AdBannerHeight}" />
             </Grid.RowDefinitions>
 
             <Image
                 Source="bg_tutorial.png"
-                Grid.RowSpan="5"
+                Grid.RowSpan="7"
                 Aspect="AspectFill" />
 
             <Grid
@@ -55,8 +57,13 @@
                     BindingContext="{Binding PuzzleControlViewModel}"/>
             </Grid>
 
-            <controls:AdMobView
+            <controls:CellStateSelection
                 Grid.Row="4"
+                InputTransparent="{Binding CanMoveNext}"
+                BindingContext="{Binding PuzzleControlViewModel}" />
+
+            <controls:AdMobView
+                Grid.Row="6"
                 VerticalOptions="End" />
         </Grid>
     </ContentPage.Content>

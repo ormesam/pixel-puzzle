@@ -3,117 +3,111 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:touch="clr-namespace:PixelPuzzle.Touch"
-    xmlns:controls="clr-namespace:PixelPuzzle.Controls"
     x:Class="PixelPuzzle.Controls.PuzzleControl">
     <ContentView.Content>
-        <StackLayout
-            Padding="5">
+        <Grid
+            Padding="5"
+            ColumnSpacing="2"
+            RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
             <Grid
-                ColumnSpacing="2"
+                BindableLayout.ItemsSource="{Binding Game.Rows}"
+                Grid.Row="1"
                 RowSpacing="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid
-                    BindableLayout.ItemsSource="{Binding Game.Rows}"
-                    Grid.Row="1"
-                    RowSpacing="2">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
-                                Grid.Row="{Binding Number}"
-                                Grid.Column="0">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="Line_Tapped" />
-                                </Grid.GestureRecognizers>
-                                <Label
-                                    Text="{Binding SegmentDisplay}"
-                                    Padding="0, 0, 5, 0"
-                                    Margin="0"
-                                    BackgroundColor="White"
-                                    VerticalTextAlignment="Center"
-                                    HorizontalTextAlignment="End"
-                                    FontSize="8"
-                                    WidthRequest="60"
-                                    Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </Grid>
-
-                <Grid
-                    BindableLayout.ItemsSource="{Binding Game.Columns}"
-                    Grid.Column="1"
-                    ColumnSpacing="2">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
-                                Grid.Column="{Binding Number}"
-                                Grid.Row="0">
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="Line_Tapped" />
-                                </Grid.GestureRecognizers>
-                                <Label
-                                    Text="{Binding SegmentDisplay}"
-                                    Padding="0, 0, 0, 5"
-                                    Margin="0"
-                                    BackgroundColor="White"
-                                    VerticalTextAlignment="End"
-                                    HorizontalTextAlignment="Center"
-                                    FontSize="8"
-                                    WidthRequest="60"
-                                    Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </Grid>
-
-                <Grid
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    x:Name="gameGrid"
-                    RowSpacing="2"
-                    ColumnSpacing="2"
-                    VerticalOptions="Start"
-                    BindableLayout.ItemsSource="{Binding Game.Cells}"
-                    BackgroundColor="Gray">
-                    <Grid.Effects>
-                        <touch:TouchEffect
-                            TouchAction="TouchEffect_TouchAction"/>
-                    </Grid.Effects>
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Grid
-                                Grid.Row="{Binding X}"
-                                Grid.Column="{Binding Y}"
-                                HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}"
-                                BackgroundColor="Gray">
-                                <BoxView
-                                    BackgroundColor="White" />
-
-                                <Image
-                                    Source="cross.png"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
-
-                                <BoxView
-                                    BackgroundColor="{Binding UserValue, Converter={StaticResource CellColourConverter}}" />
-                            </Grid>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </Grid>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Grid.Row="{Binding Number}"
+                            Grid.Column="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="Line_Tapped" />
+                            </Grid.GestureRecognizers>
+                            <Label
+                                Text="{Binding SegmentDisplay}"
+                                Padding="0, 0, 5, 0"
+                                Margin="0"
+                                BackgroundColor="White"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="End"
+                                FontSize="8"
+                                WidthRequest="60"
+                                Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </Grid>
 
-            <controls:CellStateSelection />
-        </StackLayout>
+            <Grid
+                BindableLayout.ItemsSource="{Binding Game.Columns}"
+                Grid.Column="1"
+                ColumnSpacing="2">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Grid.Column="{Binding Number}"
+                            Grid.Row="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="Line_Tapped" />
+                            </Grid.GestureRecognizers>
+                            <Label
+                                Text="{Binding SegmentDisplay}"
+                                Padding="0, 0, 0, 5"
+                                Margin="0"
+                                BackgroundColor="White"
+                                VerticalTextAlignment="End"
+                                HorizontalTextAlignment="Center"
+                                FontSize="8"
+                                WidthRequest="60"
+                                Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+
+            <Grid
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="gameGrid"
+                RowSpacing="2"
+                ColumnSpacing="2"
+                VerticalOptions="Start"
+                BindableLayout.ItemsSource="{Binding Game.Cells}"
+                BackgroundColor="Gray">
+                <Grid.Effects>
+                    <touch:TouchEffect
+                        TouchAction="TouchEffect_TouchAction"/>
+                </Grid.Effects>
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Grid.Row="{Binding X}"
+                            Grid.Column="{Binding Y}"
+                            HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}"
+                            BackgroundColor="Gray">
+                            <BoxView
+                                BackgroundColor="White" />
+
+                            <Image
+                                Source="cross.png"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+
+                            <BoxView
+                                BackgroundColor="{Binding UserValue, Converter={StaticResource CellColourConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </Grid>
+        </Grid>
     </ContentView.Content>
 </ContentView>
