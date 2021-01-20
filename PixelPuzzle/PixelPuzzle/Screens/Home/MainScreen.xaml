@@ -11,8 +11,6 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition
-                        Height="{Binding AdBannerHeight}" />
-                    <RowDefinition
                         Height="*"/>
                     <RowDefinition
                         Height="Auto"/>
@@ -26,6 +24,8 @@
                         Height="Auto"/>
                     <RowDefinition
                         Height="3*"/>
+                    <RowDefinition
+                        Height="{Binding AdBannerHeight}" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
@@ -42,19 +42,15 @@
                     Grid.ColumnSpan="3"
                     Aspect="AspectFill" />
 
-                <controls:AdMobView
-                    VerticalOptions="Start"
-                    Grid.ColumnSpan="3"/>
-
                 <Image
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.ColumnSpan="3"
                     Source="logo.png"
                     Margin="15"
                     HorizontalOptions="Center" />
 
                 <BoxView
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Grid.RowSpan="4"
                     BackgroundColor="White"
@@ -62,7 +58,7 @@
                     Opacity=".9"/>
 
                 <Button
-                    Grid.Row="3"
+                    Grid.Row="2"
                     Grid.Column="1"
                     Text="Tutorial"
                     BackgroundColor="{StaticResource Green}"
@@ -71,7 +67,7 @@
                     CornerRadius="50"
                     Margin="15, 15, 15, 0" />
                 <Button
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Text="8 x 8"
                     BackgroundColor="{StaticResource Green}"
@@ -80,7 +76,7 @@
                     CornerRadius="50"
                     Margin="15, 0, 15, 0" />
                 <Button
-                    Grid.Row="5"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Text="12 x 12"
                     BackgroundColor="{StaticResource Orange}"
@@ -89,7 +85,7 @@
                     CornerRadius="50"
                     Margin="15, 0, 15, 0" />
                 <Button
-                    Grid.Row="6"
+                    Grid.Row="5"
                     Grid.Column="1"
                     Text="15 x 15"
                     BackgroundColor="{StaticResource Red}"
@@ -97,6 +93,11 @@
                     Clicked="Hard_Clicked"
                     CornerRadius="50"
                     Margin="15, 0, 15, 15" />
+
+                <controls:AdMobView
+                    Grid.Row="7"
+                    Grid.ColumnSpan="3"
+                    VerticalOptions="End" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>
