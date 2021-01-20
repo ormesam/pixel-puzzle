@@ -7,17 +7,12 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="{Binding AdBannerHeight}"/>
-            </Grid.RowDefinitions>
-
             <Image
                 Source="{Binding Difficulty, Converter={StaticResource LevelBackgroundConverter}}"
-                Grid.RowSpan="2"
                 Aspect="AspectFill" />
 
-            <ScrollView>
+            <ScrollView
+                Padding="0,0,0,50">
                 <StackLayout>
                     <Grid
                         Grid.Row="1"
@@ -88,8 +83,8 @@
             </ScrollView>
 
             <controls:AdMobView
-                Grid.Row="1"
-                VerticalOptions="Start" />
+                Height="{Binding AdBannerHeight}"
+                VerticalOptions="End" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
