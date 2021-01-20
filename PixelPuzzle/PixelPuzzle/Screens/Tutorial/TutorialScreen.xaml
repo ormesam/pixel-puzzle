@@ -14,7 +14,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="{Binding AdBannerHeight}" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Image

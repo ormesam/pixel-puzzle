@@ -14,6 +14,24 @@ namespace PixelPuzzle {
         public MainContext MainContext { get; }
         public static NavigationPage RootPage => Current.MainPage as NavigationPage;
 
+        /*
+         * Detect if this is a small phone which doesn't have much height compared to the width
+         * Might need to adjust the layout if this is true
+         * Inch  = Ratio
+         * 3.4 = 1.8
+         * 3.3 = 1.66666
+         * 3.2 = 1.5
+         * 2.7 = 2.2
+        */
+        public static bool IsSmallScreen {
+            get {
+                var screenHeight = DeviceDisplay.MainDisplayInfo.Height;
+                var screenWidth = DeviceDisplay.MainDisplayInfo.Width;
+
+                return screenHeight < 500 && (screenHeight / screenWidth) < 1.7;
+            }
+        }
+
         public App() {
             InitializeComponent();
 

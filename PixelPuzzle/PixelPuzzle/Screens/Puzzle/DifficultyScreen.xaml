@@ -12,11 +12,11 @@
                 Aspect="AspectFill" />
 
             <ScrollView
-                Padding="0,0,0,50">
-                <StackLayout>
+                Padding="8,50,8,50">
+                <StackLayout
+                    Spacing="40">
                     <Grid
-                        Grid.Row="1"
-                        Margin="0,20">
+                        Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -51,8 +51,7 @@
                         Padding="10"
                         VerticalOptions="Start"
                         BackgroundColor="White"
-                        Opacity=".9"
-                        Margin="8">
+                        Opacity=".9">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Button
@@ -71,19 +70,16 @@
                         Text="Generate Random Puzzle"
                         Clicked="Random_Clicked"
                         BackgroundColor="White"
-                        Margin="8"
                         Opacity=".9"/>
                     <Button
                         Text="Submit Puzzle"
                         Clicked="SubmitPuzzle_Clicked"
                         BackgroundColor="White"
-                        Margin="8"
                         Opacity=".9"/>
                 </StackLayout>
             </ScrollView>
 
             <controls:AdMobView
-                Height="{Binding AdBannerHeight}"
                 VerticalOptions="End" />
         </Grid>
     </ContentPage.Content>
