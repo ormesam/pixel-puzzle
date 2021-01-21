@@ -43,13 +43,9 @@ namespace PixelPuzzle.Droid.Effects {
         }
 
         protected override void OnDetached() {
-            try {
-                if (viewDictionary.ContainsKey(view)) {
-                    viewDictionary.Remove(view);
-                    view.Touch -= OnTouch;
-                }
-            } catch (ObjectDisposedException) {
-                //TODO This Bug is fixed with XForms 3.5 or higher.  
+            if (viewDictionary.ContainsKey(view)) {
+                viewDictionary.Remove(view);
+                view.Touch -= OnTouch;
             }
         }
 
