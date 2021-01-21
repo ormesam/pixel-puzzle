@@ -33,6 +33,7 @@ using PixelPuzzle.Utility;
 [assembly: Application(
     UsesCleartextTraffic = true,
     Icon = "@mipmap/icon",
+    RoundIcon = "@mipmap/icon_round",
 #if DEBUG
     Label = "Pixel Puzzle Dev",
 #else
