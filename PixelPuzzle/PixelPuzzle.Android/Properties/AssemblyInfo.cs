@@ -36,12 +36,9 @@ using PixelPuzzle.Utility;
     RoundIcon = "@mipmap/icon_round",
 #if DEBUG
     Label = "Pixel Puzzle Dev",
-#else
-    Label = "Pixel Puzzle",
-#endif
-#if DEBUG
     Debuggable = true
 #else
+    Label = "Pixel Puzzle",
     Debuggable = false
 #endif
 )]
