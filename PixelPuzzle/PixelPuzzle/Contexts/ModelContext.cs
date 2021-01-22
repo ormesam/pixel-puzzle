@@ -188,7 +188,22 @@ namespace PixelPuzzle.Contexts {
             RegisterLargeLevel(43, LargeMapGenerator.Cherrys());
             RegisterLargeLevel(44, LargeMapGenerator.PalmTree());
             RegisterLargeLevel(45, LargeMapGenerator.Santa());
-            RegisterLargeLevel(46, LargeMapGenerator.NaughtsAndCrosses());
+            RegisterLargeLevel(46, LargeMapGenerator.Lol());
+            RegisterLargeLevel(47, LargeMapGenerator.Landscape());
+            RegisterLargeLevel(48, LargeMapGenerator.ManRidingHorse());
+            RegisterLargeLevel(49, LargeMapGenerator.Hamster());
+            RegisterLargeLevel(50, LargeMapGenerator.Cow());
+            RegisterLargeLevel(51, LargeMapGenerator.GiraffeFace());
+            RegisterLargeLevel(52, LargeMapGenerator.Bin());
+            RegisterLargeLevel(53, LargeMapGenerator.Ape());
+            RegisterLargeLevel(54, LargeMapGenerator.Pharaoh());
+            RegisterLargeLevel(55, LargeMapGenerator.Man());
+            RegisterLargeLevel(56, LargeMapGenerator.Tap());
+            RegisterLargeLevel(57, LargeMapGenerator.Builder());
+            RegisterLargeLevel(58, LargeMapGenerator.Dog());
+            RegisterLargeLevel(59, LargeMapGenerator.Lizard());
+            RegisterLargeLevel(60, LargeMapGenerator.Africa());
+            RegisterLargeLevel(61, LargeMapGenerator.Coffee());
         }
 
         private void RegisterLargeLevel(int number, int[,] map) {
