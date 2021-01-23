@@ -12,9 +12,9 @@
                 Aspect="AspectFill" />
 
             <ScrollView
-                Padding="8,50,8,50">
+                Padding="8,30,8,50">
                 <StackLayout
-                    Spacing="40">
+                    Spacing="35">
                     <Grid
                         Padding="5"
                         HeightRequest="{Binding ToolbarButtonSize}">
