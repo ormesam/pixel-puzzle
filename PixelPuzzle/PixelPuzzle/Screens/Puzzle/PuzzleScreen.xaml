@@ -9,7 +9,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="{Binding ToolbarHeight}" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -27,15 +27,16 @@
                 Grid.Row="1"
                 Padding="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{Binding ToolbarButtonSize}" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{Binding ToolbarButtonSize}" />
+                    <ColumnDefinition Width="{Binding ToolbarButtonSize}" />
                 </Grid.ColumnDefinitions>
 
                 <BoxView
                     Grid.ColumnSpan="4"
                     BackgroundColor="White"
+                    CornerRadius="50"
                     Opacity=".9"/>
 
                 <Label
@@ -44,31 +45,34 @@
                     HorizontalTextAlignment="Center"
                     Text="{Binding LevelNumber}" />
 
-                <ImageButton
-                    Padding="10"
-                    WidthRequest="{Binding ToolbarButtonSize}"
-                    HeightRequest="{Binding ToolbarButtonSize}"
-                    Source="back.png"
-                    Clicked="Back_Clicked"
-                    CornerRadius="5" />
+                <Path
+                    Margin="10"
+                    Style="{StaticResource Back}">
+                    <Path.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Back_Clicked" />
+                    </Path.GestureRecognizers>
+                </Path>
 
-                <ImageButton
+                <Path
                     Grid.Column="2"
-                    Padding="10"
-                    WidthRequest="{Binding ToolbarButtonSize}"
-                    HeightRequest="{Binding ToolbarButtonSize}"
-                    Source="reset.png"
-                    Clicked="Reset_Clicked"
-                    CornerRadius="5" />
+                    Margin="10"
+                    Style="{StaticResource Reset}">
+                    <Path.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Reset_Clicked" />
+                    </Path.GestureRecognizers>
+                </Path>
 
-                <ImageButton
+                <Path
                     Grid.Column="3"
-                    Padding="10"
-                    WidthRequest="{Binding ToolbarButtonSize}"
-                    HeightRequest="{Binding ToolbarButtonSize}"
-                    Source="info.png"
-                    Clicked="Info_Clicked"
-                    CornerRadius="5" />
+                    Margin="10"
+                    Style="{StaticResource Info}">
+                    <Path.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Info_Clicked" />
+                    </Path.GestureRecognizers>
+                </Path>
             </Grid>
 
             <Grid

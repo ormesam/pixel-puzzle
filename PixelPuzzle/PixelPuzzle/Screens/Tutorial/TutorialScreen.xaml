@@ -45,13 +45,14 @@
                     VerticalTextAlignment="Center"
                     Text="{Binding CurrentStep.Message}" />
 
-                <Image
+                <Path
+                    Margin="10"
                     Grid.Column="1"
                     WidthRequest="30"
                     HeightRequest="30"
                     VerticalOptions="Center"
-                    Source="chevron.png"
-                    IsVisible="{Binding CanMoveNext}"/>
+                    Style="{StaticResource Next}"
+                    IsVisible="{Binding CanMoveNext}" />
             </Grid>
 
             <Grid

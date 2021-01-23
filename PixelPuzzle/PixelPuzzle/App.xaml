@@ -18,11 +18,6 @@
         <converters:CellColourConverter
             x:Key="CellColourConverter" />
 
-        <GridLength
-            x:Key="AdBannerHeight">
-            60
-        </GridLength>
-
         <Color
             x:Key="Red">
             #e8522b
@@ -37,5 +32,65 @@
             x:Key="Green">
             #86bc5c
         </Color>
+
+        <SolidColorBrush
+            x:Key="ToolbarIconColour"
+            Color="Gray" />
+
+        <Style
+            TargetType="Path"
+            x:Key="Back">
+            <Setter
+                Property="Data"
+                Value="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z" />
+            <Setter
+                Property="Aspect"
+                Value="Uniform" />
+            <Setter
+                Property="Fill"
+                Value="{StaticResource ToolbarIconColour}" />
+        </Style>
+
+        <Style
+            TargetType="Path"
+            x:Key="Next">
+            <Setter
+                Property="Data"
+                Value="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
+            <Setter
+                Property="Aspect"
+                Value="Uniform" />
+            <Setter
+                Property="Fill"
+                Value="{StaticResource ToolbarIconColour}" />
+        </Style>
+
+        <Style
+            TargetType="Path"
+            x:Key="Reset">
+            <Setter
+                Property="Data"
+                Value="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z" />
+            <Setter
+                Property="Aspect"
+                Value="Uniform" />
+            <Setter
+                Property="Fill"
+                Value="{StaticResource ToolbarIconColour}" />
+        </Style>
+
+        <Style
+            TargetType="Path"
+            x:Key="Info">
+            <Setter
+                Property="Data"
+                Value="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z" />
+            <Setter
+                Property="Aspect"
+                Value="Uniform" />
+            <Setter
+                Property="Fill"
+                Value="{StaticResource ToolbarIconColour}" />
+        </Style>
     </Application.Resources>
 </Application>

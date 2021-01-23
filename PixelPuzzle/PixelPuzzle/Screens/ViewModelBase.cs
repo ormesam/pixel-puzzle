@@ -11,6 +11,8 @@ namespace PixelPuzzle.Screens {
 
         public virtual string Title => "Pixel Puzzle";
 
+        public int ToolbarHeight => App.IsSmallScreen ? 50 : 60;
+
         public int ToolbarButtonSize => App.IsSmallScreen ? 40 : 50;
     }
 }

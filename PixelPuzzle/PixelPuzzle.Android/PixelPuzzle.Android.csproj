@@ -106,22 +106,10 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\reset.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PixelPuzzle\PixelPuzzle.csproj">
       <Project>{47C08D36-3DFE-4EA6-B8AE-1348CBC76D3A}</Project>
       <Name>PixelPuzzle</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\chevron.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\back.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap\splashscreen.xml" />
