@@ -202,8 +202,7 @@ namespace PixelPuzzle.Contexts {
             RegisterLargeLevel(57, LargeMapGenerator.Builder());
             RegisterLargeLevel(58, LargeMapGenerator.Dog());
             RegisterLargeLevel(59, LargeMapGenerator.Lizard());
-            RegisterLargeLevel(60, LargeMapGenerator.Africa());
-            RegisterLargeLevel(61, LargeMapGenerator.Coffee());
+            RegisterLargeLevel(60, LargeMapGenerator.Coffee());
         }
 
         private void RegisterLargeLevel(int number, int[,] map) {
