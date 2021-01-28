@@ -236,7 +236,23 @@ namespace PixelPuzzle.Contexts {
                 var state = savedLevels[level.Key];
                 level.UserMap = state.Map;
                 level.IsComplete = state.IsComplete;
+
+                level.UserMap = state.IsComplete ? CreateUserMap(level.Map) : state.Map;
             }
+        }
+
+        private CellValue[,] CreateUserMap(int[,] map) {
+            int gridLength = (int)Math.Sqrt(map.Length);
+
+            var userMap = new CellValue[gridLength, gridLength];
+
+            for (int row = 0; row < gridLength; row++) {
+                for (int col = 0; col < gridLength; col++) {
+                    userMap[row, col] = map[row, col] == 1 ? CellValue.Filled : CellValue.Blank;
+                }
+            }
+
+            return userMap;
         }
 
         public async Task SaveLevel(int levelNumber, Difficulty difficulty, CellValue[,] userMap, bool isComplete) {
