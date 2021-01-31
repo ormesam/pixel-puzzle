@@ -67,9 +67,8 @@
                 Grid.Row="5"
                 BindingContext="{Binding PuzzleControlViewModel}" />
 
-            <controls:AdMobView
-                Grid.Row="7"
-                VerticalOptions="End" />
+            <controls:AdMobViewWrapper
+                Grid.Row="7" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

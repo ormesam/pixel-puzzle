@@ -68,9 +68,8 @@
                 InputTransparent="{Binding CanMoveNext}"
                 BindingContext="{Binding PuzzleControlViewModel}" />
 
-            <controls:AdMobView
-                Grid.Row="6"
-                VerticalOptions="End" />
+            <controls:AdMobViewWrapper
+                Grid.Row="6" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

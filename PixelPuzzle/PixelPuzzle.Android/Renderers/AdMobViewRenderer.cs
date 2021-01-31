@@ -17,7 +17,16 @@ namespace PixelPuzzle.Droid.Renderers {
             base.OnElementChanged(e);
 
             if (e.NewElement != null && Control == null) {
-                SetNativeControl(CreateAdView());
+                var ad = new AdView(Context) {
+                    AdSize = AdSize.SmartBanner,
+                    AdUnitId = Constants.BannerAdMobKey,
+                };
+
+                ad.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
+                ad.LoadAd(new AdRequest.Builder().Build());
+                e.NewElement.HeightRequest = GetSmartBannerDpHeight();
+
+                SetNativeControl(ad);
             }
         }
 
@@ -29,16 +38,18 @@ namespace PixelPuzzle.Droid.Renderers {
             }
         }
 
-        private AdView CreateAdView() {
-            var adView = new AdView(Context) {
-                AdSize = AdSize.SmartBanner,
-                AdUnitId = Constants.BannerAdMobKey,
-            };
+        private int GetSmartBannerDpHeight() {
+            var dpHeight = Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density;
 
-            adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-            adView.LoadAd(new AdRequest.Builder().Build());
+            if (dpHeight <= 400) {
+                return 32;
+            }
 
-            return adView;
+            if (dpHeight > 400 && dpHeight <= 720) {
+                return 50;
+            }
+
+            return 90;
         }
     }
 }

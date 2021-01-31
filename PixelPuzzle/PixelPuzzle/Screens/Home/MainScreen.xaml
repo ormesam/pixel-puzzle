@@ -95,8 +95,7 @@
                 </Grid>
             </ScrollView>
 
-            <controls:AdMobView
-                VerticalOptions="End" />
+            <controls:AdMobViewWrapper />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

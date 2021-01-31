@@ -12,7 +12,7 @@
                 Aspect="AspectFill" />
 
             <ScrollView
-                Padding="8,30,8,50">
+                Padding="8,30,8,100">
                 <StackLayout
                     Spacing="35">
                     <Grid
@@ -77,14 +77,14 @@
                     <Button
                         Text="Submit Puzzle"
                         Clicked="SubmitPuzzle_Clicked"
+                        IsVisible="{Binding CanSubmitPuzzles}"
                         BackgroundColor="White"
                         Opacity=".9"
                         CornerRadius="50"/>
                 </StackLayout>
             </ScrollView>
 
-            <controls:AdMobView
-                VerticalOptions="End" />
+            <controls:AdMobViewWrapper />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
