@@ -1,5 +1,6 @@
 ﻿using PixelPuzzle.Contexts;
 using PixelPuzzle.Utility;
+using Xamarin.Essentials;
 
 namespace PixelPuzzle.Screens {
     public class ViewModelBase : NotifyPropertyChangedBase {
@@ -11,8 +12,8 @@ namespace PixelPuzzle.Screens {
 
         public virtual string Title => "Pixel Puzzle";
 
-        public int ToolbarHeight => App.IsSmallScreen ? 50 : 60;
+        public int ToolbarHeight => DeviceDisplay.MainDisplayInfo.Height <= 480 ? 45 : 60;
 
-        public int ToolbarButtonSize => App.IsSmallScreen ? 40 : 50;
+        public int ToolbarButtonSize => DeviceDisplay.MainDisplayInfo.Height <= 480 ? 40 : 50;
     }
 }

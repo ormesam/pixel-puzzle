@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Screens;
+using Xamarin.Essentials;
 using Cell = PixelPuzzle.Logic.Cell;
 
 namespace PixelPuzzle.Controls {
@@ -38,7 +39,7 @@ namespace PixelPuzzle.Controls {
         public bool SelectedValueIsFilled => SelectedValue == CellValue.Filled;
         public bool SelectedValueIsBlocked => SelectedValue == CellValue.Blocked;
 
-        public int CellStateSelectedSize => App.IsSmallScreen ? 46 : 60;
+        public int CellStateSelectedSize => DeviceDisplay.MainDisplayInfo.Height <= 480 ? 45 : 60;
         public int CellStateBorderSize => CellStateSelectedSize - 10;
         public int CellStateFillSize => CellStateBorderSize - 10;
 
