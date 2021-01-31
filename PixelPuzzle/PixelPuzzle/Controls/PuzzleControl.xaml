@@ -10,11 +10,11 @@
             ColumnSpacing="2"
             RowSpacing="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="65"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="65" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 

@@ -712,6 +712,9 @@ namespace Tests {
             var rowHints = GenerateRowHints(map);
             var columnHints = GenerateColumnHints(map);
 
+            Assert.IsTrue(rowHints.All(i => i.Length <= 6));
+            Assert.IsTrue(columnHints.All(i => i.Length <= 6));
+
             Nonogram nonogram = new Nonogram(rowHints, columnHints);
             var result = nonogram.Solve();
 
