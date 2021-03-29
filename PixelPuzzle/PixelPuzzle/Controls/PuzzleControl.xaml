@@ -26,22 +26,28 @@
                     <DataTemplate>
                         <Grid
                             Grid.Row="{Binding Number}"
-                            Grid.Column="0">
+                            Grid.Column="0"
+                            BackgroundColor="White"
+                            Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{Binding LinePaddingSize}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="Line_Tapped" />
                             </Grid.GestureRecognizers>
                             <Label
+                                Grid.Column="1"
                                 Text="{Binding SegmentDisplay}"
-                                Padding="3, 0, 5, 0"
+                                Padding="5, 0, 5, 0"
                                 Margin="0"
-                                BackgroundColor="White"
                                 VerticalTextAlignment="Center"
                                 HorizontalTextAlignment="End"
                                 FontSize="{Binding HintTextSize}"
                                 TextColor="Black"
-                                FontAttributes="Bold"
-                                Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                                FontAttributes="Bold"/>
                         </Grid>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
@@ -55,22 +61,28 @@
                     <DataTemplate>
                         <Grid
                             Grid.Column="{Binding Number}"
-                            Grid.Row="0">
+                            Grid.Row="0"
+                            BackgroundColor="White"
+                            Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{Binding LinePaddingSize}" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Tapped="Line_Tapped" />
                             </Grid.GestureRecognizers>
                             <Label
+                                Grid.Row="1"
                                 Text="{Binding SegmentDisplay}"
-                                Padding="0, 3, 0, 5"
+                                Padding="0, 5, 0, 5"
                                 Margin="0"
-                                BackgroundColor="White"
                                 VerticalTextAlignment="End"
                                 HorizontalTextAlignment="Center"
                                 FontSize="{Binding HintTextSize}"
                                 TextColor="Black"
-                                FontAttributes="Bold"
-                                Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
+                                FontAttributes="Bold"/>
                         </Grid>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

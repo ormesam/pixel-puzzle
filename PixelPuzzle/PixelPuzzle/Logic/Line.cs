@@ -13,6 +13,7 @@ namespace PixelPuzzle.Logic {
         private bool IsRow { get; }
         public bool IsValid => GetIsValid();
         public string SegmentDisplay => string.Join(IsRow ? "  " : "\n", Segments);
+        public int LinePaddingSize => Segments.Count <= 2 ? HintTextSize : 0;
 
         public Line(int gridLength, bool isRow, int number) {
             Cells = new Cell[gridLength];
