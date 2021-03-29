@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PixelPuzzle.Utility;
+using Xamarin.Essentials;
 
 namespace PixelPuzzle.Logic {
     public class Line : NotifyPropertyChangedBase {
@@ -73,6 +74,22 @@ namespace PixelPuzzle.Logic {
             foreach (Cell cell in Cells) {
                 cell.UserValue = cell.CorrectValue;
                 await Task.Delay(100);
+            }
+        }
+
+        public int HintTextSize {
+            get {
+                var dpHeight = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
+
+                if (dpHeight <= 480) {
+                    return 9;
+                }
+
+                if (dpHeight <= 720) {
+                    return 11;
+                }
+
+                return 12;
             }
         }
     }
