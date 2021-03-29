@@ -81,12 +81,12 @@ namespace PixelPuzzle.Logic {
             get {
                 var dpHeight = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
 
-                if (dpHeight <= 480) {
-                    return 9;
+                if (dpHeight <= 600) {
+                    return 8;
                 }
 
                 if (dpHeight <= 720) {
-                    return 11;
+                    return 10;
                 }
 
                 return 12;

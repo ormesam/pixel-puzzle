@@ -14,6 +14,12 @@ namespace PixelPuzzle.Screens.Puzzle {
 
         public PuzzleScreenViewModel ViewModel => BindingContext as PuzzleScreenViewModel;
 
+        protected override async void OnAppearing() {
+            base.OnAppearing();
+
+            await PuzzleControl.OnLoad();
+        }
+
         protected async override void OnDisappearing() {
             await ViewModel.SaveGameState();
 

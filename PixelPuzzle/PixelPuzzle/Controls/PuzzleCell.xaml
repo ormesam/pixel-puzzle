@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PixelPuzzle.Controls.PuzzleCell">
+  <ContentView.Content>
+        <Grid
+            HeightRequest="{Binding Source={RelativeSource Self}, Path=Width}"
+            BackgroundColor="Gray">
+            <BoxView
+                BackgroundColor="White" />
+
+            <Image
+                Source="cross.png"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+            <BoxView
+                BackgroundColor="{Binding UserValue, Converter={StaticResource CellColourConverter}}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

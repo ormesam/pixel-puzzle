@@ -81,6 +81,7 @@
     <Compile Include="Ads\HintAd.cs" />
     <Compile Include="Ads\HintRewardedAdCallback.cs" />
     <Compile Include="Ads\HintRewardedAdLoadCallback.cs" />
+    <Compile Include="Effects\AutoFitFontSizeEffect.cs" />
     <Compile Include="Effects\TouchEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\AdMobViewRenderer.cs" />

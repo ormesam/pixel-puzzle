@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Touch;
 using Xamarin.Forms;
@@ -8,8 +9,20 @@ using Xamarin.Forms.Xaml;
 namespace PixelPuzzle.Controls {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PuzzleControl : ContentView {
+        private bool loaded = false;
+
         public PuzzleControl() {
             InitializeComponent();
+        }
+
+        public async Task OnLoad() {
+            if (loaded) {
+                return;
+            }
+
+            loaded = true;
+
+            await ViewModel.Setup(gameGrid);
         }
 
         public PuzzleControlViewModel ViewModel => BindingContext as PuzzleControlViewModel;

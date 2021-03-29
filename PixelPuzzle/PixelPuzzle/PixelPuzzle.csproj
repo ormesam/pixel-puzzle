@@ -17,4 +17,22 @@
   <ItemGroup>
     <ProjectReference Include="..\..\PuzzleGeneration\PuzzleGeneration.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\RowHint.xaml.cs">
+      <DependentUpon>RowHint.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\ColumnHint.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\PuzzleCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\RowHint.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

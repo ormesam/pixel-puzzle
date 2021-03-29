@@ -4,6 +4,7 @@ using PixelPuzzle.Contexts;
 using PixelPuzzle.Logic;
 using PixelPuzzle.Screens;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using Cell = PixelPuzzle.Logic.Cell;
 
 namespace PixelPuzzle.Controls {
@@ -108,6 +109,33 @@ namespace PixelPuzzle.Controls {
 
                 return 92;
             }
+        }
+
+        public Task Setup(Grid grid) {
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75, GridUnitType.Absolute), });
+
+            foreach (var row in Game.Rows) {
+                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+                grid.Children.Add(new RowHint { BindingContext = row }, 0, row.Number + 1);
+            }
+
+            foreach (var col in Game.Columns) {
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+                grid.Children.Add(new ColumnHint { BindingContext = col }, col.Number + 1, 0);
+            }
+
+            foreach (var cell in Game.Cells) {
+                var cellControl = new PuzzleCell {
+                    BindingContext = cell,
+                };
+
+                grid.Children.Add(cellControl, cell.X + 1, cell.Y + 1);
+            }
+
+            return Task.CompletedTask;
         }
     }
 }
