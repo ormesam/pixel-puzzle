@@ -10,11 +10,11 @@
             ColumnSpacing="2"
             RowSpacing="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="65"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="65" />
+                <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -38,8 +38,9 @@
                                 BackgroundColor="White"
                                 VerticalTextAlignment="Center"
                                 HorizontalTextAlignment="End"
-                                FontSize="8"
-                                WidthRequest="60"
+                                FontSize="12"
+                                TextColor="Black"
+                                FontAttributes="Bold"
                                 Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
                         </Grid>
                     </DataTemplate>
@@ -66,8 +67,9 @@
                                 BackgroundColor="White"
                                 VerticalTextAlignment="End"
                                 HorizontalTextAlignment="Center"
-                                FontSize="8"
-                                WidthRequest="60"
+                                FontSize="12"
+                                TextColor="Black"
+                                FontAttributes="Bold"
                                 Opacity="{Binding IsValid, Converter={StaticResource LineOpacityConverter}}"/>
                         </Grid>
                     </DataTemplate>

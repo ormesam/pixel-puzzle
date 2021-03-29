@@ -43,6 +43,7 @@
                     Grid.ColumnSpan="4"
                     VerticalTextAlignment="Center"
                     HorizontalTextAlignment="Center"
+                    FontAttributes="Bold"
                     Text="{Binding LevelNumber}" />
 
                 <Path
