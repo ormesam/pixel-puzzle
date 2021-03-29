@@ -97,17 +97,5 @@ namespace PixelPuzzle.Controls {
 
             await Context.UI.ShowHintModal(Game, line);
         }
-
-        public int HintElementSize {
-            get {
-                var dpHeight = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density;
-
-                if (dpHeight <= 480) {
-                    return 75;
-                }
-
-                return 92;
-            }
-        }
     }
 }
